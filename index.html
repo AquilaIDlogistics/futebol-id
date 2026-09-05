@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Futebol ID</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f5f9;
+            color: #172033;
+        }
+
+        header {
+            background: #071d49;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,.15);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .status {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bolinha {
+            width: 10px;
+            height: 10px;
+            background: #24c76a;
+            border-radius: 50%;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .titulo {
+            margin-bottom: 25px;
+        }
+
+        .titulo h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .titulo p {
+            color: #667085;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+            border: 1px solid #e5e9f0;
+        }
+
+        .card h2 {
+            color: #071d49;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #667085;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            border: 0;
+            border-radius: 9px;
+            padding: 13px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #071d49;
+            color: white;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #0d347d;
+            transform: translateY(-1px);
+        }
+
+        .secundario {
+            background: #e9eef7;
+            color: #071d49;
+        }
+
+        .secundario:hover {
+            background: #dbe4f2;
+        }
+
+        .painel {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .painel h2 {
+            margin-bottom: 15px;
+            color: #071d49;
+        }
+
+        #resultado {
+            background: #f7f9fc;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 50px;
+            color: #475467;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        footer {
+            text-align: center;
+            color: #98a2b3;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @media(max-width:600px) {
+            header {
+                padding: 16px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            main {
+                margin-top: 25px;
+            }
+
+            .titulo h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        ⚽ Futebol ID
+    </div>
+
+    <div class="status">
+        <span class="bolinha"></span>
+        Sistema online
+    </div>
+</header>
+
+<main>
+
+    <section class="titulo">
+        <h1>Futebol ID</h1>
+        <p>Sistema de identificação e gerenciamento de futebol.</p>
+    </section>
+
+    <section class="cards">
+
+        <div class="card">
+            <h2>👤 Cadastro</h2>
+            <p>
+                Cadastre e gerencie jogadores no sistema Futebol ID.
+            </p>
+
+            <button onclick="abrirCadastro()">
+                Novo cadastro
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>🔎 Consultar</h2>
+            <p>
+                Consulte informações cadastradas no sistema.
+            </p>
+
+            <button onclick="consultar()" class="secundario">
+                Consultar
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>⚙️ Sistema</h2>
+            <p>
+                Verifique a comunicação entre o site e o servidor.
+            </p>
+
+            <button onclick="testarSistema()">
+                Testar conexão
+            </button>
+        </div>
+
+    </section>
+
+    <section class="painel">
+
+        <h2>Resultado</h2>
+
+        <div id="resultado">
+            Aguardando uma ação...
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    Futebol ID © 2026
+</footer>
+
+
+<script>
+
+    const API_URL =
+        "https://script.google.com/macros/s/AKfycbzd-B7jCN_YhM7QOh_cHvad-4icVrTAuMQ_gp2Xx7y95ctNO5258G2-zLfwWWq2C1sN/exec";
+
+
+    function mostrarResultado(texto) {
+        document.getElementById("resultado").textContent = texto;
+    }
+
+
+    async function testarSistema() {
+
+        mostrarResultado("Testando conexão com o servidor...");
+
+        try {
+
+            const resposta = await fetch(API_URL);
+
+            if (!resposta.ok) {
+                throw new Error("Erro HTTP " + resposta.status);
+            }
+
+            const dados = await resposta.json();
+
+            mostrarResultado(
+                "CONEXÃO OK\n\n" +
+                JSON.stringify(dados, null, 2)
+            );
+
+        } catch (erro) {
+
+            mostrarResultado(
+                "ERRO DE CONEXÃO\n\n" +
+                erro.message
+            );
+
+        }
+
+    }
+
+
+    function abrirCadastro() {
+
+        mostrarResultado(
+            "Área de cadastro.\n\n" +
+            "A próxima etapa será conectar o formulário de jogadores ao Google Apps Script."
+        );
+
+    }
+
+
+    function consultar() {
+
+        mostrarResultado(
+            "Área de consulta.\n\n" +
+            "A próxima etapa será conectar a consulta ao banco de dados."
+        );
+
+    }
+
+
+    // Testa automaticamente quando a página abre
+    window.addEventListener("load", function() {
+        testarSistema();
+    });
+
+</script>
+
+</body>
+</html>
