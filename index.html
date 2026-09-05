@@ -1,688 +1,803 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Futebol ID</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #07111f;
-      color: #ffffff;
-      min-height: 100vh;
-    }
-
-    button,
-    input {
-      font-family: inherit;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .screen {
-      min-height: 100vh;
-    }
-
-    /* =========================
-       LOGIN
-    ========================= */
-
-    #loginScreen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background:
-        radial-gradient(circle at top, #12335c 0%, #07111f 55%);
-    }
-
-    .login-box {
-      width: 100%;
-      max-width: 430px;
-      background: #0d1b2d;
-      border: 1px solid #1d395c;
-      border-radius: 20px;
-      padding: 35px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .logo-icon {
-      width: 78px;
-      height: 78px;
-      margin: auto;
-      border-radius: 50%;
-      background: #ffffff;
-      color: #0b4fa3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      margin-bottom: 15px;
-    }
-
-    .logo h1 {
-      font-size: 30px;
-      letter-spacing: 1px;
-    }
-
-    .logo p {
-      color: #91a8c4;
-      margin-top: 7px;
-    }
-
-    .field {
-      margin-bottom: 18px;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 7px;
-      color: #d9e6f5;
-      font-size: 14px;
-    }
-
-    .field input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #294563;
-      background: #07111f;
-      color: #fff;
-      outline: none;
-      font-size: 15px;
-    }
-
-    .field input:focus {
-      border-color: #2877d1;
-      box-shadow: 0 0 0 3px rgba(40,119,209,.15);
-    }
-
-    .btn {
-      width: 100%;
-      border: 0;
-      border-radius: 10px;
-      padding: 14px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 15px;
-      transition: .2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.08);
-    }
-
-    .btn-primary {
-      background: #1261b5;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #172b43;
-      color: #dcecff;
-      border: 1px solid #294563;
-    }
-
-    .btn-danger {
-      background: #9f2e38;
-      color: white;
-    }
-
-    .btn-success {
-      background: #18794e;
-      color: white;
-    }
-
-    .login-links {
-      margin-top: 18px;
-      text-align: center;
-    }
-
-    .login-links button {
-      background: none;
-      border: 0;
-      color: #5da7ff;
-      cursor: pointer;
-      margin: 5px;
-    }
-
-    /* =========================
-       APP
-    ========================= */
-
-    .app {
-      min-height: 100vh;
-    }
-
-    .topbar {
-      height: 70px;
-      background: #0b192b;
-      border-bottom: 1px solid #1d395c;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 25px;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .topbar-brand {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .topbar-user {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .user-name {
-      color: #b9cee6;
-      font-size: 14px;
-    }
-
-    .logout-btn {
-      background: #172b43;
-      border: 1px solid #294563;
-      color: #fff;
-      border-radius: 8px;
-      padding: 9px 14px;
-      cursor: pointer;
-    }
-
-    .layout {
-      display: flex;
-      min-height: calc(100vh - 70px);
-    }
-
-    .sidebar {
-      width: 245px;
-      background: #091625;
-      border-right: 1px solid #1d395c;
-      padding: 20px 14px;
-      flex-shrink: 0;
-    }
-
-    .menu-title {
-      color: #7189a5;
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 1px;
-      padding: 10px 12px;
-    }
-
-    .menu-btn {
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      color: #c8d8ea;
-      border: 0;
-      padding: 12px;
-      border-radius: 9px;
-      cursor: pointer;
-      margin-bottom: 4px;
-      font-size: 14px;
-    }
-
-    .menu-btn:hover,
-    .menu-btn.active {
-      background: #12345a;
-      color: #fff;
-    }
-
-    .content {
-      flex: 1;
-      padding: 30px;
-      overflow-x: auto;
-    }
-
-    .page-title {
-      font-size: 27px;
-      margin-bottom: 7px;
-    }
-
-    .page-subtitle {
-      color: #8da4bf;
-      margin-bottom: 25px;
-    }
-
-    /* =========================
-       CARDS
-    ========================= */
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 25px;
-    }
-
-    .card {
-      background: #0d1b2d;
-      border: 1px solid #1d395c;
-      border-radius: 14px;
-      padding: 22px;
-    }
-
-    .card-title {
-      color: #8da4bf;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    .card-value {
-      font-size: 30px;
-      font-weight: bold;
-    }
-
-    .panel {
-      background: #0d1b2d;
-      border: 1px solid #1d395c;
-      border-radius: 14px;
-      padding: 22px;
-      margin-bottom: 20px;
-    }
-
-    .panel h3 {
-      margin-bottom: 17px;
-    }
-
-    /* =========================
-       TABLE
-    ========================= */
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 650px;
-    }
-
-    th,
-    td {
-      padding: 13px 10px;
-      border-bottom: 1px solid #203650;
-      text-align: left;
-      font-size: 14px;
-    }
-
-    th {
-      color: #8da4bf;
-      font-weight: normal;
-    }
-
-    td {
-      color: #e2edf9;
-    }
-
-    /* =========================
-       STATUS
-    ========================= */
-
-    .badge {
-      display: inline-block;
-      border-radius: 20px;
-      padding: 5px 9px;
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    .badge-green {
-      background: #124f38;
-      color: #7de0b1;
-    }
-
-    .badge-yellow {
-      background: #5b4811;
-      color: #f5d66f;
-    }
-
-    .badge-red {
-      background: #571f25;
-      color: #ff929b;
-    }
-
-    .badge-blue {
-      background: #123e67;
-      color: #7ebcff;
-    }
-
-    /* =========================
-       FORM GRID
-    ========================= */
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .form-grid .full {
-      grid-column: 1 / -1;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .small-btn {
-      width: auto;
-      padding: 8px 11px;
-      font-size: 12px;
-    }
-
-    /* =========================
-       MATCH
-    ========================= */
-
-    .match-card {
-      background: #101f32;
-      border: 1px solid #254463;
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 12px;
-    }
-
-    .match-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 12px;
-    }
-
-    .match-opponent {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .match-info {
-      color: #91a8c4;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    /* =========================
-       MODAL
-    ========================= */
-
-    .modal-bg {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 100;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 500px;
-      background: #0d1b2d;
-      border: 1px solid #294563;
-      border-radius: 15px;
-      padding: 25px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .modal h2 {
-      margin-bottom: 20px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .modal-actions .btn {
-      flex: 1;
-    }
-
-    /* =========================
-       TOAST
-    ========================= */
-
-    #toast {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 500;
-      max-width: 350px;
-    }
-
-    .toast {
-      padding: 15px 18px;
-      border-radius: 10px;
-      background: #102d4a;
-      border: 1px solid #2d6295;
-      color: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
-      margin-top: 10px;
-    }
-
-    .toast.error {
-      background: #552027;
-      border-color: #9d3a46;
-    }
-
-    .toast.success {
-      background: #123f31;
-      border-color: #287b5e;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 900px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .sidebar {
-        width: 205px;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .topbar {
-        padding: 0 15px;
-      }
-
-      .user-name {
-        display: none;
-      }
-
-      .layout {
-        display: block;
-      }
-
-      .sidebar {
-        width: 100%;
-        border-right: 0;
-        border-bottom: 1px solid #1d395c;
-        display: flex;
-        overflow-x: auto;
-        padding: 10px;
-        gap: 5px;
-      }
-
-      .menu-title {
-        display: none;
-      }
-
-      .menu-btn {
-        white-space: nowrap;
-        width: auto;
-        margin: 0;
-      }
-
-      .content {
-        padding: 20px 15px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid .full {
-        grid-column: auto;
-      }
-
-      .login-box {
-        padding: 25px 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futebol ID</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07111f;
+  color:#fff;
+  min-height:100vh;
+}
+
+button,input,select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* LOGIN */
+
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top,#12345a 0,#07111f 50%,#030812 100%);
+}
+
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:#0d1b2d;
+  border:1px solid #1d3a5c;
+  border-radius:22px;
+  padding:35px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.logo-ball{
+  width:75px;
+  height:75px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+}
+
+.logo h1{
+  font-size:30px;
+  color:#fff;
+}
+
+.logo span{
+  color:#6ea8dc;
+}
+
+.logo p{
+  color:#8fa6bd;
+  margin-top:7px;
+}
+
+.form-group{
+  margin-bottom:18px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  color:#c8d5e4;
+  font-size:14px;
+}
+
+.form-group input,
+.form-group select{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #29445f;
+  background:#081525;
+  color:#fff;
+  outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+  border-color:#4b9bea;
+}
+
+.btn{
+  border:none;
+  border-radius:10px;
+  padding:13px 18px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:#1976d2;
+  color:white;
+}
+
+.btn-success{
+  background:#18864b;
+  color:white;
+}
+
+.btn-danger{
+  background:#c0392b;
+  color:white;
+}
+
+.btn-warning{
+  background:#d89000;
+  color:white;
+}
+
+.btn-secondary{
+  background:#263b52;
+  color:white;
+}
+
+.btn-full{
+  width:100%;
+}
+
+.login-actions{
+  margin-top:10px;
+}
+
+.login-actions .btn{
+  margin-bottom:10px;
+}
+
+.error{
+  background:#4b1d24;
+  border:1px solid #8d3542;
+  color:#ffb9c0;
+  padding:12px;
+  border-radius:9px;
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+.success{
+  background:#123c29;
+  border:1px solid #217a4c;
+  color:#a9f0c7;
+  padding:12px;
+  border-radius:9px;
+  margin-bottom:15px;
+}
+
+/* APP */
+
+#app{
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  background:#0a1728;
+  border-bottom:1px solid #1d344e;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.topbar-logo{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.topbar-logo span{
+  color:#4fa3eb;
+}
+
+.user-info{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.user-name{
+  color:#d7e4f2;
+}
+
+.menu-btn{
+  background:#162b43;
+  color:#fff;
+  border:1px solid #294763;
+  border-radius:9px;
+  padding:10px 14px;
+}
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 70px);
+}
+
+.sidebar{
+  width:245px;
+  background:#091625;
+  border-right:1px solid #1a314a;
+  padding:20px 12px;
+}
+
+.nav-title{
+  font-size:11px;
+  color:#617b95;
+  text-transform:uppercase;
+  padding:10px 13px;
+  letter-spacing:1px;
+}
+
+.nav-btn{
+  width:100%;
+  border:none;
+  background:transparent;
+  color:#b7c8da;
+  text-align:left;
+  padding:13px;
+  border-radius:9px;
+  margin-bottom:5px;
+  font-size:14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+  background:#12304f;
+  color:#fff;
+}
+
+.content{
+  flex:1;
+  padding:28px;
+  overflow:auto;
+}
+
+.page-title{
+  margin-bottom:25px;
+}
+
+.page-title h2{
+  font-size:28px;
+}
+
+.page-title p{
+  color:#7890a8;
+  margin-top:6px;
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:#0d1b2d;
+  border:1px solid #1d3650;
+  border-radius:14px;
+  padding:20px;
+}
+
+.stat-number{
+  font-size:30px;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.stat-label{
+  color:#7890a8;
+  font-size:13px;
+}
+
+.section{
+  background:#0d1b2d;
+  border:1px solid #1d3650;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:20px;
+}
+
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:18px;
+}
+
+.section-header h3{
+  font-size:18px;
+}
+
+/* MATCH */
+
+.match-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:16px;
+}
+
+.match-card{
+  background:#0a1727;
+  border:1px solid #203b56;
+  border-radius:14px;
+  padding:18px;
+}
+
+.match-card h4{
+  font-size:19px;
+  margin-bottom:12px;
+}
+
+.match-info{
+  color:#8ea5bc;
+  line-height:1.8;
+  font-size:14px;
+}
+
+.match-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.badge-green{
+  background:#123c29;
+  color:#8ee6b1;
+}
+
+.badge-yellow{
+  background:#47350b;
+  color:#f6d66c;
+}
+
+.badge-red{
+  background:#491e25;
+  color:#ff9ea8;
+}
+
+.badge-blue{
+  background:#123252;
+  color:#83c3f5;
+}
+
+/* TABLE */
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:13px;
+  text-align:left;
+  border-bottom:1px solid #1b334b;
+}
+
+th{
+  color:#8da6bd;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+td{
+  color:#d7e3ee;
+  font-size:14px;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.actions .btn{
+  padding:8px 11px;
+  font-size:12px;
+}
+
+/* FORM */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.form-grid .full{
+  grid-column:1/-1;
+}
+
+/* LISTA */
+
+.capacity{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.capacity-box{
+  background:#091625;
+  border:1px solid #1d3852;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
+}
+
+.capacity-number{
+  font-size:27px;
+  font-weight:bold;
+}
+
+.capacity-label{
+  color:#7890a8;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.progress{
+  height:7px;
+  background:#16283b;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progress-bar{
+  height:100%;
+  background:#2388df;
+  width:0%;
+}
+
+/* TEAM */
+
+.teams-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+
+.team-card{
+  background:#091625;
+  border:1px solid #23415d;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.team-header{
+  background:#102b46;
+  padding:16px;
+  font-weight:bold;
+  font-size:19px;
+}
+
+.team-body{
+  padding:12px;
+}
+
+.team-player{
+  padding:11px 8px;
+  border-bottom:1px solid #172e45;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.team-player:last-child{
+  border-bottom:none;
+}
+
+.gk{
+  color:#ffd76b;
+}
+
+.my-team{
+  background:#123e62;
+  border:1px solid #2b91dd;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.my-team strong{
+  display:block;
+  font-size:30px;
+  margin-top:7px;
+  color:#68b8f5;
+}
+
+/* TOAST */
+
+#toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:100;
+  max-width:350px;
+}
+
+.toast{
+  background:#122238;
+  border:1px solid #2a4b69;
+  padding:14px 17px;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  margin-top:10px;
+}
+
+.toast.error-toast{
+  border-color:#9b3845;
+}
+
+.toast.success-toast{
+  border-color:#29875a;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .sidebar{
+    width:210px;
+  }
+}
+
+@media(max-width:700px){
+  .topbar{
+    padding:0 14px;
+  }
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    border-right:none;
+    border-bottom:1px solid #1a314a;
+    display:flex;
+    overflow:auto;
+    padding:8px;
+  }
+
+  .nav-title{
+    display:none;
+  }
+
+  .nav-btn{
+    white-space:nowrap;
+    width:auto;
+    margin:0 3px;
+  }
+
+  .content{
+    padding:17px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .capacity{
+    grid-template-columns:1fr;
+  }
+
+  .user-name{
+    display:none;
+  }
+}
+
+@media(max-width:450px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .login-box{
+    padding:25px 20px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================================================
+<!-- ======================================================
      LOGIN
-========================================================= -->
+====================================================== -->
 
-<div id="loginScreen" class="screen">
+<div id="loginPage">
 
   <div class="login-box">
 
     <div class="logo">
-      <div class="logo-icon">⚽</div>
-      <h1>Futebol ID</h1>
-      <p>Gestão de Futebol</p>
+      <div class="logo-ball">⚽</div>
+
+      <h1>Futebol <span>ID</span></h1>
+
+      <p>Gerenciamento de futebol</p>
     </div>
 
-    <div id="loginForm">
+    <div id="loginMessage"></div>
 
-      <div class="field">
+    <form id="loginForm">
+
+      <div class="form-group">
         <label>Nome</label>
+
         <input
-          type="text"
           id="loginNome"
+          type="text"
           placeholder="Digite seu nome"
           autocomplete="username"
+          required
         >
       </div>
 
-      <div class="field">
+      <div class="form-group">
         <label>Senha</label>
+
         <input
-          type="password"
           id="loginSenha"
+          type="password"
           placeholder="Digite sua senha"
           autocomplete="current-password"
+          required
         >
       </div>
 
-      <button class="btn btn-primary" onclick="fazerLogin()">
-        ENTRAR
-      </button>
+      <div class="login-actions">
 
-      <div class="login-links">
-        <button onclick="mostrarCadastro()">
-          Criar cadastro
+        <button
+          type="submit"
+          class="btn btn-primary btn-full"
+        >
+          ENTRAR
         </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary btn-full"
+          onclick="mostrarCadastro()"
+        >
+          CRIAR CADASTRO
+        </button>
+
       </div>
 
-    </div>
+    </form>
+
 
     <!-- CADASTRO -->
 
-    <div id="cadastroForm" class="hidden">
+    <form
+      id="cadastroForm"
+      class="hidden"
+    >
 
-      <div class="field">
+      <div class="form-group">
         <label>Nome</label>
+
         <input
-          type="text"
           id="cadastroNome"
-          placeholder="Digite seu nome"
+          type="text"
+          placeholder="Seu nome completo"
+          required
         >
       </div>
 
-      <div class="field">
+      <div class="form-group">
         <label>Senha</label>
+
         <input
-          type="password"
           id="cadastroSenha"
-          placeholder="Crie uma senha"
-        >
-      </div>
-
-      <div class="field">
-        <label>Confirmar senha</label>
-        <input
           type="password"
-          id="cadastroSenha2"
-          placeholder="Digite a senha novamente"
+          placeholder="Crie uma senha"
+          required
         >
       </div>
 
-      <button class="btn btn-success" onclick="cadastrar()">
-        CRIAR CADASTRO
+      <div class="form-group">
+        <label>Confirmar senha</label>
+
+        <input
+          id="cadastroConfirmar"
+          type="password"
+          placeholder="Digite a senha novamente"
+          required
+        >
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success btn-full"
+      >
+        ENVIAR CADASTRO
       </button>
 
-      <div class="login-links">
-        <button onclick="mostrarLogin()">
-          Voltar para login
-        </button>
-      </div>
+      <button
+        type="button"
+        class="btn btn-secondary btn-full"
+        style="margin-top:10px"
+        onclick="mostrarLogin()"
+      >
+        VOLTAR
+      </button>
 
-    </div>
+    </form>
 
   </div>
 
 </div>
 
 
-<!-- =========================================================
+<!-- ======================================================
      APP
-========================================================= -->
+====================================================== -->
 
-<div id="app" class="app hidden">
+<div
+  id="app"
+  class="hidden"
+>
 
   <header class="topbar">
 
-    <div class="topbar-brand">
-      ⚽ Futebol ID
+    <div class="topbar-logo">
+      ⚽ Futebol <span>ID</span>
     </div>
 
-    <div class="topbar-user">
+    <div class="user-info">
 
-      <span id="topUserName" class="user-name">
-        Usuário
-      </span>
+      <span
+        id="topUserName"
+        class="user-name"
+      ></span>
 
-      <button class="logout-btn" onclick="fazerLogout()">
+      <button
+        class="menu-btn"
+        onclick="logout()"
+      >
         Sair
       </button>
 
@@ -697,73 +812,82 @@
 
     <aside class="sidebar">
 
-      <div class="menu-title">
-        Menu
+      <div class="nav-title">
+        Principal
       </div>
 
       <button
-        class="menu-btn active"
-        data-page="inicio"
-        onclick="abrirPagina('inicio')"
+        class="nav-btn active"
+        data-page="dashboard"
+        onclick="abrirPagina('dashboard',this)"
       >
-        🏠 Início
+        🏠 Dashboard
       </button>
 
       <button
-        class="menu-btn"
+        class="nav-btn"
         data-page="partidas"
-        onclick="abrirPagina('partidas')"
+        onclick="abrirPagina('partidas',this)"
       >
         ⚽ Partidas
       </button>
 
       <button
-        class="menu-btn"
-        data-page="ranking"
-        onclick="abrirPagina('ranking')"
+        class="nav-btn"
+        data-page="lista"
+        onclick="abrirPagina('lista',this)"
       >
-        🏆 Ranking
+        📋 Lista do Futebol
       </button>
 
       <button
-        class="menu-btn"
-        data-page="conta"
-        onclick="abrirPagina('conta')"
+        class="nav-btn"
+        data-page="times"
+        onclick="abrirPagina('times',this)"
       >
-        👤 Minha conta
+        🏆 Times Formados
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="ranking"
+        onclick="abrirPagina('ranking',this)"
+      >
+        ⭐ Ranking
       </button>
 
 
-      <!-- MENU ADMIN -->
+      <div
+        id="adminMenu"
+        class="hidden"
+      >
 
-      <div id="adminMenu" class="hidden">
-
-        <div class="menu-title">
+        <div class="nav-title">
           Administração
         </div>
 
         <button
-          class="menu-btn"
+          class="nav-btn"
           data-page="jogadores"
-          onclick="abrirPagina('jogadores')"
+          onclick="abrirPagina('jogadores',this)"
         >
           👥 Jogadores
         </button>
 
         <button
-          class="menu-btn"
-          data-page="adminPartidas"
-          onclick="abrirPagina('adminPartidas')"
+          class="nav-btn"
+          data-page="adminLista"
+          onclick="abrirPagina('adminLista',this)"
         >
-          📅 Gerenciar partidas
+          📋 Controle da Lista
         </button>
 
         <button
-          class="menu-btn"
-          data-page="adminEscalacoes"
-          onclick="abrirPagina('adminEscalacoes')"
+          class="nav-btn"
+          data-page="adminTimes"
+          onclick="abrirPagina('adminTimes',this)"
         >
-          📋 Escalações
+          🎲 Sortear Times
         </button>
 
       </div>
@@ -775,50 +899,40 @@
 
     <main class="content">
 
-      <!-- INÍCIO -->
+      <!-- DASHBOARD -->
 
-      <section id="page-inicio">
+      <section
+        id="page-dashboard"
+        class="page"
+      >
 
-        <h1 class="page-title">
-          Olá, <span id="welcomeName">jogador</span>!
-        </h1>
-
-        <p class="page-subtitle">
-          Bem-vindo ao Futebol ID.
-        </p>
-
-        <div class="cards">
-
-          <div class="card">
-            <div class="card-title">Próxima partida</div>
-            <div class="card-value" id="nextMatchCard">-</div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Partidas</div>
-            <div class="card-value" id="totalMatchesCard">0</div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Jogadores</div>
-            <div class="card-value" id="totalPlayersCard">0</div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Ranking</div>
-            <div class="card-value">🏆</div>
-          </div>
-
+        <div class="page-title">
+          <h2>Dashboard</h2>
+          <p>Visão geral do Futebol ID</p>
         </div>
 
+        <div
+          id="dashboardCards"
+          class="cards"
+        ></div>
 
-        <div class="panel">
+        <div class="section">
 
-          <h3>Próximas partidas</h3>
+          <div class="section-header">
+            <h3>Próximas partidas</h3>
 
-          <div id="homeMatches">
-            Carregando...
+            <button
+              class="btn btn-secondary"
+              onclick="carregarPartidas()"
+            >
+              Atualizar
+            </button>
           </div>
+
+          <div
+            id="dashboardPartidas"
+            class="match-grid"
+          ></div>
 
         </div>
 
@@ -827,18 +941,258 @@
 
       <!-- PARTIDAS -->
 
-      <section id="page-partidas" class="hidden">
+      <section
+        id="page-partidas"
+        class="page hidden"
+      >
 
-        <h1 class="page-title">
-          Partidas
-        </h1>
+        <div class="page-title">
 
-        <p class="page-subtitle">
-          Confira as partidas cadastradas.
-        </p>
+          <h2>Partidas</h2>
 
-        <div id="playerMatches">
-          Carregando...
+          <p>
+            Partidas cadastradas no sistema
+          </p>
+
+        </div>
+
+
+        <div
+          id="adminCriarPartida"
+          class="section hidden"
+        >
+
+          <div class="section-header">
+
+            <h3>Nova partida</h3>
+
+          </div>
+
+          <form
+            id="partidaForm"
+            class="form-grid"
+          >
+
+            <div class="form-group">
+              <label>Data</label>
+
+              <input
+                id="partidaData"
+                type="date"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Hora</label>
+
+              <input
+                id="partidaHora"
+                type="time"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Adversário</label>
+
+              <input
+                id="partidaAdversario"
+                type="text"
+                placeholder="Nome do adversário"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Local</label>
+
+              <input
+                id="partidaLocal"
+                type="text"
+                placeholder="Local do jogo"
+                required
+              >
+            </div>
+
+            <div class="full">
+
+              <button
+                class="btn btn-success"
+                type="submit"
+              >
+                CRIAR PARTIDA
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <div class="section">
+
+          <div class="section-header">
+
+            <h3>Partidas</h3>
+
+            <button
+              class="btn btn-secondary"
+              onclick="carregarPartidas()"
+            >
+              Atualizar
+            </button>
+
+          </div>
+
+          <div
+            id="partidasLista"
+            class="match-grid"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- LISTA DO FUTEBOL -->
+
+      <section
+        id="page-lista"
+        class="page hidden"
+      >
+
+        <div class="page-title">
+
+          <h2>Lista do Futebol</h2>
+
+          <p>
+            Confirme sua presença para participar do sorteio.
+          </p>
+
+        </div>
+
+
+        <div class="section">
+
+          <div class="form-group">
+
+            <label>Escolha a partida</label>
+
+            <select
+              id="listaPartidaSelect"
+              onchange="carregarListaSelecionada()"
+            >
+
+              <option value="">
+                Selecione uma partida
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="listaConteudo"
+          class="hidden"
+        >
+
+          <div
+            id="listaCapacidade"
+            class="capacity"
+          ></div>
+
+
+          <div
+            id="minhaParticipacao"
+            class="section"
+          ></div>
+
+
+          <div class="section">
+
+            <div class="section-header">
+
+              <h3>Participantes</h3>
+
+              <button
+                class="btn btn-secondary"
+                onclick="carregarListaSelecionada()"
+              >
+                Atualizar
+              </button>
+
+            </div>
+
+            <div
+              id="participantesLista"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- TIMES -->
+
+      <section
+        id="page-times"
+        class="page hidden"
+      >
+
+        <div class="page-title">
+
+          <h2>Times Formados</h2>
+
+          <p>
+            Veja o resultado do sorteio da partida.
+          </p>
+
+        </div>
+
+
+        <div class="section">
+
+          <div class="form-group">
+
+            <label>Escolha a partida</label>
+
+            <select
+              id="timesPartidaSelect"
+              onchange="carregarTimesSelecionados()"
+            >
+
+              <option value="">
+                Selecione uma partida
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="timesConteudo"
+          class="hidden"
+        >
+
+          <div
+            id="meuTime"
+          ></div>
+
+          <div
+            id="timesGrid"
+            class="teams-grid"
+          ></div>
+
         </div>
 
       </section>
@@ -846,17 +1200,22 @@
 
       <!-- RANKING -->
 
-      <section id="page-ranking" class="hidden">
+      <section
+        id="page-ranking"
+        class="page hidden"
+      >
 
-        <h1 class="page-title">
-          🏆 Ranking
-        </h1>
+        <div class="page-title">
 
-        <p class="page-subtitle">
-          Avaliações dos jogadores.
-        </p>
+          <h2>Ranking</h2>
 
-        <div class="panel">
+          <p>
+            Ranking dos jogadores pelas avaliações.
+          </p>
+
+        </div>
+
+        <div class="section">
 
           <div class="table-wrap">
 
@@ -873,55 +1232,11 @@
 
               </thead>
 
-              <tbody id="rankingBody">
-
-                <tr>
-                  <td colspan="4">
-                    Carregando...
-                  </td>
-                </tr>
-
-              </tbody>
+              <tbody
+                id="rankingBody"
+              ></tbody>
 
             </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- CONTA -->
-
-      <section id="page-conta" class="hidden">
-
-        <h1 class="page-title">
-          Minha conta
-        </h1>
-
-        <p class="page-subtitle">
-          Informações da sua conta.
-        </p>
-
-        <div class="panel">
-
-          <div class="form-grid">
-
-            <div class="field">
-              <label>Nome</label>
-              <input id="contaNome" readonly>
-            </div>
-
-            <div class="field">
-              <label>Perfil</label>
-              <input id="contaPerfil" readonly>
-            </div>
-
-            <div class="field">
-              <label>Status</label>
-              <input id="contaStatus" readonly>
-            </div>
 
           </div>
 
@@ -932,17 +1247,35 @@
 
       <!-- JOGADORES ADMIN -->
 
-      <section id="page-jogadores" class="hidden">
+      <section
+        id="page-jogadores"
+        class="page hidden"
+      >
 
-        <h1 class="page-title">
-          👥 Jogadores
-        </h1>
+        <div class="page-title">
 
-        <p class="page-subtitle">
-          Gerencie cadastros e jogadores.
-        </p>
+          <h2>Jogadores</h2>
 
-        <div class="panel">
+          <p>
+            Administração dos jogadores.
+          </p>
+
+        </div>
+
+        <div class="section">
+
+          <div class="section-header">
+
+            <h3>Lista de jogadores</h3>
+
+            <button
+              class="btn btn-secondary"
+              onclick="carregarJogadores()"
+            >
+              Atualizar
+            </button>
+
+          </div>
 
           <div class="table-wrap">
 
@@ -952,22 +1285,15 @@
 
                 <tr>
                   <th>Nome</th>
-                  <th>Perfil</th>
                   <th>Status</th>
                   <th>Ações</th>
                 </tr>
 
               </thead>
 
-              <tbody id="playersBody">
-
-                <tr>
-                  <td colspan="4">
-                    Carregando...
-                  </td>
-                </tr>
-
-              </tbody>
+              <tbody
+                id="jogadoresBody"
+              ></tbody>
 
             </table>
 
@@ -978,160 +1304,154 @@
       </section>
 
 
-      <!-- ADMIN PARTIDAS -->
+      <!-- ADMIN LISTA -->
 
-      <section id="page-adminPartidas" class="hidden">
+      <section
+        id="page-adminLista"
+        class="page hidden"
+      >
 
-        <h1 class="page-title">
-          📅 Gerenciar partidas
-        </h1>
+        <div class="page-title">
 
-        <p class="page-subtitle">
-          Crie e gerencie as partidas.
-        </p>
+          <h2>Controle da Lista</h2>
 
-        <div class="panel">
-
-          <h3>Nova partida</h3>
-
-          <div class="form-grid">
-
-            <div class="field">
-              <label>Data</label>
-              <input type="date" id="partidaData">
-            </div>
-
-            <div class="field">
-              <label>Horário</label>
-              <input type="time" id="partidaHora">
-            </div>
-
-            <div class="field">
-              <label>Adversário</label>
-              <input
-                type="text"
-                id="partidaAdversario"
-                placeholder="Nome do adversário"
-              >
-            </div>
-
-            <div class="field">
-              <label>Local</label>
-              <input
-                type="text"
-                id="partidaLocal"
-                placeholder="Local da partida"
-              >
-            </div>
-
-          </div>
-
-          <br>
-
-          <button
-            class="btn btn-primary"
-            onclick="criarPartida()"
-          >
-            CRIAR PARTIDA
-          </button>
+          <p>
+            Abra, feche e acompanhe as listas das partidas.
+          </p>
 
         </div>
 
-
-        <div class="panel">
-
-          <h3>Partidas cadastradas</h3>
-
-          <div id="adminMatches">
-            Carregando...
-          </div>
-
-        </div>
+        <div
+          id="adminListas"
+          class="match-grid"
+        ></div>
 
       </section>
 
 
-      <!-- ADMIN ESCALAÇÕES -->
+      <!-- ADMIN TIMES -->
 
-      <section id="page-adminEscalacoes" class="hidden">
+      <section
+        id="page-adminTimes"
+        class="page hidden"
+      >
 
-        <h1 class="page-title">
-          📋 Escalações
-        </h1>
+        <div class="page-title">
 
-        <p class="page-subtitle">
-          Escolha uma partida para gerenciar os jogadores.
-        </p>
+          <h2>Sortear Times</h2>
 
-        <div class="panel">
+          <p>
+            Feche a lista e faça o sorteio dos jogadores.
+          </p>
 
-          <div class="field">
+        </div>
 
-            <label>
-              Partida
-            </label>
+
+        <div class="section">
+
+          <div class="form-group">
+
+            <label>Partida</label>
 
             <select
-              id="escalaPartida"
-              style="
-                width:100%;
-                padding:14px;
-                border-radius:10px;
-                background:#07111f;
-                color:white;
-                border:1px solid #294563;
-              "
+              id="adminTimesPartida"
+              onchange="carregarPainelSorteio()"
             >
+
+              <option value="">
+                Selecione uma partida
+              </option>
+
             </select>
 
           </div>
 
-          <div id="escalacaoPlayers">
-            Selecione uma partida.
+        </div>
+
+
+        <div
+          id="painelSorteio"
+          class="hidden"
+        >
+
+          <div
+            id="sorteioResumo"
+            class="section"
+          ></div>
+
+          <div class="section">
+
+            <div class="form-group">
+
+              <label>
+                Quantidade de times
+              </label>
+
+              <select
+                id="numeroTimes"
+              >
+
+                <option value="2">
+                  2 TIMES
+                </option>
+
+                <option value="3">
+                  3 TIMES
+                </option>
+
+                <option value="4">
+                  4 TIMES
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="match-actions">
+
+              <button
+                id="btnFecharLista"
+                class="btn btn-warning"
+                onclick="fecharListaAdmin()"
+              >
+                FECHAR LISTA
+              </button>
+
+              <button
+                id="btnAbrirLista"
+                class="btn btn-success"
+                onclick="abrirListaAdmin()"
+              >
+                ABRIR LISTA
+              </button>
+
+              <button
+                class="btn btn-primary"
+                onclick="sortearTimesAdmin()"
+              >
+                🎲 SORTEAR TIMES
+              </button>
+
+              <button
+                class="btn btn-danger"
+                onclick="limparSorteioAdmin()"
+              >
+                LIMPAR SORTEIO
+              </button>
+
+            </div>
+
           </div>
+
+          <div
+            id="adminTimesResultado"
+          ></div>
 
         </div>
 
       </section>
 
     </main>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     MODAL
-========================================================= -->
-
-<div id="modalBg" class="modal-bg hidden">
-
-  <div class="modal">
-
-    <h2 id="modalTitle">
-      Confirmar
-    </h2>
-
-    <div id="modalContent"></div>
-
-    <div class="modal-actions">
-
-      <button
-        class="btn btn-secondary"
-        onclick="fecharModal()"
-      >
-        Cancelar
-      </button>
-
-      <button
-        id="modalConfirm"
-        class="btn btn-primary"
-      >
-        Confirmar
-      </button>
-
-    </div>
 
   </div>
 
@@ -1151,29 +1471,16 @@ const API_URL =
   "https://script.google.com/macros/s/AKfycby62QKzufTATmcItqh_OiI-YGg7AyRN4mbBGc2_CmSrOgt7yc0jTQ07bK22vGRon2F-0w/exec";
 
 
-let sessao = null;
-let usuarioAtual = null;
+let token =
+  localStorage.getItem("futebol_id_token") || "";
+
+let usuario =
+  JSON.parse(
+    localStorage.getItem("futebol_id_usuario") || "null"
+  );
+
+
 let partidas = [];
-let jogadores = [];
-
-
-/* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const token = localStorage.getItem("futebol_id_token");
-
-  if (token) {
-
-    sessao = token;
-
-    carregarUsuario();
-
-  }
-
-});
 
 
 /* =========================================================
@@ -1182,54 +1489,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function api(acao, parametros = {}) {
 
-  const params = new URLSearchParams();
+  const dados = {
+    acao,
+    ...parametros
+  };
 
-  params.append("acao", acao);
+  if (token) {
+    dados.token = token;
+  }
 
-  Object.keys(parametros).forEach(chave => {
+  const query =
+    new URLSearchParams();
+
+  Object.keys(dados).forEach(function(chave){
+
+    const valor = dados[chave];
 
     if (
-      parametros[chave] !== undefined &&
-      parametros[chave] !== null
-    ) {
+      valor !== undefined &&
+      valor !== null
+    ){
 
-      params.append(
+      query.append(
         chave,
-        parametros[chave]
+        String(valor)
       );
 
     }
 
   });
 
-  if (sessao) {
-
-    params.append(
-      "token",
-      sessao
-    );
-
-  }
 
   const url =
-    API_URL + "?" + params.toString();
+    API_URL + "?" + query.toString();
+
 
   try {
 
-    const resposta = await fetch(url, {
-      method: "GET",
-      cache: "no-cache"
-    });
+    const resposta =
+      await fetch(url, {
+        method:"GET",
+        cache:"no-store"
+      });
 
-    const texto = await resposta.text();
 
-    let dados;
+    const texto =
+      await resposta.text();
+
+
+    let resultado;
 
     try {
 
-      dados = JSON.parse(texto);
+      resultado =
+        JSON.parse(texto);
 
-    } catch (erro) {
+    } catch(e) {
 
       throw new Error(
         "O servidor retornou uma resposta inválida."
@@ -1237,209 +1552,55 @@ async function api(acao, parametros = {}) {
 
     }
 
-    if (!dados.ok) {
+
+    if (!resultado.ok) {
 
       throw new Error(
-        dados.mensagem ||
-        dados.erro ||
-        "Não foi possível realizar a operação."
+        resultado.mensagem ||
+        resultado.error ||
+        "Erro no servidor."
       );
 
     }
 
-    return dados;
 
-  } catch (erro) {
+    return resultado;
+
+  } catch(erro) {
 
     console.error(erro);
 
     throw erro;
-
   }
-
 }
 
 
 /* =========================================================
-   LOGIN
+   TOAST
 ========================================================= */
 
-async function fazerLogin() {
+function toast(mensagem, erro=false){
 
-  const nome =
-    document.getElementById("loginNome").value.trim();
+  const area =
+    document.getElementById("toast");
 
-  const senha =
-    document.getElementById("loginSenha").value;
+  const div =
+    document.createElement("div");
 
-  if (!nome || !senha) {
+  div.className =
+    "toast " +
+    (erro ? "error-toast" : "success-toast");
 
-    mostrarToast(
-      "Digite seu nome e sua senha.",
-      "error"
-    );
+  div.textContent =
+    mensagem;
 
-    return;
+  area.appendChild(div);
 
-  }
+  setTimeout(function(){
 
-  try {
+    div.remove();
 
-    mostrarToast("Entrando...");
-
-    const resposta =
-      await api(
-        "login",
-        {
-          nome: nome,
-          senha: senha
-        }
-      );
-
-    sessao = resposta.token;
-
-    localStorage.setItem(
-      "futebol_id_token",
-      sessao
-    );
-
-    usuarioAtual =
-      resposta.usuario;
-
-    entrarNoSistema();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   CARREGAR USUÁRIO
-========================================================= */
-
-async function carregarUsuario() {
-
-  try {
-
-    const resposta =
-      await api("me");
-
-    usuarioAtual =
-      resposta.usuario;
-
-    entrarNoSistema();
-
-  } catch (erro) {
-
-    localStorage.removeItem(
-      "futebol_id_token"
-    );
-
-    sessao = null;
-
-    mostrarLogin();
-
-  }
-
-}
-
-
-/* =========================================================
-   ENTRAR
-========================================================= */
-
-function entrarNoSistema() {
-
-  document
-    .getElementById("loginScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("topUserName")
-    .textContent =
-    usuarioAtual.nome || "Usuário";
-
-  document
-    .getElementById("welcomeName")
-    .textContent =
-    usuarioAtual.nome || "jogador";
-
-  document
-    .getElementById("contaNome")
-    .value =
-    usuarioAtual.nome || "";
-
-  document
-    .getElementById("contaPerfil")
-    .value =
-    usuarioAtual.perfil || "";
-
-  document
-    .getElementById("contaStatus")
-    .value =
-    usuarioAtual.status || "";
-
-  const ehAdmin =
-    String(usuarioAtual.perfil || "")
-      .toUpperCase() === "ADMIN";
-
-  if (ehAdmin) {
-
-    document
-      .getElementById("adminMenu")
-      .classList.remove("hidden");
-
-  } else {
-
-    document
-      .getElementById("adminMenu")
-      .classList.add("hidden");
-
-  }
-
-  abrirPagina("inicio");
-
-  carregarTudo();
-
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-async function fazerLogout() {
-
-  try {
-
-    await api("logout");
-
-  } catch (erro) {
-
-    console.log(erro);
-
-  }
-
-  localStorage.removeItem(
-    "futebol_id_token"
-  );
-
-  sessao = null;
-  usuarioAtual = null;
-
-  mostrarLogin();
-
+  },4000);
 }
 
 
@@ -1447,7 +1608,7 @@ async function fazerLogout() {
    LOGIN / CADASTRO
 ========================================================= */
 
-function mostrarCadastro() {
+function mostrarCadastro(){
 
   document
     .getElementById("loginForm")
@@ -1457,207 +1618,336 @@ function mostrarCadastro() {
     .getElementById("cadastroForm")
     .classList.remove("hidden");
 
+  document
+    .getElementById("loginMessage")
+    .innerHTML = "";
 }
 
 
-function mostrarLogin() {
+function mostrarLogin(){
 
   document
-    .getElementById("app")
+    .getElementById("cadastroForm")
     .classList.add("hidden");
-
-  document
-    .getElementById("loginScreen")
-    .classList.remove("hidden");
 
   document
     .getElementById("loginForm")
     .classList.remove("hidden");
 
   document
-    .getElementById("cadastroForm")
-    .classList.add("hidden");
-
+    .getElementById("loginMessage")
+    .innerHTML = "";
 }
 
 
-async function cadastrar() {
+document
+  .getElementById("loginForm")
+  .addEventListener("submit", async function(e){
 
-  const nome =
-    document
-      .getElementById("cadastroNome")
-      .value
-      .trim();
+    e.preventDefault();
 
-  const senha =
-    document
-      .getElementById("cadastroSenha")
-      .value;
+    const nome =
+      document.getElementById("loginNome").value.trim();
 
-  const senha2 =
-    document
-      .getElementById("cadastroSenha2")
-      .value;
+    const senha =
+      document.getElementById("loginSenha").value;
 
-  if (!nome) {
 
-    mostrarToast(
-      "Digite seu nome.",
-      "error"
-    );
+    const msg =
+      document.getElementById("loginMessage");
 
-    return;
+    msg.innerHTML =
+      '<div class="success">Entrando...</div>';
 
-  }
 
-  if (!senha) {
+    try {
 
-    mostrarToast(
-      "Digite uma senha.",
-      "error"
-    );
+      const resultado =
+        await api(
+          "login",
+          {
+            nome,
+            senha
+          }
+        );
 
-    return;
 
-  }
+      token =
+        resultado.token;
 
-  if (senha !== senha2) {
+      usuario =
+        resultado.jogador;
 
-    mostrarToast(
-      "As senhas não são iguais.",
-      "error"
-    );
 
-    return;
+      localStorage.setItem(
+        "futebol_id_token",
+        token
+      );
 
-  }
+      localStorage.setItem(
+        "futebol_id_usuario",
+        JSON.stringify(usuario)
+      );
 
-  if (senha.length < 4) {
 
-    mostrarToast(
-      "A senha deve possuir pelo menos 4 caracteres.",
-      "error"
-    );
+      iniciarSistema();
 
-    return;
 
-  }
+    } catch(erro){
 
-  try {
+      msg.innerHTML =
+        '<div class="error">' +
+        escapar(erro.message) +
+        '</div>';
 
-    const resposta =
+    }
+
+  });
+
+
+document
+  .getElementById("cadastroForm")
+  .addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const nome =
+      document.getElementById("cadastroNome")
+        .value
+        .trim();
+
+    const senha =
+      document.getElementById("cadastroSenha")
+        .value;
+
+    const confirmar =
+      document.getElementById("cadastroConfirmar")
+        .value;
+
+
+    if(senha !== confirmar){
+
+      toast(
+        "As senhas não são iguais.",
+        true
+      );
+
+      return;
+    }
+
+
+    try {
+
       await api(
         "cadastrar",
         {
-          nome: nome,
-          senha: senha
+          nome,
+          senha
         }
       );
 
-    mostrarToast(
-      resposta.mensagem ||
-      "Cadastro realizado.",
-      "success"
-    );
+
+      toast(
+        "Cadastro enviado! Aguarde a aprovação do administrador."
+      );
+
+
+      document
+        .getElementById("cadastroForm")
+        .reset();
+
+      mostrarLogin();
+
+
+    } catch(erro){
+
+      toast(
+        erro.message,
+        true
+      );
+
+    }
+
+  });
+
+
+/* =========================================================
+   INICIAR SISTEMA
+========================================================= */
+
+function iniciarSistema(){
+
+  document
+    .getElementById("loginPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("topUserName")
+    .textContent =
+    usuario ? usuario.nome : "";
+
+
+  if(
+    usuario &&
+    usuario.admin
+  ){
 
     document
-      .getElementById("cadastroNome")
-      .value = "";
+      .getElementById("adminMenu")
+      .classList.remove("hidden");
 
     document
-      .getElementById("cadastroSenha")
-      .value = "";
-
-    document
-      .getElementById("cadastroSenha2")
-      .value = "";
-
-    mostrarLogin();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
+      .getElementById("adminCriarPartida")
+      .classList.remove("hidden");
 
   }
 
+
+  abrirPagina("dashboard");
+
+}
+
+
+function logout(){
+
+  if(token){
+
+    api("logout")
+      .catch(function(){});
+
+  }
+
+
+  localStorage.removeItem(
+    "futebol_id_token"
+  );
+
+  localStorage.removeItem(
+    "futebol_id_usuario"
+  );
+
+  token = "";
+  usuario = null;
+
+  location.reload();
 }
 
 
 /* =========================================================
-   PÁGINAS
+   NAVEGAÇÃO
 ========================================================= */
 
-function abrirPagina(pagina) {
-
-  const paginas =
-    document.querySelectorAll(
-      "main section"
-    );
-
-  paginas.forEach(secao => {
-
-    secao.classList.add("hidden");
-
-  });
-
-  const alvo =
-    document.getElementById(
-      "page-" + pagina
-    );
-
-  if (alvo) {
-
-    alvo.classList.remove("hidden");
-
-  }
+function abrirPagina(pagina, botao){
 
   document
-    .querySelectorAll(".menu-btn")
-    .forEach(btn => {
+    .querySelectorAll(".page")
+    .forEach(function(p){
 
-      btn.classList.remove("active");
-
-      if (
-        btn.dataset.page === pagina
-      ) {
-
-        btn.classList.add("active");
-
-      }
+      p.classList.add("hidden");
 
     });
 
 
-  if (pagina === "ranking") {
+  const paginaElemento =
+    document.getElementById(
+      "page-" + pagina
+    );
 
-    carregarRanking();
+
+  if(paginaElemento){
+
+    paginaElemento.classList.remove("hidden");
 
   }
 
-  if (pagina === "partidas") {
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+
+  if(botao){
+
+    botao.classList.add("active");
+
+  }else{
+
+    const btn =
+      document.querySelector(
+        '.nav-btn[data-page="' +
+        pagina +
+        '"]'
+      );
+
+    if(btn){
+
+      btn.classList.add("active");
+
+    }
+
+  }
+
+
+  if(pagina === "dashboard"){
+
+    carregarDashboard();
+
+  }
+
+  if(pagina === "partidas"){
 
     carregarPartidas();
 
   }
 
-  if (pagina === "jogadores") {
+  if(pagina === "lista"){
+
+    prepararSelectPartidas(
+      "listaPartidaSelect"
+    );
+
+  }
+
+  if(pagina === "times"){
+
+    prepararSelectPartidas(
+      "timesPartidaSelect"
+    );
+
+  }
+
+  if(pagina === "ranking"){
+
+    carregarRanking();
+
+  }
+
+  if(pagina === "jogadores"){
 
     carregarJogadores();
 
   }
 
-  if (pagina === "adminPartidas") {
+  if(pagina === "adminLista"){
 
-    carregarAdminPartidas();
+    carregarAdminListas();
 
   }
 
-  if (pagina === "adminEscalacoes") {
+  if(pagina === "adminTimes"){
 
-    prepararEscalacoes();
+    prepararSelectPartidas(
+      "adminTimesPartida"
+    );
 
   }
 
@@ -1665,22 +1955,76 @@ function abrirPagina(pagina) {
 
 
 /* =========================================================
-   CARREGAR TUDO
+   DASHBOARD
 ========================================================= */
 
-async function carregarTudo() {
+async function carregarDashboard(){
 
-  await carregarPartidas();
+  try{
 
-  await carregarRanking();
+    const resultado =
+      await api("dashboard");
 
-  const ehAdmin =
-    String(usuarioAtual?.perfil || "")
-      .toUpperCase() === "ADMIN";
 
-  if (ehAdmin) {
+    const d =
+      resultado.dashboard;
 
-    await carregarJogadores();
+
+    document
+      .getElementById("dashboardCards")
+      .innerHTML = `
+
+        <div class="card">
+          <div class="stat-label">
+            Jogadores
+          </div>
+
+          <div class="stat-number">
+            ${d.total_jogadores}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">
+            Aprovados
+          </div>
+
+          <div class="stat-number">
+            ${d.aprovados}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">
+            Pendentes
+          </div>
+
+          <div class="stat-number">
+            ${d.pendentes}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">
+            Partidas
+          </div>
+
+          <div class="stat-number">
+            ${d.total_partidas}
+          </div>
+        </div>
+
+      `;
+
+
+    await carregarPartidas();
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
 
@@ -1691,220 +2035,920 @@ async function carregarTudo() {
    PARTIDAS
 ========================================================= */
 
-async function carregarPartidas() {
+async function carregarPartidas(){
 
-  try {
+  try{
 
-    const resposta =
+    const resultado =
       await api("listar_partidas");
 
+
     partidas =
-      resposta.partidas || [];
+      resultado.partidas || [];
+
 
     renderizarPartidas();
 
-    atualizarCards();
 
-  } catch (erro) {
+    prepararSelectPartidas(
+      "listaPartidaSelect"
+    );
 
-    console.error(erro);
+    prepararSelectPartidas(
+      "timesPartidaSelect"
+    );
+
+    prepararSelectPartidas(
+      "adminTimesPartida"
+    );
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
 
 }
 
 
-function renderizarPartidas() {
+function renderizarPartidas(){
 
-  const home =
-    document.getElementById(
-      "homeMatches"
-    );
+  const areas = [
+    "partidasLista",
+    "dashboardPartidas"
+  ];
 
-  const player =
-    document.getElementById(
-      "playerMatches"
-    );
 
-  if (!partidas.length) {
+  areas.forEach(function(id){
 
-    const vazio =
-      `<div style="color:#8da4bf;">
-        Nenhuma partida cadastrada.
-      </div>`;
+    const area =
+      document.getElementById(id);
 
-    if (home) home.innerHTML = vazio;
+    if(!area) return;
 
-    if (player) player.innerHTML = vazio;
 
-    return;
+    if(!partidas.length){
 
-  }
+      area.innerHTML =
+        '<div class="card">Nenhuma partida cadastrada.</div>';
 
-  let html = "";
+      return;
 
-  partidas.forEach(partida => {
+    }
 
-    html += criarCardPartida(
-      partida,
-      false
-    );
 
-  });
-
-  if (home) {
-
-    home.innerHTML =
+    area.innerHTML =
       partidas
-        .slice(0, 5)
-        .map(p =>
-          criarCardPartida(p, false)
-        )
+        .map(function(p){
+
+          return `
+            <div class="match-card">
+
+              <h4>
+                ⚽ ${escapar(p.adversario)}
+              </h4>
+
+              <div class="match-info">
+
+                📅 ${formatarData(p.data)}
+                <br>
+
+                🕐 ${escapar(p.hora)}
+                <br>
+
+                📍 ${escapar(p.local)}
+                <br>
+
+                ID: ${escapar(p.id)}
+
+              </div>
+
+              <div style="margin-top:10px">
+
+                <span class="badge badge-blue">
+                  ${escapar(p.status || "AGENDADA")}
+                </span>
+
+                <span class="badge ${
+                  String(p.votacao).toUpperCase() === "ABERTA"
+                  ? "badge-green"
+                  : "badge-red"
+                }">
+
+                  Votação:
+                  ${escapar(p.votacao || "FECHADA")}
+
+                </span>
+
+              </div>
+
+              <div class="match-actions">
+
+                <button
+                  class="btn btn-primary"
+                  onclick="irParaLista('${escaparAttr(p.id)}')"
+                >
+                  📋 LISTA
+                </button>
+
+                <button
+                  class="btn btn-secondary"
+                  onclick="irParaTimes('${escaparAttr(p.id)}')"
+                >
+                  🏆 TIMES
+                </button>
+
+                ${
+                  usuario && usuario.admin
+                  ? `
+                    <button
+                      class="btn btn-danger"
+                      onclick="excluirPartida('${escaparAttr(p.id)}')"
+                    >
+                      EXCLUIR
+                    </button>
+                  `
+                  : ""
+                }
+
+              </div>
+
+            </div>
+          `;
+
+        })
         .join("");
 
-  }
-
-  if (player) {
-
-    player.innerHTML = html;
-
-  }
-
-}
-
-
-function criarCardPartida(
-  partida,
-  admin
-) {
-
-  const id =
-    partida.id ||
-    partida.ID ||
-    "";
-
-  const adversario =
-    partida.adversario ||
-    partida.oponente ||
-    partida.OPONENTE ||
-    "-";
-
-  const data =
-    partida.data ||
-    partida.DATA ||
-    "-";
-
-  const hora =
-    partida.hora ||
-    partida.HORA ||
-    "-";
-
-  const local =
-    partida.local ||
-    partida.LOCAL ||
-    "-";
-
-  const status =
-    partida.status ||
-    partida.STATUS ||
-    "";
-
-  const votacao =
-    partida.votacao ||
-    partida.VOTACAO ||
-    "";
-
-  return `
-    <div class="match-card">
-
-      <div class="match-header">
-
-        <div>
-          <div class="match-opponent">
-            Futebol ID × ${esc(adversario)}
-          </div>
-
-          <div class="match-info">
-            📅 ${esc(data)}
-            &nbsp;&nbsp;
-            ⏰ ${esc(hora)}
-            <br>
-            📍 ${esc(local)}
-          </div>
-        </div>
-
-        <div>
-          <span class="badge badge-blue">
-            ${esc(status || "AGENDADA")}
-          </span>
-        </div>
-
-      </div>
-
-      ${
-        votacao
-          ? `<div style="margin-top:10px;">
-              <span class="badge badge-yellow">
-                🗳️ ${esc(votacao)}
-              </span>
-            </div>`
-          : ""
-      }
-
-      <div class="actions" style="margin-top:15px;">
-
-        ${
-          !admin
-            ? `
-              <button
-                class="btn btn-primary small-btn"
-                onclick="abrirVotacaoJogador('${escAttr(id)}')"
-              >
-                🗳️ Votar
-              </button>
-            `
-            : ""
-        }
-
-      </div>
-
-    </div>
-  `;
+  });
 
 }
 
 
 /* =========================================================
-   CARDS
+   CRIAR PARTIDA
 ========================================================= */
 
-function atualizarCards() {
+document
+  .getElementById("partidaForm")
+  .addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    try{
+
+      await api(
+        "criar_partida",
+        {
+
+          data:
+            document
+              .getElementById("partidaData")
+              .value,
+
+          hora:
+            document
+              .getElementById("partidaHora")
+              .value,
+
+          adversario:
+            document
+              .getElementById("partidaAdversario")
+              .value
+              .trim(),
+
+          local:
+            document
+              .getElementById("partidaLocal")
+              .value
+              .trim()
+
+        }
+      );
+
+
+      this.reset();
+
+      toast(
+        "Partida criada com sucesso!"
+      );
+
+
+      await carregarPartidas();
+
+
+    }catch(erro){
+
+      toast(
+        erro.message,
+        true
+      );
+
+    }
+
+  });
+
+
+async function excluirPartida(id){
+
+  if(
+    !confirm(
+      "Tem certeza que deseja excluir esta partida?"
+    )
+  ){
+
+    return;
+  }
+
+
+  try{
+
+    await api(
+      "excluir_partida",
+      {
+        partida_id:id
+      }
+    );
+
+
+    toast(
+      "Partida excluída."
+    );
+
+
+    await carregarPartidas();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SELECT PARTIDAS
+========================================================= */
+
+function prepararSelectPartidas(id){
+
+  const select =
+    document.getElementById(id);
+
+  if(!select) return;
+
+
+  const valorAtual =
+    select.value;
+
+
+  select.innerHTML =
+    `
+      <option value="">
+        Selecione uma partida
+      </option>
+    `;
+
+
+  partidas.forEach(function(p){
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      p.id;
+
+    option.textContent =
+      formatarData(p.data) +
+      " • " +
+      p.hora +
+      " • " +
+      p.adversario;
+
+
+    select.appendChild(option);
+
+  });
+
+
+  if(valorAtual){
+
+    select.value =
+      valorAtual;
+
+  }
+
+}
+
+
+function irParaLista(id){
+
+  abrirPagina("lista");
+
+
+  const select =
+    document.getElementById(
+      "listaPartidaSelect"
+    );
+
+
+  select.value =
+    id;
+
+
+  carregarListaSelecionada();
+
+}
+
+
+function irParaTimes(id){
+
+  abrirPagina("times");
+
+
+  const select =
+    document.getElementById(
+      "timesPartidaSelect"
+    );
+
+
+  select.value =
+    id;
+
+
+  carregarTimesSelecionados();
+
+}
+
+
+/* =========================================================
+   LISTA DO FUTEBOL
+========================================================= */
+
+async function carregarListaSelecionada(){
+
+  const partidaId =
+    document
+      .getElementById("listaPartidaSelect")
+      .value;
+
+
+  const conteudo =
+    document.getElementById(
+      "listaConteudo"
+    );
+
+
+  if(!partidaId){
+
+    conteudo.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  conteudo.classList.remove("hidden");
+
+
+  try{
+
+    const resultado =
+      await api(
+        "listar_lista_futebol",
+        {
+          partida_id:partidaId
+        }
+      );
+
+
+    renderizarLista(
+      resultado
+    );
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+function renderizarLista(resultado){
 
   const total =
+    resultado.total || 0;
+
+  const jogadores =
+    resultado.total_jogadores || 0;
+
+  const goleiros =
+    resultado.total_goleiros || 0;
+
+
+  document
+    .getElementById("listaCapacidade")
+    .innerHTML = `
+
+      <div class="capacity-box">
+
+        <div class="capacity-number">
+          ${jogadores}/20
+        </div>
+
+        <div class="capacity-label">
+          JOGADORES
+        </div>
+
+        <div class="progress">
+          <div
+            class="progress-bar"
+            style="width:${Math.min(jogadores/20*100,100)}%"
+          ></div>
+        </div>
+
+      </div>
+
+      <div class="capacity-box">
+
+        <div class="capacity-number">
+          ${goleiros}/4
+        </div>
+
+        <div class="capacity-label">
+          GOLEIROS
+        </div>
+
+        <div class="progress">
+          <div
+            class="progress-bar"
+            style="width:${Math.min(goleiros/4*100,100)}%"
+          ></div>
+        </div>
+
+      </div>
+
+      <div class="capacity-box">
+
+        <div class="capacity-number">
+          ${total}/24
+        </div>
+
+        <div class="capacity-label">
+          TOTAL
+        </div>
+
+        <div class="progress">
+          <div
+            class="progress-bar"
+            style="width:${Math.min(total/24*100,100)}%"
+          ></div>
+        </div>
+
+      </div>
+
+    `;
+
+
+  const minhaArea =
     document.getElementById(
-      "totalMatchesCard"
+      "minhaParticipacao"
     );
 
-  if (total) {
 
-    total.textContent =
-      partidas.length;
+  if(resultado.eu_estou_na_lista){
+
+    minhaArea.innerHTML = `
+
+      <div class="success">
+
+        ✅ Você está na lista!
+
+        <br>
+
+        Tipo:
+        <strong>
+          ${resultado.meu_tipo === "GOLEIRO"
+            ? "🥅 GOLEIRO"
+            : "⚽ JOGADOR"
+          }
+        </strong>
+
+      </div>
+
+      ${
+        resultado.lista.status === "ABERTA"
+        ? `
+          <button
+            class="btn btn-danger"
+            onclick="sairDaLista('${escaparAttr(resultado.partida_id)}')"
+          >
+            SAIR DA LISTA
+          </button>
+        `
+        : `
+          <div class="error">
+            A lista está fechada.
+          </div>
+        `
+      }
+
+    `;
+
+  }else{
+
+    if(resultado.lista.status === "FECHADA"){
+
+      minhaArea.innerHTML = `
+        <div class="error">
+          🔒 A lista está fechada.
+        </div>
+      `;
+
+    }else{
+
+      minhaArea.innerHTML = `
+
+        <h3 style="margin-bottom:15px">
+          Você vai jogar?
+        </h3>
+
+        <div class="match-actions">
+
+          <button
+            class="btn btn-primary"
+            onclick="entrarNaLista('${escaparAttr(resultado.partida_id)}','JOGADOR')"
+          >
+            ⚽ EU VOU — JOGADOR
+          </button>
+
+          <button
+            class="btn btn-warning"
+            onclick="entrarNaLista('${escaparAttr(resultado.partida_id)}','GOLEIRO')"
+          >
+            🥅 EU VOU — GOLEIRO
+          </button>
+
+        </div>
+
+      `;
+
+    }
 
   }
 
-  const proxima =
+
+  const participantes =
     document.getElementById(
-      "nextMatchCard"
+      "participantesLista"
     );
 
-  if (proxima) {
 
-    proxima.textContent =
-      partidas.length
-        ? "⚽"
-        : "-";
+  if(!resultado.jogadores.length){
+
+    participantes.innerHTML =
+      '<div class="card">Ninguém entrou na lista ainda.</div>';
+
+    return;
+  }
+
+
+  participantes.innerHTML = `
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Jogador</th>
+            <th>Tipo</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${
+            resultado.jogadores
+              .map(function(j){
+
+                return `
+
+                  <tr>
+
+                    <td>
+                      ${escapar(j.nome)}
+                    </td>
+
+                    <td>
+
+                      ${
+                        j.tipo === "GOLEIRO"
+                        ? '<span class="badge badge-yellow">🥅 GOLEIRO</span>'
+                        : '<span class="badge badge-blue">⚽ JOGADOR</span>'
+                      }
+
+                    </td>
+
+                  </tr>
+
+                `;
+
+              })
+              .join("")
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+async function entrarNaLista(partidaId,tipo){
+
+  try{
+
+    await api(
+      "entrar_lista_futebol",
+      {
+        partida_id:partidaId,
+        tipo:tipo
+      }
+    );
+
+
+    toast(
+      "Você entrou na lista!"
+    );
+
+
+    await carregarListaSelecionada();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
+
+}
+
+
+async function sairDaLista(partidaId){
+
+  if(
+    !confirm(
+      "Deseja realmente sair da lista?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await api(
+      "sair_lista_futebol",
+      {
+        partida_id:partidaId
+      }
+    );
+
+
+    toast(
+      "Você saiu da lista."
+    );
+
+
+    await carregarListaSelecionada();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMES FORMADOS
+========================================================= */
+
+async function carregarTimesSelecionados(){
+
+  const partidaId =
+    document
+      .getElementById("timesPartidaSelect")
+      .value;
+
+
+  const conteudo =
+    document.getElementById(
+      "timesConteudo"
+    );
+
+
+  if(!partidaId){
+
+    conteudo.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  conteudo.classList.remove("hidden");
+
+
+  try{
+
+    const resultado =
+      await api(
+        "listar_times_formados",
+        {
+          partida_id:partidaId
+        }
+      );
+
+
+    renderizarTimes(
+      resultado,
+      "meuTime",
+      "timesGrid"
+    );
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+function renderizarTimes(
+  resultado,
+  meuTimeId,
+  gridId
+){
+
+  const meu =
+    document.getElementById(
+      meuTimeId
+    );
+
+
+  const grid =
+    document.getElementById(
+      gridId
+    );
+
+
+  if(!resultado.existe_sorteio){
+
+    meu.innerHTML = "";
+
+    grid.innerHTML = `
+
+      <div class="section">
+
+        <h3>
+          ⏳ O sorteio ainda não foi realizado.
+        </h3>
+
+        <p style="color:#7890a8;margin-top:8px">
+          Aguarde o administrador fechar a lista e sortear os times.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  if(resultado.meu_time){
+
+    meu.innerHTML = `
+
+      <div class="my-team">
+
+        <div>
+          ⚽ VOCÊ ESTÁ NO
+        </div>
+
+        <strong>
+          ${escapar(resultado.meu_time)}
+        </strong>
+
+      </div>
+
+    `;
+
+  }else{
+
+    meu.innerHTML = "";
+
+  }
+
+
+  grid.innerHTML =
+    resultado.times
+      .map(function(time){
+
+        return `
+
+          <div class="team-card">
+
+            <div class="team-header">
+
+              ${escapar(time.nome)}
+
+              <span
+                style="
+                  float:right;
+                  color:#8faac2;
+                  font-size:13px;
+                "
+              >
+                ${time.jogadores.length}
+              </span>
+
+            </div>
+
+            <div class="team-body">
+
+              ${
+                time.jogadores
+                  .map(function(j){
+
+                    return `
+
+                      <div class="team-player">
+
+                        <span>
+                          ${escapar(j.nome)}
+                        </span>
+
+                        ${
+                          j.tipo === "GOLEIRO"
+                          ? '<span class="gk">🥅</span>'
+                          : '<span>⚽</span>'
+                        }
+
+                      </div>
+
+                    `;
+
+                  })
+                  .join("")
+              }
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
 
 }
 
@@ -1913,90 +2957,77 @@ function atualizarCards() {
    RANKING
 ========================================================= */
 
-async function carregarRanking() {
+async function carregarRanking(){
 
-  const tbody =
-    document.getElementById(
-      "rankingBody"
-    );
+  try{
 
-  if (!tbody) return;
-
-  try {
-
-    const resposta =
+    const resultado =
       await api("ranking");
 
-    const ranking =
-      resposta.ranking || [];
 
-    if (!ranking.length) {
+    const body =
+      document.getElementById(
+        "rankingBody"
+      );
 
-      tbody.innerHTML = `
+
+    if(!resultado.ranking.length){
+
+      body.innerHTML = `
+
         <tr>
           <td colspan="4">
-            Nenhuma avaliação ainda.
+            Ainda não existem avaliações.
           </td>
         </tr>
+
       `;
 
       return;
 
     }
 
-    tbody.innerHTML =
-      ranking
-        .map((jogador, index) => {
 
-          const nome =
-            jogador.nome ||
-            jogador.NOME ||
-            "-";
-
-          const media =
-            jogador.media ??
-            jogador.MEDIA ??
-            0;
-
-          const votos =
-            jogador.votos ??
-            jogador.VOTOS ??
-            0;
+    body.innerHTML =
+      resultado.ranking
+        .map(function(j,index){
 
           return `
+
             <tr>
 
               <td>
-                <strong>${index + 1}</strong>
+                <strong>
+                  ${index + 1}
+                </strong>
               </td>
 
               <td>
-                ${esc(nome)}
+                ${escapar(j.nome)}
               </td>
 
               <td>
-                ⭐ ${Number(media).toFixed(2)}
+                ⭐ ${Number(j.media).toFixed(2)}
               </td>
 
               <td>
-                ${esc(votos)}
+                ${j.votos}
               </td>
 
             </tr>
+
           `;
 
         })
         .join("");
 
-  } catch (erro) {
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="4">
-          ${esc(erro.message)}
-        </td>
-      </tr>
-    `;
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
 
@@ -2007,88 +3038,52 @@ async function carregarRanking() {
    JOGADORES ADMIN
 ========================================================= */
 
-async function carregarJogadores() {
+async function carregarJogadores(){
 
-  const tbody =
-    document.getElementById(
-      "playersBody"
-    );
+  try{
 
-  if (!tbody) return;
+    const resultado =
+      await api("listar_jogadores");
 
-  try {
 
-    const resposta =
-      await api(
-        "listar_jogadores"
-      );
-
-    jogadores =
-      resposta.jogadores || [];
-
-    const total =
+    const body =
       document.getElementById(
-        "totalPlayersCard"
+        "jogadoresBody"
       );
 
-    if (total) {
 
-      total.textContent =
-        jogadores.length;
+    body.innerHTML =
+      resultado.jogadores
+        .map(function(j){
 
-    }
+          let badge =
+            "badge-yellow";
 
-    if (!jogadores.length) {
+          if(j.status === "APROVADO"){
+            badge = "badge-green";
+          }
 
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="4">
-            Nenhum jogador cadastrado.
-          </td>
-        </tr>
-      `;
+          if(j.status === "INATIVO"){
+            badge = "badge-red";
+          }
 
-      return;
+          if(j.status === "RECUSADO"){
+            badge = "badge-red";
+          }
 
-    }
-
-    tbody.innerHTML =
-      jogadores
-        .map(jogador => {
-
-          const id =
-            jogador.id ||
-            jogador.ID ||
-            "";
-
-          const nome =
-            jogador.nome ||
-            jogador.NOME ||
-            "";
-
-          const perfil =
-            jogador.perfil ||
-            jogador.PERFIL ||
-            "JOGADOR";
-
-          const status =
-            jogador.status ||
-            jogador.STATUS ||
-            "";
 
           return `
+
             <tr>
 
               <td>
-                ${esc(nome)}
+                ${escapar(j.nome)}
               </td>
 
               <td>
-                ${esc(perfil)}
-              </td>
-
-              <td>
-                ${badgeStatus(status)}
+                <span class="badge ${badge}">
+                  ${escapar(j.status)}
+                </span>
               </td>
 
               <td>
@@ -2096,165 +3091,144 @@ async function carregarJogadores() {
                 <div class="actions">
 
                   ${
-                    status.toUpperCase() === "PENDENTE"
-                      ? `
-                        <button
-                          class="btn btn-success small-btn"
-                          onclick="aprovarJogador('${escAttr(id)}')"
-                        >
-                          Aprovar
-                        </button>
+                    j.status === "PENDENTE"
+                    ? `
+                      <button
+                        class="btn btn-success"
+                        onclick="aprovarJogador('${escaparAttr(j.id)}')"
+                      >
+                        APROVAR
+                      </button>
 
-                        <button
-                          class="btn btn-danger small-btn"
-                          onclick="recusarJogador('${escAttr(id)}')"
-                        >
-                          Recusar
-                        </button>
-                      `
-                      : ""
+                      <button
+                        class="btn btn-danger"
+                        onclick="recusarJogador('${escaparAttr(j.id)}')"
+                      >
+                        RECUSAR
+                      </button>
+                    `
+                    : ""
                   }
 
                   ${
-                    status.toUpperCase() === "APROVADO"
-                      ? `
-                        <button
-                          class="btn btn-secondary small-btn"
-                          onclick="desativarJogador('${escAttr(id)}')"
-                        >
-                          Desativar
-                        </button>
-                      `
-                      : ""
+                    j.status === "APROVADO" &&
+                    j.nome.toLowerCase() !== "admin"
+                    ? `
+                      <button
+                        class="btn btn-warning"
+                        onclick="desativarJogador('${escaparAttr(j.id)}')"
+                      >
+                        DESATIVAR
+                      </button>
+                    `
+                    : ""
                   }
 
                   ${
-                    status.toUpperCase() === "INATIVO"
-                      ? `
-                        <button
-                          class="btn btn-success small-btn"
-                          onclick="ativarJogador('${escAttr(id)}')"
-                        >
-                          Ativar
-                        </button>
-                      `
-                      : ""
+                    j.status === "INATIVO"
+                    ? `
+                      <button
+                        class="btn btn-success"
+                        onclick="ativarJogador('${escaparAttr(j.id)}')"
+                      >
+                        ATIVAR
+                      </button>
+                    `
+                    : ""
                   }
 
-                  <button
-                    class="btn btn-secondary small-btn"
-                    onclick="resetarSenha('${escAttr(id)}')"
-                  >
-                    Resetar senha
-                  </button>
+                  ${
+                    j.nome.toLowerCase() !== "admin"
+                    ? `
+                      <button
+                        class="btn btn-secondary"
+                        onclick="resetarSenha('${escaparAttr(j.id)}')"
+                      >
+                        RESET SENHA
+                      </button>
+                    `
+                    : ""
+                  }
 
                 </div>
 
               </td>
 
             </tr>
+
           `;
 
         })
         .join("");
 
-  } catch (erro) {
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="4">
-          ${esc(erro.message)}
-        </td>
-      </tr>
-    `;
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
 
 }
 
 
-/* =========================================================
-   STATUS
-========================================================= */
+async function aprovarJogador(id){
 
-function badgeStatus(status) {
+  try{
 
-  const s =
-    String(status || "")
-      .toUpperCase();
+    await api(
+      "aprovar_jogador",
+      {
+        jogador_id:id
+      }
+    );
 
-  let classe =
-    "badge-blue";
+    toast(
+      "Jogador aprovado!"
+    );
 
-  if (s === "APROVADO" || s === "ATIVO") {
+    carregarJogadores();
 
-    classe = "badge-green";
+  }catch(erro){
 
-  }
-
-  if (s === "PENDENTE") {
-
-    classe = "badge-yellow";
-
-  }
-
-  if (
-    s === "INATIVO" ||
-    s === "RECUSADO"
-  ) {
-
-    classe = "badge-red";
+    toast(
+      erro.message,
+      true
+    );
 
   }
-
-  return `
-    <span class="badge ${classe}">
-      ${esc(status || "-")}
-    </span>
-  `;
 
 }
 
 
-/* =========================================================
-   APROVAR
-========================================================= */
+async function recusarJogador(id){
 
-async function aprovarJogador(id) {
-
-  if (
-    !confirm(
-      "Deseja aprovar este jogador?"
-    )
-  ) {
-
+  if(!confirm("Recusar este jogador?"))
     return;
 
-  }
 
-  try {
+  try{
 
-    const resposta =
-      await api(
-        "aprovar_jogador",
-        {
-          jogador_id: id
-        }
-      );
+    await api(
+      "recusar_jogador",
+      {
+        jogador_id:id
+      }
+    );
 
-    mostrarToast(
-      resposta.mensagem ||
-      "Jogador aprovado.",
-      "success"
+    toast(
+      "Jogador recusado."
     );
 
     carregarJogadores();
 
-  } catch (erro) {
+  }catch(erro){
 
-    mostrarToast(
+    toast(
       erro.message,
-      "error"
+      true
     );
 
   }
@@ -2262,45 +3236,61 @@ async function aprovarJogador(id) {
 }
 
 
-/* =========================================================
-   RECUSAR
-========================================================= */
+async function ativarJogador(id){
 
-async function recusarJogador(id) {
+  try{
 
-  if (
-    !confirm(
-      "Deseja recusar este cadastro?"
-    )
-  ) {
+    await api(
+      "ativar_jogador",
+      {
+        jogador_id:id
+      }
+    );
 
+    toast(
+      "Jogador ativado!"
+    );
+
+    carregarJogadores();
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function desativarJogador(id){
+
+  if(!confirm("Desativar este jogador?"))
     return;
 
-  }
 
-  try {
+  try{
 
-    const resposta =
-      await api(
-        "recusar_jogador",
-        {
-          jogador_id: id
-        }
-      );
+    await api(
+      "desativar_jogador",
+      {
+        jogador_id:id
+      }
+    );
 
-    mostrarToast(
-      resposta.mensagem ||
-      "Cadastro recusado.",
-      "success"
+    toast(
+      "Jogador desativado."
     );
 
     carregarJogadores();
 
-  } catch (erro) {
+  }catch(erro){
 
-    mostrarToast(
+    toast(
       erro.message,
-      "error"
+      true
     );
 
   }
@@ -2308,134 +3298,37 @@ async function recusarJogador(id) {
 }
 
 
-/* =========================================================
-   ATIVAR
-========================================================= */
+async function resetarSenha(id){
 
-async function ativarJogador(id) {
-
-  try {
-
-    const resposta =
-      await api(
-        "ativar_jogador",
-        {
-          jogador_id: id
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Jogador ativado.",
-      "success"
-    );
-
-    carregarJogadores();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   DESATIVAR
-========================================================= */
-
-async function desativarJogador(id) {
-
-  if (
-    !confirm(
-      "Deseja desativar este jogador?"
-    )
-  ) {
-
-    return;
-
-  }
-
-  try {
-
-    const resposta =
-      await api(
-        "desativar_jogador",
-        {
-          jogador_id: id
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Jogador desativado.",
-      "success"
-    );
-
-    carregarJogadores();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   RESETAR SENHA
-========================================================= */
-
-async function resetarSenha(id) {
-
-  const novaSenha =
+  const senha =
     prompt(
       "Digite a nova senha:"
     );
 
-  if (!novaSenha) return;
 
-  if (novaSenha.length < 4) {
-
-    mostrarToast(
-      "A senha deve possuir pelo menos 4 caracteres.",
-      "error"
-    );
-
+  if(!senha)
     return;
 
-  }
 
-  try {
+  try{
 
-    const resposta =
-      await api(
-        "resetar_senha",
-        {
-          jogador_id: id,
-          senha: novaSenha
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Senha alterada.",
-      "success"
+    await api(
+      "resetar_senha",
+      {
+        jogador_id:id,
+        nova_senha:senha
+      }
     );
 
-  } catch (erro) {
+    toast(
+      "Senha alterada!"
+    );
 
-    mostrarToast(
+  }catch(erro){
+
+    toast(
       erro.message,
-      "error"
+      true
     );
 
   }
@@ -2444,585 +3337,346 @@ async function resetarSenha(id) {
 
 
 /* =========================================================
-   ADMIN - PARTIDAS
+   ADMIN - CONTROLE DA LISTA
 ========================================================= */
 
-async function carregarAdminPartidas() {
+async function carregarAdminListas(){
 
-  const container =
-    document.getElementById(
-      "adminMatches"
-    );
+  try{
 
-  if (!container) return;
+    await carregarPartidas();
 
-  try {
 
-    const resposta =
-      await api("listar_partidas");
+    const area =
+      document.getElementById(
+        "adminListas"
+      );
 
-    partidas =
-      resposta.partidas || [];
 
-    if (!partidas.length) {
+    if(!partidas.length){
 
-      container.innerHTML =
-        `<div style="color:#8da4bf;">
-          Nenhuma partida cadastrada.
-        </div>`;
+      area.innerHTML =
+        '<div class="card">Nenhuma partida cadastrada.</div>';
 
       return;
 
     }
 
-    container.innerHTML =
-      partidas
-        .map(partida =>
-          criarCardAdminPartida(partida)
-        )
-        .join("");
 
-  } catch (erro) {
+    const resultados =
+      await Promise.all(
+        partidas.map(function(p){
 
-    container.innerHTML =
-      `<div>${esc(erro.message)}</div>`;
+          return api(
+            "listar_lista_futebol",
+            {
+              partida_id:p.id
+            }
+          )
+          .then(function(r){
 
-  }
+            return {
+              partida:p,
+              lista:r
+            };
 
-}
+          });
 
-
-function criarCardAdminPartida(partida) {
-
-  const id =
-    partida.id ||
-    partida.ID ||
-    "";
-
-  const adversario =
-    partida.adversario ||
-    partida.oponente ||
-    partida.OPONENTE ||
-    "-";
-
-  const data =
-    partida.data ||
-    partida.DATA ||
-    "-";
-
-  const hora =
-    partida.hora ||
-    partida.HORA ||
-    "-";
-
-  const local =
-    partida.local ||
-    partida.LOCAL ||
-    "-";
-
-  const votacao =
-    partida.votacao ||
-    partida.VOTACAO ||
-    "";
-
-  return `
-    <div class="match-card">
-
-      <div class="match-header">
-
-        <div>
-
-          <div class="match-opponent">
-            Futebol ID × ${esc(adversario)}
-          </div>
-
-          <div class="match-info">
-            📅 ${esc(data)}
-            <br>
-            ⏰ ${esc(hora)}
-            <br>
-            📍 ${esc(local)}
-            <br>
-            ID: ${esc(id)}
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="actions">
-
-        <button
-          class="btn btn-secondary small-btn"
-          onclick="abrirVotacao('${escAttr(id)}')"
-        >
-          Abrir votação
-        </button>
-
-        <button
-          class="btn btn-secondary small-btn"
-          onclick="encerrarVotacao('${escAttr(id)}')"
-        >
-          Encerrar votação
-        </button>
-
-        <button
-          class="btn btn-danger small-btn"
-          onclick="excluirPartida('${escAttr(id)}')"
-        >
-          Excluir
-        </button>
-
-      </div>
-
-    </div>
-  `;
-
-}
-
-
-/* =========================================================
-   CRIAR PARTIDA
-========================================================= */
-
-async function criarPartida() {
-
-  const data =
-    document
-      .getElementById("partidaData")
-      .value;
-
-  const hora =
-    document
-      .getElementById("partidaHora")
-      .value;
-
-  const adversario =
-    document
-      .getElementById("partidaAdversario")
-      .value
-      .trim();
-
-  const local =
-    document
-      .getElementById("partidaLocal")
-      .value
-      .trim();
-
-  if (
-    !data ||
-    !hora ||
-    !adversario ||
-    !local
-  ) {
-
-    mostrarToast(
-      "Preencha todos os campos da partida.",
-      "error"
-    );
-
-    return;
-
-  }
-
-  try {
-
-    const resposta =
-      await api(
-        "criar_partida",
-        {
-          data: data,
-          hora: hora,
-          adversario: adversario,
-          local: local
-        }
+        })
       );
 
-    mostrarToast(
-      resposta.mensagem ||
-      "Partida criada.",
-      "success"
-    );
 
-    document
-      .getElementById("partidaData")
-      .value = "";
+    area.innerHTML =
+      resultados
+        .map(function(item){
 
-    document
-      .getElementById("partidaHora")
-      .value = "";
+          const p =
+            item.partida;
 
-    document
-      .getElementById("partidaAdversario")
-      .value = "";
+          const l =
+            item.lista;
 
-    document
-      .getElementById("partidaLocal")
-      .value = "";
-
-    carregarAdminPartidas();
-
-    carregarPartidas();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   EXCLUIR PARTIDA
-========================================================= */
-
-async function excluirPartida(id) {
-
-  if (
-    !confirm(
-      "Tem certeza que deseja excluir esta partida?"
-    )
-  ) {
-
-    return;
-
-  }
-
-  try {
-
-    const resposta =
-      await api(
-        "excluir_partida",
-        {
-          partida_id: id
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Partida excluída.",
-      "success"
-    );
-
-    carregarAdminPartidas();
-
-    carregarPartidas();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   VOTAÇÃO
-========================================================= */
-
-async function abrirVotacao(id) {
-
-  try {
-
-    const resposta =
-      await api(
-        "abrir_votacao",
-        {
-          partida_id: id
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Votação aberta.",
-      "success"
-    );
-
-    carregarAdminPartidas();
-
-    carregarPartidas();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-async function encerrarVotacao(id) {
-
-  try {
-
-    const resposta =
-      await api(
-        "encerrar_votacao",
-        {
-          partida_id: id
-        }
-      );
-
-    mostrarToast(
-      resposta.mensagem ||
-      "Votação encerrada.",
-      "success"
-    );
-
-    carregarAdminPartidas();
-
-    carregarPartidas();
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   VOTAÇÃO DO JOGADOR
-========================================================= */
-
-async function abrirVotacaoJogador(id) {
-
-  mostrarToast(
-    "A tela de votação será carregada.",
-    "success"
-  );
-
-  /*
-    A estrutura de votação será ligada
-    à escalação da partida através do backend.
-  */
-
-}
-
-
-/* =========================================================
-   ESCALAÇÕES
-========================================================= */
-
-async function prepararEscalacoes() {
-
-  const select =
-    document.getElementById(
-      "escalaPartida"
-    );
-
-  if (!select) return;
-
-  try {
-
-    const resposta =
-      await api("listar_partidas");
-
-    partidas =
-      resposta.partidas || [];
-
-    select.innerHTML =
-      `<option value="">
-        Selecione uma partida
-      </option>`;
-
-    partidas.forEach(partida => {
-
-      const id =
-        partida.id ||
-        partida.ID ||
-        "";
-
-      const adversario =
-        partida.adversario ||
-        partida.oponente ||
-        "-";
-
-      const data =
-        partida.data ||
-        partida.DATA ||
-        "";
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value = id;
-
-      option.textContent =
-        `Futebol ID × ${adversario} - ${data}`;
-
-      select.appendChild(option);
-
-    });
-
-    select.onchange =
-      () => {
-
-        if (select.value) {
-
-          carregarEscalacao(
-            select.value
-          );
-
-        } else {
-
-          document
-            .getElementById(
-              "escalacaoPlayers"
-            )
-            .innerHTML =
-            "Selecione uma partida.";
-
-        }
-
-      };
-
-  } catch (erro) {
-
-    mostrarToast(
-      erro.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-async function carregarEscalacao(partidaId) {
-
-  const container =
-    document.getElementById(
-      "escalacaoPlayers"
-    );
-
-  if (!container) return;
-
-  try {
-
-    const resposta =
-      await api(
-        "listar_escalacao",
-        {
-          partida_id: partidaId
-        }
-      );
-
-    const lista =
-      resposta.escalacao || [];
-
-    if (!lista.length) {
-
-      container.innerHTML =
-        `<div style="color:#8da4bf;">
-          Nenhum jogador escalado.
-        </div>`;
-
-      return;
-
-    }
-
-    container.innerHTML =
-      lista
-        .map(jogador => {
-
-          const nome =
-            jogador.nome ||
-            jogador.NOME ||
-            "-";
-
-          const id =
-            jogador.id ||
-            jogador.ID ||
-            "";
 
           return `
+
             <div class="match-card">
 
-              <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                gap:15px;
-              ">
+              <h4>
+                ⚽ ${escapar(p.adversario)}
+              </h4>
 
-                <strong>
-                  ${esc(nome)}
-                </strong>
+              <div class="match-info">
+
+                📅 ${formatarData(p.data)}
+                <br>
+
+                🕐 ${escapar(p.hora)}
+                <br>
+
+                📍 ${escapar(p.local)}
+
+              </div>
+
+              <div style="margin-top:12px">
+
+                <span class="badge ${
+                  l.lista.status === "ABERTA"
+                  ? "badge-green"
+                  : "badge-red"
+                }">
+
+                  ${
+                    l.lista.status === "ABERTA"
+                    ? "LISTA ABERTA"
+                    : "LISTA FECHADA"
+                  }
+
+                </span>
+
+              </div>
+
+              <div style="margin-top:12px">
+
+                ⚽ ${l.total_jogadores}/20 jogadores
+
+                <br>
+
+                🥅 ${l.total_goleiros}/4 goleiros
+
+                <br>
+
+                👥 ${l.total}/24 total
+
+              </div>
+
+              <div class="match-actions">
+
+                ${
+                  l.lista.status === "ABERTA"
+                  ? `
+                    <button
+                      class="btn btn-warning"
+                      onclick="alterarLista('${escaparAttr(p.id)}','fechar')"
+                    >
+                      FECHAR LISTA
+                    </button>
+                  `
+                  : `
+                    <button
+                      class="btn btn-success"
+                      onclick="alterarLista('${escaparAttr(p.id)}','abrir')"
+                    >
+                      ABRIR LISTA
+                    </button>
+                  `
+                }
 
                 <button
-                  class="btn btn-danger small-btn"
-                  onclick="desescalar('${escAttr(partidaId)}','${escAttr(id)}')"
+                  class="btn btn-primary"
+                  onclick="abrirPainelAdminTimes('${escaparAttr(p.id)}')"
                 >
-                  Remover
+                  🎲 SORTEAR
                 </button>
 
               </div>
 
             </div>
+
           `;
 
         })
         .join("");
 
-  } catch (erro) {
 
-    container.innerHTML =
-      `<div>${esc(erro.message)}</div>`;
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
 
   }
 
 }
 
 
-async function desescalar(
+async function alterarLista(
   partidaId,
-  jogadorId
-) {
+  acao
+){
 
-  try {
+  try{
 
-    const resposta =
+    await api(
+      acao === "fechar"
+      ? "fechar_lista_futebol"
+      : "abrir_lista_futebol",
+      {
+        partida_id:partidaId
+      }
+    );
+
+
+    toast(
+      acao === "fechar"
+      ? "Lista fechada."
+      : "Lista aberta."
+    );
+
+
+    carregarAdminListas();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ADMIN - SORTEIO
+========================================================= */
+
+async function carregarPainelSorteio(){
+
+  const partidaId =
+    document
+      .getElementById("adminTimesPartida")
+      .value;
+
+
+  const painel =
+    document.getElementById(
+      "painelSorteio"
+    );
+
+
+  if(!partidaId){
+
+    painel.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  painel.classList.remove("hidden");
+
+
+  try{
+
+    const resultado =
       await api(
-        "desescalar",
+        "listar_lista_futebol",
         {
-          partida_id: partidaId,
-          jogador_id: jogadorId
+          partida_id:partidaId
         }
       );
 
-    mostrarToast(
-      resposta.mensagem ||
-      "Jogador removido.",
-      "success"
+
+    document
+      .getElementById(
+        "sorteioResumo"
+      )
+      .innerHTML = `
+
+        <h3 style="margin-bottom:15px">
+          Resumo da lista
+        </h3>
+
+        <div class="capacity">
+
+          <div class="capacity-box">
+
+            <div class="capacity-number">
+              ${resultado.total_jogadores}/20
+            </div>
+
+            <div class="capacity-label">
+              JOGADORES
+            </div>
+
+          </div>
+
+          <div class="capacity-box">
+
+            <div class="capacity-number">
+              ${resultado.total_goleiros}/4
+            </div>
+
+            <div class="capacity-label">
+              GOLEIROS
+            </div>
+
+          </div>
+
+          <div class="capacity-box">
+
+            <div class="capacity-number">
+              ${resultado.total}/24
+            </div>
+
+            <div class="capacity-label">
+              TOTAL
+            </div>
+
+          </div>
+
+        </div>
+
+        <p>
+          Status:
+          <strong>
+            ${resultado.lista.status}
+          </strong>
+        </p>
+
+      `;
+
+
+    document
+      .getElementById("btnFecharLista")
+      .classList.toggle(
+        "hidden",
+        resultado.lista.status === "FECHADA"
+      );
+
+
+    document
+      .getElementById("btnAbrirLista")
+      .classList.toggle(
+        "hidden",
+        resultado.lista.status !== "FECHADA"
+      );
+
+
+    const times =
+      await api(
+        "listar_times_formados",
+        {
+          partida_id:partidaId
+        }
+      );
+
+
+    renderizarTimes(
+      times,
+      "adminTimesResultado",
+      "adminTimesResultado"
     );
 
-    carregarEscalacao(
-      partidaId
-    );
 
-  } catch (erro) {
+  }catch(erro){
 
-    mostrarToast(
+    toast(
       erro.message,
-      "error"
+      true
     );
 
   }
@@ -3030,139 +3684,320 @@ async function desescalar(
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+function abrirPainelAdminTimes(id){
 
-function abrirModal(
-  titulo,
-  conteudo,
-  callback
-) {
-
-  document
-    .getElementById("modalTitle")
-    .textContent = titulo;
-
-  document
-    .getElementById("modalContent")
-    .innerHTML = conteudo;
-
-  document
-    .getElementById("modalBg")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("modalConfirm")
-    .onclick = callback;
-
-}
+  abrirPagina("adminTimes");
 
 
-function fecharModal() {
-
-  document
-    .getElementById("modalBg")
-    .classList.add("hidden");
-
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function mostrarToast(
-  mensagem,
-  tipo = ""
-) {
-
-  const container =
+  const select =
     document.getElementById(
-      "toast"
+      "adminTimesPartida"
     );
 
-  const div =
-    document.createElement(
-      "div"
+
+  select.value =
+    id;
+
+
+  carregarPainelSorteio();
+
+}
+
+
+async function fecharListaAdmin(){
+
+  const partidaId =
+    document
+      .getElementById("adminTimesPartida")
+      .value;
+
+
+  if(!partidaId)
+    return;
+
+
+  await alterarLista(
+    partidaId,
+    "fechar"
+  );
+
+
+  carregarPainelSorteio();
+
+}
+
+
+async function abrirListaAdmin(){
+
+  const partidaId =
+    document
+      .getElementById("adminTimesPartida")
+      .value;
+
+
+  if(!partidaId)
+    return;
+
+
+  await alterarLista(
+    partidaId,
+    "abrir"
+  );
+
+
+  carregarPainelSorteio();
+
+}
+
+
+async function sortearTimesAdmin(){
+
+  const partidaId =
+    document
+      .getElementById("adminTimesPartida")
+      .value;
+
+
+  const numeroTimes =
+    Number(
+      document
+        .getElementById("numeroTimes")
+        .value
     );
 
-  div.className =
-    "toast " + tipo;
 
-  div.textContent =
-    mensagem;
+  if(!partidaId){
 
-  container.appendChild(div);
+    toast(
+      "Escolha uma partida.",
+      true
+    );
 
-  setTimeout(() => {
-
-    div.remove();
-
-  }, 4000);
-
-}
-
-
-/* =========================================================
-   SEGURANÇA HTML
-========================================================= */
-
-function esc(valor) {
-
-  return String(valor ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-
-function escAttr(valor) {
-
-  return String(valor ?? "")
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'");
-
-}
-
-
-/* =========================================================
-   ENTER NO LOGIN
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (
-      event.key === "Enter" &&
-      !document
-        .getElementById("loginScreen")
-        .classList.contains("hidden")
-    ) {
-
-      const cadastro =
-        !document
-          .getElementById("cadastroForm")
-          .classList.contains("hidden");
-
-      if (!cadastro) {
-
-        fazerLogin();
-
-      } else {
-
-        cadastrar();
-
-      }
-
-    }
+    return;
 
   }
-);
+
+
+  if(
+    !confirm(
+      "Sortear " +
+      numeroTimes +
+      " times para esta partida?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    const resultado =
+      await api(
+        "sortear_times",
+        {
+          partida_id:partidaId,
+          numero_times:numeroTimes
+        }
+      );
+
+
+    toast(
+      "🎲 Times sorteados com sucesso!"
+    );
+
+
+    renderizarTimes(
+      resultado,
+      "adminTimesResultado",
+      "adminTimesResultado"
+    );
+
+
+    await carregarPainelSorteio();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function limparSorteioAdmin(){
+
+  const partidaId =
+    document
+      .getElementById("adminTimesPartida")
+      .value;
+
+
+  if(!partidaId)
+    return;
+
+
+  if(
+    !confirm(
+      "Tem certeza que deseja apagar o sorteio?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await api(
+      "limpar_sorteio_times",
+      {
+        partida_id:partidaId
+      }
+    );
+
+
+    toast(
+      "Sorteio apagado."
+    );
+
+
+    carregarPainelSorteio();
+
+
+  }catch(erro){
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
+
+function escapar(valor){
+
+  return String(
+    valor == null ? "" : valor
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+function escaparAttr(valor){
+
+  return String(
+    valor == null ? "" : valor
+  )
+  .replace(/\\/g,"\\\\")
+  .replace(/'/g,"\\'");
+}
+
+
+function formatarData(data){
+
+  if(!data)
+    return "";
+
+
+  const texto =
+    String(data);
+
+
+  if(
+    /^\d{4}-\d{2}-\d{2}$/.test(texto)
+  ){
+
+    const partes =
+      texto.split("-");
+
+    return (
+      partes[2] +
+      "/" +
+      partes[1] +
+      "/" +
+      partes[0]
+    );
+
+  }
+
+
+  return texto;
+
+}
+
+
+/* =========================================================
+   VERIFICAR SESSÃO AO ABRIR
+========================================================= */
+
+async function verificarSessao(){
+
+  if(!token){
+
+    return;
+
+  }
+
+
+  try{
+
+    const resultado =
+      await api("me");
+
+
+    usuario =
+      resultado.jogador;
+
+
+    localStorage.setItem(
+      "futebol_id_usuario",
+      JSON.stringify(usuario)
+    );
+
+
+    iniciarSistema();
+
+
+  }catch(erro){
+
+    localStorage.removeItem(
+      "futebol_id_token"
+    );
+
+    localStorage.removeItem(
+      "futebol_id_usuario"
+    );
+
+    token = "";
+
+  }
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
+verificarSessao();
 
 </script>
 
