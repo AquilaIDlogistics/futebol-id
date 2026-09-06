@@ -1,574 +1,569 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Futebol ID</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #07111f;
-  color: #ffffff;
-  min-height: 100vh;
-}
-
-button,
-input,
-select {
-  font-family: inherit;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.screen {
-  min-height: 100vh;
-}
-
-/* =========================
-   LOGIN
-========================= */
-
-#loginScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background:
-    radial-gradient(circle at top, #12335c 0%, #07111f 55%);
-}
-
-.login-box {
-  width: 100%;
-  max-width: 430px;
-  background: #0d1b2d;
-  border: 1px solid #1d395c;
-  border-radius: 20px;
-  padding: 35px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
-}
-
-.logo {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.logo-icon {
-  width: 78px;
-  height: 78px;
-  margin: auto;
-  border-radius: 50%;
-  background: #ffffff;
-  color: #0b4fa3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 38px;
-  margin-bottom: 15px;
-}
-
-.logo h1 {
-  font-size: 30px;
-  letter-spacing: 1px;
-}
-
-.logo p {
-  color: #91a8c4;
-  margin-top: 7px;
-}
-
-.field {
-  margin-bottom: 18px;
-}
-
-.field label {
-  display: block;
-  margin-bottom: 7px;
-  color: #d9e6f5;
-  font-size: 14px;
-}
-
-.field input,
-.field select {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid #294563;
-  background: #07111f;
-  color: #fff;
-  outline: none;
-  font-size: 15px;
-}
-
-.field input:focus,
-.field select:focus {
-  border-color: #2877d1;
-  box-shadow: 0 0 0 3px rgba(40,119,209,.15);
-}
-
-.btn {
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 15px;
-  transition: .2s;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.08);
-}
-
-.btn-primary {
-  background: #1261b5;
-  color: white;
-}
-
-.btn-secondary {
-  background: #172b43;
-  color: #dcecff;
-  border: 1px solid #294563;
-}
-
-.btn-danger {
-  background: #9f2e38;
-  color: white;
-}
-
-.btn-success {
-  background: #18794e;
-  color: white;
-}
-
-.login-links {
-  margin-top: 18px;
-  text-align: center;
-}
-
-.login-links button {
-  background: none;
-  border: 0;
-  color: #5da7ff;
-  cursor: pointer;
-  margin: 5px;
-}
-
-/* =========================
-   APP
-========================= */
-
-.app {
-  min-height: 100vh;
-}
-
-.topbar {
-  height: 70px;
-  background: #0b192b;
-  border-bottom: 1px solid #1d395c;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 25px;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
-.topbar-brand {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.topbar-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.user-name {
-  color: #b9cee6;
-  font-size: 14px;
-}
-
-.logout-btn {
-  background: #172b43;
-  border: 1px solid #294563;
-  color: #fff;
-  border-radius: 8px;
-  padding: 9px 14px;
-  cursor: pointer;
-}
-
-.layout {
-  display: flex;
-  min-height: calc(100vh - 70px);
-}
-
-.sidebar {
-  width: 245px;
-  background: #091625;
-  border-right: 1px solid #1d395c;
-  padding: 20px 14px;
-  flex-shrink: 0;
-}
-
-.menu-title {
-  color: #7189a5;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1px;
-  padding: 10px 12px;
-}
-
-.menu-btn {
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  color: #c8d8ea;
-  border: 0;
-  padding: 12px;
-  border-radius: 9px;
-  cursor: pointer;
-  margin-bottom: 4px;
-  font-size: 14px;
-}
-
-.menu-btn:hover,
-.menu-btn.active {
-  background: #12345a;
-  color: #fff;
-}
-
-.content {
-  flex: 1;
-  padding: 30px;
-  overflow-x: auto;
-}
-
-.page-title {
-  font-size: 27px;
-  margin-bottom: 7px;
-}
-
-.page-subtitle {
-  color: #8da4bf;
-  margin-bottom: 25px;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 25px;
-}
-
-.card {
-  background: #0d1b2d;
-  border: 1px solid #1d395c;
-  border-radius: 14px;
-  padding: 22px;
-}
-
-.card-title {
-  color: #8da4bf;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.card-value {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.panel {
-  background: #0d1b2d;
-  border: 1px solid #1d395c;
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 20px;
-}
-
-.panel h3 {
-  margin-bottom: 17px;
-}
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 650px;
-}
-
-th,
-td {
-  padding: 13px 10px;
-  border-bottom: 1px solid #203650;
-  text-align: left;
-  font-size: 14px;
-}
-
-th {
-  color: #8da4bf;
-  font-weight: normal;
-}
-
-td {
-  color: #e2edf9;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-.badge {
-  display: inline-block;
-  border-radius: 20px;
-  padding: 5px 9px;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.badge-green {
-  background: #124f38;
-  color: #7de0b1;
-}
-
-.badge-yellow {
-  background: #5b4811;
-  color: #f5d66f;
-}
-
-.badge-red {
-  background: #571f25;
-  color: #ff929b;
-}
-
-.badge-blue {
-  background: #123e67;
-  color: #7ebcff;
-}
-
-/* =========================
-   FORM GRID
-========================= */
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.form-grid .full {
-  grid-column: 1 / -1;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.small-btn {
-  width: auto;
-  padding: 8px 11px;
-  font-size: 12px;
-}
-
-/* =========================
-   MATCH
-========================= */
-
-.match-card {
-  background: #101f32;
-  border: 1px solid #254463;
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 12px;
-}
-
-.match-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-bottom: 12px;
-}
-
-.match-opponent {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.match-info {
-  color: #91a8c4;
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 100;
-}
-
-.modal {
-  width: 100%;
-  max-width: 500px;
-  background: #0d1b2d;
-  border: 1px solid #294563;
-  border-radius: 15px;
-  padding: 25px;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.modal h2 {
-  margin-bottom: 20px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.modal-actions .btn {
-  flex: 1;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-#toast {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 500;
-  max-width: 350px;
-}
-
-.toast {
-  padding: 15px 18px;
-  border-radius: 10px;
-  background: #102d4a;
-  border: 1px solid #2d6295;
-  color: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,.4);
-  margin-top: 10px;
-}
-
-.toast.error {
-  background: #552027;
-  border-color: #9d3a46;
-}
-
-.toast.success {
-  background: #123f31;
-  border-color: #287b5e;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 900px) {
-
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sidebar {
-    width: 205px;
-  }
-}
-
-@media (max-width: 700px) {
-
-  .topbar {
-    padding: 0 15px;
-  }
-
-  .user-name {
-    display: none;
-  }
-
-  .layout {
-    display: block;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-right: 0;
-    border-bottom: 1px solid #1d395c;
-    display: flex;
-    overflow-x: auto;
-    padding: 10px;
-    gap: 5px;
-  }
-
-  .menu-title {
-    display: none;
-  }
-
-  .menu-btn {
-    white-space: nowrap;
-    width: auto;
-    margin: 0;
-  }
-
-  .content {
-    padding: 20px 15px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-grid .full {
-    grid-column: auto;
-  }
-
-  .login-box {
-    padding: 25px 20px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Futebol ID</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .screen {
+      min-height: 100vh;
+    }
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top, #12335c 0%, #07111f 55%);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 430px;
+      background: #0d1b2d;
+      border: 1px solid #1d395c;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-icon {
+      width: 78px;
+      height: 78px;
+      margin: auto;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #0b4fa3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .logo h1 {
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    .logo p {
+      color: #91a8c4;
+      margin-top: 7px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #d9e6f5;
+      font-size: 14px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #294563;
+      background: #07111f;
+      color: #fff;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .field input:focus {
+      border-color: #2877d1;
+      box-shadow: 0 0 0 3px rgba(40,119,209,.15);
+    }
+
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    .btn-primary {
+      background: #1261b5;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #172b43;
+      color: #dcecff;
+      border: 1px solid #294563;
+    }
+
+    .btn-danger {
+      background: #9f2e38;
+      color: white;
+    }
+
+    .btn-success {
+      background: #18794e;
+      color: white;
+    }
+
+    .login-links {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .login-links button {
+      background: none;
+      border: 0;
+      color: #5da7ff;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    /* =========================
+       APP
+    ========================= */
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 70px;
+      background: #0b192b;
+      border-bottom: 1px solid #1d395c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-brand {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-name {
+      color: #b9cee6;
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      background: #172b43;
+      border: 1px solid #294563;
+      color: #fff;
+      border-radius: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+    }
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    .sidebar {
+      width: 245px;
+      background: #091625;
+      border-right: 1px solid #1d395c;
+      padding: 20px 14px;
+      flex-shrink: 0;
+    }
+
+    .menu-title {
+      color: #7189a5;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 10px 12px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      color: #c8d8ea;
+      border: 0;
+      padding: 12px;
+      border-radius: 9px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .menu-btn:hover,
+    .menu-btn.active {
+      background: #12345a;
+      color: #fff;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      overflow-x: auto;
+    }
+
+    .page-title {
+      font-size: 27px;
+      margin-bottom: 7px;
+    }
+
+    .page-subtitle {
+      color: #8da4bf;
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #0d1b2d;
+      border: 1px solid #1d395c;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card-title {
+      color: #8da4bf;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .card-value {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .panel {
+      background: #0d1b2d;
+      border: 1px solid #1d395c;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .panel h3 {
+      margin-bottom: 17px;
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #203650;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      color: #8da4bf;
+      font-weight: normal;
+    }
+
+    td {
+      color: #e2edf9;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .badge {
+      display: inline-block;
+      border-radius: 20px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .badge-green {
+      background: #124f38;
+      color: #7de0b1;
+    }
+
+    .badge-yellow {
+      background: #5b4811;
+      color: #f5d66f;
+    }
+
+    .badge-red {
+      background: #571f25;
+      color: #ff929b;
+    }
+
+    .badge-blue {
+      background: #123e67;
+      color: #7ebcff;
+    }
+
+    /* =========================
+       FORM GRID
+    ========================= */
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-grid .full {
+      grid-column: 1 / -1;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .small-btn {
+      width: auto;
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    /* =========================
+       MATCH
+    ========================= */
+
+    .match-card {
+      background: #101f32;
+      border: 1px solid #254463;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .match-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 12px;
+    }
+
+    .match-opponent {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .match-info {
+      color: #91a8c4;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+      background: #0d1b2d;
+      border: 1px solid #294563;
+      border-radius: 15px;
+      padding: 25px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 {
+      margin-bottom: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+    }
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 500;
+      max-width: 350px;
+    }
+
+    .toast {
+      padding: 15px 18px;
+      border-radius: 10px;
+      background: #102d4a;
+      border: 1px solid #2d6295;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      margin-top: 10px;
+    }
+
+    .toast.error {
+      background: #552027;
+      border-color: #9d3a46;
+    }
+
+    .toast.success {
+      background: #123f31;
+      border-color: #287b5e;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sidebar {
+        width: 205px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .user-name {
+        display: none;
+      }
+
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid #1d395c;
+        display: flex;
+        overflow-x: auto;
+        padding: 10px;
+        gap: 5px;
+      }
+
+      .menu-title {
+        display: none;
+      }
+
+      .menu-btn {
+        white-space: nowrap;
+        width: auto;
+        margin: 0;
+      }
+
+      .content {
+        padding: 20px 15px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid .full {
+        grid-column: auto;
+      }
+
+      .login-box {
+        padding: 25px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -583,119 +578,83 @@ td {
 
     <div class="logo">
       <div class="logo-icon">⚽</div>
-
       <h1>Futebol ID</h1>
-
       <p>Gestão de Futebol</p>
     </div>
 
     <div id="loginForm">
 
       <div class="field">
-
         <label>Nome</label>
-
         <input
           type="text"
           id="loginNome"
           placeholder="Digite seu nome"
           autocomplete="username"
         >
-
       </div>
 
       <div class="field">
-
         <label>Senha</label>
-
         <input
           type="password"
           id="loginSenha"
           placeholder="Digite sua senha"
           autocomplete="current-password"
         >
-
       </div>
 
-      <button
-        type="button"
-        class="btn btn-primary"
-        onclick="fazerLogin()"
-      >
+      <button class="btn btn-primary" onclick="fazerLogin()">
         ENTRAR
       </button>
 
       <div class="login-links">
-
-        <button
-          type="button"
-          onclick="mostrarCadastro()"
-        >
+        <button onclick="mostrarCadastro()">
           Criar cadastro
         </button>
-
       </div>
 
     </div>
-
 
     <!-- CADASTRO -->
 
     <div id="cadastroForm" class="hidden">
 
       <div class="field">
-
         <label>Nome</label>
-
         <input
           type="text"
           id="cadastroNome"
           placeholder="Digite seu nome"
         >
-
       </div>
 
       <div class="field">
-
         <label>Senha</label>
-
         <input
           type="password"
           id="cadastroSenha"
           placeholder="Crie uma senha"
         >
-
       </div>
 
       <div class="field">
-
         <label>Confirmar senha</label>
-
         <input
           type="password"
           id="cadastroSenha2"
           placeholder="Digite a senha novamente"
         >
-
       </div>
 
-      <button
-        type="button"
-        class="btn btn-success"
-        onclick="cadastrar()"
-      >
+      <button class="btn btn-success" onclick="cadastrar()">
         CRIAR CADASTRO
       </button>
 
       <div class="login-links">
-
-        <button
-          type="button"
-          onclick="mostrarLogin()"
-        >
+        <button onclick="mostrarLogin()">
           Voltar para login
         </button>
-
       </div>
 
     </div>
@@ -723,11 +682,7 @@ td {
         Usuário
       </span>
 
-      <button
-        type="button"
-        class="logout-btn"
-        onclick="fazerLogout()"
-      >
+      <button class="logout-btn" onclick="fazerLogout()">
         Sair
       </button>
 
@@ -747,7 +702,6 @@ td {
       </div>
 
       <button
-        type="button"
         class="menu-btn active"
         data-page="inicio"
         onclick="abrirPagina('inicio')"
@@ -756,7 +710,6 @@ td {
       </button>
 
       <button
-        type="button"
         class="menu-btn"
         data-page="partidas"
         onclick="abrirPagina('partidas')"
@@ -765,7 +718,6 @@ td {
       </button>
 
       <button
-        type="button"
         class="menu-btn"
         data-page="ranking"
         onclick="abrirPagina('ranking')"
@@ -774,7 +726,6 @@ td {
       </button>
 
       <button
-        type="button"
         class="menu-btn"
         data-page="conta"
         onclick="abrirPagina('conta')"
@@ -792,7 +743,6 @@ td {
         </div>
 
         <button
-          type="button"
           class="menu-btn"
           data-page="jogadores"
           onclick="abrirPagina('jogadores')"
@@ -801,7 +751,6 @@ td {
         </button>
 
         <button
-          type="button"
           class="menu-btn"
           data-page="adminPartidas"
           onclick="abrirPagina('adminPartidas')"
@@ -810,7 +759,6 @@ td {
         </button>
 
         <button
-          type="button"
           class="menu-btn"
           data-page="adminEscalacoes"
           onclick="abrirPagina('adminEscalacoes')"
@@ -842,60 +790,23 @@ td {
         <div class="cards">
 
           <div class="card">
-
-            <div class="card-title">
-              Próxima partida
-            </div>
-
-            <div
-              class="card-value"
-              id="nextMatchCard"
-            >
-              -
-            </div>
-
+            <div class="card-title">Próxima partida</div>
+            <div class="card-value" id="nextMatchCard">-</div>
           </div>
 
           <div class="card">
-
-            <div class="card-title">
-              Partidas
-            </div>
-
-            <div
-              class="card-value"
-              id="totalMatchesCard"
-            >
-              0
-            </div>
-
+            <div class="card-title">Partidas</div>
+            <div class="card-value" id="totalMatchesCard">0</div>
           </div>
 
           <div class="card">
-
-            <div class="card-title">
-              Jogadores
-            </div>
-
-            <div
-              class="card-value"
-              id="totalPlayersCard"
-            >
-              0
-            </div>
-
+            <div class="card-title">Jogadores</div>
+            <div class="card-value" id="totalPlayersCard">0</div>
           </div>
 
           <div class="card">
-
-            <div class="card-title">
-              Ranking
-            </div>
-
-            <div class="card-value">
-              🏆
-            </div>
-
+            <div class="card-title">Ranking</div>
+            <div class="card-value">🏆</div>
           </div>
 
         </div>
@@ -903,9 +814,7 @@ td {
 
         <div class="panel">
 
-          <h3>
-            Próximas partidas
-          </h3>
+          <h3>Próximas partidas</h3>
 
           <div id="homeMatches">
             Carregando...
@@ -918,10 +827,7 @@ td {
 
       <!-- PARTIDAS -->
 
-      <section
-        id="page-partidas"
-        class="hidden"
-      >
+      <section id="page-partidas" class="hidden">
 
         <h1 class="page-title">
           Partidas
@@ -940,10 +846,7 @@ td {
 
       <!-- RANKING -->
 
-      <section
-        id="page-ranking"
-        class="hidden"
-      >
+      <section id="page-ranking" class="hidden">
 
         <h1 class="page-title">
           🏆 Ranking
@@ -991,10 +894,7 @@ td {
 
       <!-- CONTA -->
 
-      <section
-        id="page-conta"
-        class="hidden"
-      >
+      <section id="page-conta" class="hidden">
 
         <h1 class="page-title">
           Minha conta
@@ -1009,36 +909,18 @@ td {
           <div class="form-grid">
 
             <div class="field">
-
               <label>Nome</label>
-
-              <input
-                id="contaNome"
-                readonly
-              >
-
+              <input id="contaNome" readonly>
             </div>
 
             <div class="field">
-
               <label>Perfil</label>
-
-              <input
-                id="contaPerfil"
-                readonly
-              >
-
+              <input id="contaPerfil" readonly>
             </div>
 
             <div class="field">
-
               <label>Status</label>
-
-              <input
-                id="contaStatus"
-                readonly
-              >
-
+              <input id="contaStatus" readonly>
             </div>
 
           </div>
@@ -1050,10 +932,7 @@ td {
 
       <!-- JOGADORES ADMIN -->
 
-      <section
-        id="page-jogadores"
-        class="hidden"
-      >
+      <section id="page-jogadores" class="hidden">
 
         <h1 class="page-title">
           👥 Jogadores
@@ -1101,10 +980,7 @@ td {
 
       <!-- ADMIN PARTIDAS -->
 
-      <section
-        id="page-adminPartidas"
-        class="hidden"
-      >
+      <section id="page-adminPartidas" class="hidden">
 
         <h1 class="page-title">
           📅 Gerenciar partidas
@@ -1116,56 +992,36 @@ td {
 
         <div class="panel">
 
-          <h3>
-            Nova partida
-          </h3>
+          <h3>Nova partida</h3>
 
           <div class="form-grid">
 
             <div class="field">
-
               <label>Data</label>
-
-              <input
-                type="date"
-                id="partidaData"
-              >
-
+              <input type="date" id="partidaData">
             </div>
 
             <div class="field">
-
               <label>Horário</label>
-
-              <input
-                type="time"
-                id="partidaHora"
-              >
-
+              <input type="time" id="partidaHora">
             </div>
 
             <div class="field">
-
               <label>Adversário</label>
-
               <input
                 type="text"
                 id="partidaAdversario"
                 placeholder="Nome do adversário"
               >
-
             </div>
 
             <div class="field">
-
               <label>Local</label>
-
               <input
                 type="text"
                 id="partidaLocal"
                 placeholder="Local da partida"
               >
-
             </div>
 
           </div>
@@ -1173,7 +1029,6 @@ td {
           <br>
 
           <button
-            type="button"
             class="btn btn-primary"
             onclick="criarPartida()"
           >
@@ -1185,9 +1040,7 @@ td {
 
         <div class="panel">
 
-          <h3>
-            Partidas cadastradas
-          </h3>
+          <h3>Partidas cadastradas</h3>
 
           <div id="adminMatches">
             Carregando...
@@ -1200,10 +1053,7 @@ td {
 
       <!-- ADMIN ESCALAÇÕES -->
 
-      <section
-        id="page-adminEscalacoes"
-        class="hidden"
-      >
+      <section id="page-adminEscalacoes" class="hidden">
 
         <h1 class="page-title">
           📋 Escalações
@@ -1221,7 +1071,17 @@ td {
               Partida
             </label>
 
-            <select id="escalaPartida">
+            <select
+              id="escalaPartida"
+              style="
+                width:100%;
+                padding:14px;
+                border-radius:10px;
+                background:#07111f;
+                color:white;
+                border:1px solid #294563;
+              "
+            >
             </select>
 
           </div>
@@ -1245,10 +1105,7 @@ td {
      MODAL
 ========================================================= -->
 
-<div
-  id="modalBg"
-  class="modal-bg hidden"
->
+<div id="modalBg" class="modal-bg hidden">
 
   <div class="modal">
 
@@ -1261,7 +1118,6 @@ td {
     <div class="modal-actions">
 
       <button
-        type="button"
         class="btn btn-secondary"
         onclick="fecharModal()"
       >
@@ -1269,7 +1125,6 @@ td {
       </button>
 
       <button
-        type="button"
         id="modalConfirm"
         class="btn btn-primary"
       >
@@ -1308,8 +1163,7 @@ let jogadores = [];
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const token =
-    localStorage.getItem("futebol_id_token");
+  const token = localStorage.getItem("futebol_id_token");
 
   if (token) {
 
@@ -1328,13 +1182,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function api(acao, parametros = {}) {
 
-  const params =
-    new URLSearchParams();
+  const params = new URLSearchParams();
 
-  params.append(
-    "acao",
-    acao
-  );
+  params.append("acao", acao);
 
   Object.keys(parametros).forEach(chave => {
 
@@ -1345,7 +1195,7 @@ async function api(acao, parametros = {}) {
 
       params.append(
         chave,
-        String(parametros[chave])
+        parametros[chave]
       );
 
     }
@@ -1362,100 +1212,50 @@ async function api(acao, parametros = {}) {
   }
 
   const url =
-    API_URL +
-    "?" +
-    params.toString();
-
-
-  console.log(
-    "Futebol ID API:",
-    url
-  );
-
-
-  let resposta;
+    API_URL + "?" + params.toString();
 
   try {
 
-    resposta =
-      await fetch(
-        url,
-        {
-          method: "GET",
-          cache: "no-store",
-          redirect: "follow"
-        }
+    const resposta = await fetch(url, {
+      method: "GET",
+      cache: "no-cache"
+    });
+
+    const texto = await resposta.text();
+
+    let dados;
+
+    try {
+
+      dados = JSON.parse(texto);
+
+    } catch (erro) {
+
+      throw new Error(
+        "O servidor retornou uma resposta inválida."
       );
 
-  } catch (erro) {
+    }
 
-    console.error(
-      "Erro de conexão:",
-      erro
-    );
+    if (!dados.ok) {
 
-    throw new Error(
-      "Não foi possível conectar ao servidor do Futebol ID."
-    );
+      throw new Error(
+        dados.mensagem ||
+        dados.erro ||
+        "Não foi possível realizar a operação."
+      );
 
-  }
+    }
 
-
-  let texto;
-
-  try {
-
-    texto =
-      await resposta.text();
+    return dados;
 
   } catch (erro) {
 
-    throw new Error(
-      "Não foi possível ler a resposta do servidor."
-    );
+    console.error(erro);
+
+    throw erro;
 
   }
-
-
-  console.log(
-    "Resposta API:",
-    texto
-  );
-
-
-  let dados;
-
-  try {
-
-    dados =
-      JSON.parse(texto);
-
-  } catch (erro) {
-
-    console.error(
-      "Resposta que não é JSON:",
-      texto
-    );
-
-    throw new Error(
-      "O servidor retornou uma resposta inválida."
-    );
-
-  }
-
-
-  if (!dados.ok) {
-
-    throw new Error(
-      dados.mensagem ||
-      dados.erro ||
-      "Não foi possível realizar a operação."
-    );
-
-  }
-
-
-  return dados;
 
 }
 
@@ -1466,23 +1266,11 @@ async function api(acao, parametros = {}) {
 
 async function fazerLogin() {
 
-  const nomeInput =
-    document.getElementById(
-      "loginNome"
-    );
-
-  const senhaInput =
-    document.getElementById(
-      "loginSenha"
-    );
-
-
   const nome =
-    nomeInput.value.trim();
+    document.getElementById("loginNome").value.trim();
 
   const senha =
-    senhaInput.value;
-
+    document.getElementById("loginSenha").value;
 
   if (!nome || !senha) {
 
@@ -1495,13 +1283,9 @@ async function fazerLogin() {
 
   }
 
-
   try {
 
-    mostrarToast(
-      "Entrando..."
-    );
-
+    mostrarToast("Entrando...");
 
     const resposta =
       await api(
@@ -1512,61 +1296,22 @@ async function fazerLogin() {
         }
       );
 
-
-    console.log(
-      "Login recebido:",
-      resposta
-    );
-
-
-    if (
-      !resposta.token ||
-      !resposta.usuario
-    ) {
-
-      throw new Error(
-        "O servidor não retornou a sessão do usuário."
-      );
-
-    }
-
-
-    sessao =
-      resposta.token;
-
+    sessao = resposta.token;
 
     localStorage.setItem(
       "futebol_id_token",
       sessao
     );
 
-
     usuarioAtual =
       resposta.usuario;
 
-
     entrarNoSistema();
-
 
   } catch (erro) {
 
-    console.error(
-      "Erro no login:",
-      erro
-    );
-
-
-    localStorage.removeItem(
-      "futebol_id_token"
-    );
-
-
-    sessao = null;
-
-
     mostrarToast(
-      erro.message ||
-      "Não foi possível fazer login.",
+      erro.message,
       "error"
     );
 
@@ -1586,40 +1331,18 @@ async function carregarUsuario() {
     const resposta =
       await api("me");
 
-
     usuarioAtual =
       resposta.usuario;
 
-
-    if (!usuarioAtual) {
-
-      throw new Error(
-        "Usuário não encontrado."
-      );
-
-    }
-
-
     entrarNoSistema();
 
-
   } catch (erro) {
-
-    console.error(
-      "Sessão inválida:",
-      erro
-    );
-
 
     localStorage.removeItem(
       "futebol_id_token"
     );
 
-
     sessao = null;
-
-    usuarioAtual = null;
-
 
     mostrarLogin();
 
@@ -1634,67 +1357,42 @@ async function carregarUsuario() {
 
 function entrarNoSistema() {
 
-  if (!usuarioAtual) {
-
-    mostrarLogin();
-
-    return;
-
-  }
-
-
   document
     .getElementById("loginScreen")
     .classList.add("hidden");
-
 
   document
     .getElementById("app")
     .classList.remove("hidden");
 
-
   document
     .getElementById("topUserName")
     .textContent =
-    usuarioAtual.nome ||
-    "Usuário";
-
+    usuarioAtual.nome || "Usuário";
 
   document
     .getElementById("welcomeName")
     .textContent =
-    usuarioAtual.nome ||
-    "jogador";
-
+    usuarioAtual.nome || "jogador";
 
   document
     .getElementById("contaNome")
     .value =
-    usuarioAtual.nome ||
-    "";
-
+    usuarioAtual.nome || "";
 
   document
     .getElementById("contaPerfil")
     .value =
-    usuarioAtual.perfil ||
-    "";
-
+    usuarioAtual.perfil || "";
 
   document
     .getElementById("contaStatus")
     .value =
-    usuarioAtual.status ||
-    "";
-
+    usuarioAtual.status || "";
 
   const ehAdmin =
-    String(
-      usuarioAtual.perfil || ""
-    )
-      .trim()
+    String(usuarioAtual.perfil || "")
       .toUpperCase() === "ADMIN";
-
 
   if (ehAdmin) {
 
@@ -1709,7 +1407,6 @@ function entrarNoSistema() {
       .classList.add("hidden");
 
   }
-
 
   abrirPagina("inicio");
 
@@ -1726,28 +1423,20 @@ async function fazerLogout() {
 
   try {
 
-    await api(
-      "logout"
-    );
+    await api("logout");
 
   } catch (erro) {
 
-    console.log(
-      "Logout:",
-      erro
-    );
+    console.log(erro);
 
   }
-
 
   localStorage.removeItem(
     "futebol_id_token"
   );
 
-
   sessao = null;
   usuarioAtual = null;
-
 
   mostrarLogin();
 
@@ -1764,7 +1453,6 @@ function mostrarCadastro() {
     .getElementById("loginForm")
     .classList.add("hidden");
 
-
   document
     .getElementById("cadastroForm")
     .classList.remove("hidden");
@@ -1778,16 +1466,13 @@ function mostrarLogin() {
     .getElementById("app")
     .classList.add("hidden");
 
-
   document
     .getElementById("loginScreen")
     .classList.remove("hidden");
 
-
   document
     .getElementById("loginForm")
     .classList.remove("hidden");
-
 
   document
     .getElementById("cadastroForm")
@@ -1804,18 +1489,15 @@ async function cadastrar() {
       .value
       .trim();
 
-
   const senha =
     document
       .getElementById("cadastroSenha")
       .value;
 
-
   const senha2 =
     document
       .getElementById("cadastroSenha2")
       .value;
-
 
   if (!nome) {
 
@@ -1828,7 +1510,6 @@ async function cadastrar() {
 
   }
 
-
   if (!senha) {
 
     mostrarToast(
@@ -1839,7 +1520,6 @@ async function cadastrar() {
     return;
 
   }
-
 
   if (senha !== senha2) {
 
@@ -1852,7 +1532,6 @@ async function cadastrar() {
 
   }
 
-
   if (senha.length < 4) {
 
     mostrarToast(
@@ -1864,13 +1543,7 @@ async function cadastrar() {
 
   }
 
-
   try {
-
-    mostrarToast(
-      "Criando cadastro..."
-    );
-
 
     const resposta =
       await api(
@@ -1881,31 +1554,25 @@ async function cadastrar() {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Cadastro realizado.",
       "success"
     );
 
-
     document
       .getElementById("cadastroNome")
       .value = "";
-
 
     document
       .getElementById("cadastroSenha")
       .value = "";
 
-
     document
       .getElementById("cadastroSenha2")
       .value = "";
 
-
     mostrarLogin();
-
 
   } catch (erro) {
 
@@ -1930,47 +1597,34 @@ function abrirPagina(pagina) {
       "main section"
     );
 
-
   paginas.forEach(secao => {
 
-    secao.classList.add(
-      "hidden"
-    );
+    secao.classList.add("hidden");
 
   });
-
 
   const alvo =
     document.getElementById(
       "page-" + pagina
     );
 
-
   if (alvo) {
 
-    alvo.classList.remove(
-      "hidden"
-    );
+    alvo.classList.remove("hidden");
 
   }
-
 
   document
     .querySelectorAll(".menu-btn")
     .forEach(btn => {
 
-      btn.classList.remove(
-        "active"
-      );
-
+      btn.classList.remove("active");
 
       if (
         btn.dataset.page === pagina
       ) {
 
-        btn.classList.add(
-          "active"
-        );
+        btn.classList.add("active");
 
       }
 
@@ -1983,13 +1637,11 @@ function abrirPagina(pagina) {
 
   }
 
-
   if (pagina === "partidas") {
 
     carregarPartidas();
 
   }
-
 
   if (pagina === "jogadores") {
 
@@ -1997,13 +1649,11 @@ function abrirPagina(pagina) {
 
   }
 
-
   if (pagina === "adminPartidas") {
 
     carregarAdminPartidas();
 
   }
-
 
   if (pagina === "adminEscalacoes") {
 
@@ -2024,55 +1674,13 @@ async function carregarTudo() {
 
   await carregarRanking();
 
-
   const ehAdmin =
-    String(
-      usuarioAtual?.perfil || ""
-    )
+    String(usuarioAtual?.perfil || "")
       .toUpperCase() === "ADMIN";
-
 
   if (ehAdmin) {
 
     await carregarJogadores();
-
-  } else {
-
-    /* Busca jogadores para o contador,
-       se o backend permitir */
-
-    try {
-
-      const resposta =
-        await api(
-          "listar_jogadores"
-        );
-
-      jogadores =
-        resposta.jogadores || [];
-
-
-      const total =
-        document.getElementById(
-          "totalPlayersCard"
-        );
-
-
-      if (total) {
-
-        total.textContent =
-          jogadores.length;
-
-      }
-
-    } catch (erro) {
-
-      console.log(
-        "Contador de jogadores:",
-        erro
-      );
-
-    }
 
   }
 
@@ -2088,25 +1696,18 @@ async function carregarPartidas() {
   try {
 
     const resposta =
-      await api(
-        "listar_partidas"
-      );
-
+      await api("listar_partidas");
 
     partidas =
       resposta.partidas || [];
-
 
     renderizarPartidas();
 
     atualizarCards();
 
-
   } catch (erro) {
 
-    console.error(
-      erro
-    );
+    console.error(erro);
 
   }
 
@@ -2120,54 +1721,36 @@ function renderizarPartidas() {
       "homeMatches"
     );
 
-
   const player =
     document.getElementById(
       "playerMatches"
     );
 
-
   if (!partidas.length) {
 
     const vazio =
-      `
-      <div style="color:#8da4bf;">
+      `<div style="color:#8da4bf;">
         Nenhuma partida cadastrada.
-      </div>
-      `;
+      </div>`;
 
+    if (home) home.innerHTML = vazio;
 
-    if (home) {
-
-      home.innerHTML =
-        vazio;
-
-    }
-
-
-    if (player) {
-
-      player.innerHTML =
-        vazio;
-
-    }
-
+    if (player) player.innerHTML = vazio;
 
     return;
 
   }
 
+  let html = "";
 
-  const html =
-    partidas
-      .map(p =>
-        criarCardPartida(
-          p,
-          false
-        )
-      )
-      .join("");
+  partidas.forEach(partida => {
 
+    html += criarCardPartida(
+      partida,
+      false
+    );
+
+  });
 
   if (home) {
 
@@ -2175,20 +1758,15 @@ function renderizarPartidas() {
       partidas
         .slice(0, 5)
         .map(p =>
-          criarCardPartida(
-            p,
-            false
-          )
+          criarCardPartida(p, false)
         )
         .join("");
 
   }
 
-
   if (player) {
 
-    player.innerHTML =
-      html;
+    player.innerHTML = html;
 
   }
 
@@ -2205,43 +1783,36 @@ function criarCardPartida(
     partida.ID ||
     "";
 
-
   const adversario =
     partida.adversario ||
     partida.oponente ||
     partida.OPONENTE ||
     "-";
 
-
   const data =
     partida.data ||
     partida.DATA ||
     "-";
-
 
   const hora =
     partida.hora ||
     partida.HORA ||
     "-";
 
-
   const local =
     partida.local ||
     partida.LOCAL ||
     "-";
-
 
   const status =
     partida.status ||
     partida.STATUS ||
     "";
 
-
   const votacao =
     partida.votacao ||
     partida.VOTACAO ||
     "";
-
 
   return `
     <div class="match-card">
@@ -2249,7 +1820,6 @@ function criarCardPartida(
       <div class="match-header">
 
         <div>
-
           <div class="match-opponent">
             Futebol ID × ${esc(adversario)}
           </div>
@@ -2261,43 +1831,32 @@ function criarCardPartida(
             <br>
             📍 ${esc(local)}
           </div>
-
         </div>
 
         <div>
-
           <span class="badge badge-blue">
             ${esc(status || "AGENDADA")}
           </span>
-
         </div>
 
       </div>
 
-
       ${
         votacao
-          ? `
-            <div style="margin-top:10px;">
+          ? `<div style="margin-top:10px;">
               <span class="badge badge-yellow">
                 🗳️ ${esc(votacao)}
               </span>
-            </div>
-          `
+            </div>`
           : ""
       }
 
-
-      <div
-        class="actions"
-        style="margin-top:15px;"
-      >
+      <div class="actions" style="margin-top:15px;">
 
         ${
           !admin
             ? `
               <button
-                type="button"
                 class="btn btn-primary small-btn"
                 onclick="abrirVotacaoJogador('${escAttr(id)}')"
               >
@@ -2326,7 +1885,6 @@ function atualizarCards() {
       "totalMatchesCard"
     );
 
-
   if (total) {
 
     total.textContent =
@@ -2334,12 +1892,10 @@ function atualizarCards() {
 
   }
 
-
   const proxima =
     document.getElementById(
       "nextMatchCard"
     );
-
 
   if (proxima) {
 
@@ -2364,21 +1920,15 @@ async function carregarRanking() {
       "rankingBody"
     );
 
-
   if (!tbody) return;
-
 
   try {
 
     const resposta =
-      await api(
-        "ranking"
-      );
-
+      await api("ranking");
 
     const ranking =
       resposta.ranking || [];
-
 
     if (!ranking.length) {
 
@@ -2394,58 +1944,49 @@ async function carregarRanking() {
 
     }
 
-
     tbody.innerHTML =
       ranking
-        .map(
-          (jogador, index) => {
+        .map((jogador, index) => {
 
-            const nome =
-              jogador.nome ||
-              jogador.NOME ||
-              "-";
+          const nome =
+            jogador.nome ||
+            jogador.NOME ||
+            "-";
 
+          const media =
+            jogador.media ??
+            jogador.MEDIA ??
+            0;
 
-            const media =
-              jogador.media ??
-              jogador.MEDIA ??
-              0;
+          const votos =
+            jogador.votos ??
+            jogador.VOTOS ??
+            0;
 
+          return `
+            <tr>
 
-            const votos =
-              jogador.votos ??
-              jogador.VOTOS ??
-              0;
+              <td>
+                <strong>${index + 1}</strong>
+              </td>
 
+              <td>
+                ${esc(nome)}
+              </td>
 
-            return `
-              <tr>
+              <td>
+                ⭐ ${Number(media).toFixed(2)}
+              </td>
 
-                <td>
-                  <strong>
-                    ${index + 1}
-                  </strong>
-                </td>
+              <td>
+                ${esc(votos)}
+              </td>
 
-                <td>
-                  ${esc(nome)}
-                </td>
+            </tr>
+          `;
 
-                <td>
-                  ⭐ ${Number(media).toFixed(2)}
-                </td>
-
-                <td>
-                  ${esc(votos)}
-                </td>
-
-              </tr>
-            `;
-
-          }
-        )
+        })
         .join("");
-
 
   } catch (erro) {
 
@@ -2473,9 +2014,7 @@ async function carregarJogadores() {
       "playersBody"
     );
 
-
   if (!tbody) return;
-
 
   try {
 
@@ -2484,16 +2023,13 @@ async function carregarJogadores() {
         "listar_jogadores"
       );
 
-
     jogadores =
       resposta.jogadores || [];
-
 
     const total =
       document.getElementById(
         "totalPlayersCard"
       );
-
 
     if (total) {
 
@@ -2501,7 +2037,6 @@ async function carregarJogadores() {
         jogadores.length;
 
     }
-
 
     if (!jogadores.length) {
 
@@ -2517,132 +2052,111 @@ async function carregarJogadores() {
 
     }
 
-
     tbody.innerHTML =
       jogadores
-        .map(
-          jogador => {
+        .map(jogador => {
 
-            const id =
-              jogador.id ||
-              jogador.ID ||
-              "";
+          const id =
+            jogador.id ||
+            jogador.ID ||
+            "";
 
+          const nome =
+            jogador.nome ||
+            jogador.NOME ||
+            "";
 
-            const nome =
-              jogador.nome ||
-              jogador.NOME ||
-              "";
+          const perfil =
+            jogador.perfil ||
+            jogador.PERFIL ||
+            "JOGADOR";
 
+          const status =
+            jogador.status ||
+            jogador.STATUS ||
+            "";
 
-            const perfil =
-              jogador.perfil ||
-              jogador.PERFIL ||
-              "JOGADOR";
+          return `
+            <tr>
 
+              <td>
+                ${esc(nome)}
+              </td>
 
-            const status =
-              jogador.status ||
-              jogador.STATUS ||
-              "";
+              <td>
+                ${esc(perfil)}
+              </td>
 
+              <td>
+                ${badgeStatus(status)}
+              </td>
 
-            const statusUpper =
-              String(status)
-                .toUpperCase();
+              <td>
 
+                <div class="actions">
 
-            return `
-              <tr>
+                  ${
+                    status.toUpperCase() === "PENDENTE"
+                      ? `
+                        <button
+                          class="btn btn-success small-btn"
+                          onclick="aprovarJogador('${escAttr(id)}')"
+                        >
+                          Aprovar
+                        </button>
 
-                <td>
-                  ${esc(nome)}
-                </td>
+                        <button
+                          class="btn btn-danger small-btn"
+                          onclick="recusarJogador('${escAttr(id)}')"
+                        >
+                          Recusar
+                        </button>
+                      `
+                      : ""
+                  }
 
-                <td>
-                  ${esc(perfil)}
-                </td>
+                  ${
+                    status.toUpperCase() === "APROVADO"
+                      ? `
+                        <button
+                          class="btn btn-secondary small-btn"
+                          onclick="desativarJogador('${escAttr(id)}')"
+                        >
+                          Desativar
+                        </button>
+                      `
+                      : ""
+                  }
 
-                <td>
-                  ${badgeStatus(status)}
-                </td>
+                  ${
+                    status.toUpperCase() === "INATIVO"
+                      ? `
+                        <button
+                          class="btn btn-success small-btn"
+                          onclick="ativarJogador('${escAttr(id)}')"
+                        >
+                          Ativar
+                        </button>
+                      `
+                      : ""
+                  }
 
-                <td>
+                  <button
+                    class="btn btn-secondary small-btn"
+                    onclick="resetarSenha('${escAttr(id)}')"
+                  >
+                    Resetar senha
+                  </button>
 
-                  <div class="actions">
+                </div>
 
-                    ${
-                      statusUpper === "PENDENTE"
-                        ? `
-                          <button
-                            type="button"
-                            class="btn btn-success small-btn"
-                            onclick="aprovarJogador('${escAttr(id)}')"
-                          >
-                            Aprovar
-                          </button>
+              </td>
 
-                          <button
-                            type="button"
-                            class="btn btn-danger small-btn"
-                            onclick="recusarJogador('${escAttr(id)}')"
-                          >
-                            Recusar
-                          </button>
-                        `
-                        : ""
-                    }
+            </tr>
+          `;
 
-
-                    ${
-                      statusUpper === "APROVADO"
-                        ? `
-                          <button
-                            type="button"
-                            class="btn btn-secondary small-btn"
-                            onclick="desativarJogador('${escAttr(id)}')"
-                          >
-                            Desativar
-                          </button>
-                        `
-                        : ""
-                    }
-
-
-                    ${
-                      statusUpper === "INATIVO"
-                        ? `
-                          <button
-                            type="button"
-                            class="btn btn-success small-btn"
-                            onclick="ativarJogador('${escAttr(id)}')"
-                          >
-                            Ativar
-                          </button>
-                        `
-                        : ""
-                    }
-
-
-                    <button
-                      type="button"
-                      class="btn btn-secondary small-btn"
-                      onclick="resetarSenha('${escAttr(id)}')"
-                    >
-                      Resetar senha
-                    </button>
-
-                  </div>
-
-                </td>
-
-              </tr>
-            `;
-
-          }
-        )
+        })
         .join("");
-
 
   } catch (erro) {
 
@@ -2669,40 +2183,29 @@ function badgeStatus(status) {
     String(status || "")
       .toUpperCase();
 
-
   let classe =
     "badge-blue";
 
+  if (s === "APROVADO" || s === "ATIVO") {
 
-  if (
-    s === "APROVADO" ||
-    s === "ATIVO"
-  ) {
-
-    classe =
-      "badge-green";
+    classe = "badge-green";
 
   }
-
 
   if (s === "PENDENTE") {
 
-    classe =
-      "badge-yellow";
+    classe = "badge-yellow";
 
   }
-
 
   if (
     s === "INATIVO" ||
     s === "RECUSADO"
   ) {
 
-    classe =
-      "badge-red";
+    classe = "badge-red";
 
   }
-
 
   return `
     <span class="badge ${classe}">
@@ -2729,7 +2232,6 @@ async function aprovarJogador(id) {
 
   }
 
-
   try {
 
     const resposta =
@@ -2740,16 +2242,13 @@ async function aprovarJogador(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Jogador aprovado.",
       "success"
     );
 
-
     carregarJogadores();
-
 
   } catch (erro) {
 
@@ -2779,7 +2278,6 @@ async function recusarJogador(id) {
 
   }
 
-
   try {
 
     const resposta =
@@ -2790,16 +2288,13 @@ async function recusarJogador(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Cadastro recusado.",
       "success"
     );
 
-
     carregarJogadores();
-
 
   } catch (erro) {
 
@@ -2829,16 +2324,13 @@ async function ativarJogador(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Jogador ativado.",
       "success"
     );
 
-
     carregarJogadores();
-
 
   } catch (erro) {
 
@@ -2868,7 +2360,6 @@ async function desativarJogador(id) {
 
   }
 
-
   try {
 
     const resposta =
@@ -2879,16 +2370,13 @@ async function desativarJogador(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Jogador desativado.",
       "success"
     );
 
-
     carregarJogadores();
-
 
   } catch (erro) {
 
@@ -2913,9 +2401,7 @@ async function resetarSenha(id) {
       "Digite a nova senha:"
     );
 
-
   if (!novaSenha) return;
-
 
   if (novaSenha.length < 4) {
 
@@ -2928,7 +2414,6 @@ async function resetarSenha(id) {
 
   }
 
-
   try {
 
     const resposta =
@@ -2940,13 +2425,11 @@ async function resetarSenha(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Senha alterada.",
       "success"
     );
-
 
   } catch (erro) {
 
@@ -2971,54 +2454,38 @@ async function carregarAdminPartidas() {
       "adminMatches"
     );
 
-
   if (!container) return;
-
 
   try {
 
     const resposta =
-      await api(
-        "listar_partidas"
-      );
-
+      await api("listar_partidas");
 
     partidas =
       resposta.partidas || [];
 
-
     if (!partidas.length) {
 
       container.innerHTML =
-        `
-        <div style="color:#8da4bf;">
+        `<div style="color:#8da4bf;">
           Nenhuma partida cadastrada.
-        </div>
-        `;
+        </div>`;
 
       return;
 
     }
 
-
     container.innerHTML =
       partidas
         .map(partida =>
-          criarCardAdminPartida(
-            partida
-          )
+          criarCardAdminPartida(partida)
         )
         .join("");
-
 
   } catch (erro) {
 
     container.innerHTML =
-      `
-      <div>
-        ${esc(erro.message)}
-      </div>
-      `;
+      `<div>${esc(erro.message)}</div>`;
 
   }
 
@@ -3032,31 +2499,31 @@ function criarCardAdminPartida(partida) {
     partida.ID ||
     "";
 
-
   const adversario =
     partida.adversario ||
     partida.oponente ||
     partida.OPONENTE ||
     "-";
 
-
   const data =
     partida.data ||
     partida.DATA ||
     "-";
-
 
   const hora =
     partida.hora ||
     partida.HORA ||
     "-";
 
-
   const local =
     partida.local ||
     partida.LOCAL ||
     "-";
 
+  const votacao =
+    partida.votacao ||
+    partida.VOTACAO ||
+    "";
 
   return `
     <div class="match-card">
@@ -3083,29 +2550,23 @@ function criarCardAdminPartida(partida) {
 
       </div>
 
-
       <div class="actions">
 
         <button
-          type="button"
           class="btn btn-secondary small-btn"
           onclick="abrirVotacao('${escAttr(id)}')"
         >
           Abrir votação
         </button>
 
-
         <button
-          type="button"
           class="btn btn-secondary small-btn"
           onclick="encerrarVotacao('${escAttr(id)}')"
         >
           Encerrar votação
         </button>
 
-
         <button
-          type="button"
           class="btn btn-danger small-btn"
           onclick="excluirPartida('${escAttr(id)}')"
         >
@@ -3131,12 +2592,10 @@ async function criarPartida() {
       .getElementById("partidaData")
       .value;
 
-
   const hora =
     document
       .getElementById("partidaHora")
       .value;
-
 
   const adversario =
     document
@@ -3144,13 +2603,11 @@ async function criarPartida() {
       .value
       .trim();
 
-
   const local =
     document
       .getElementById("partidaLocal")
       .value
       .trim();
-
 
   if (
     !data ||
@@ -3168,7 +2625,6 @@ async function criarPartida() {
 
   }
 
-
   try {
 
     const resposta =
@@ -3182,38 +2638,31 @@ async function criarPartida() {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Partida criada.",
       "success"
     );
 
-
     document
       .getElementById("partidaData")
       .value = "";
-
 
     document
       .getElementById("partidaHora")
       .value = "";
 
-
     document
       .getElementById("partidaAdversario")
       .value = "";
-
 
     document
       .getElementById("partidaLocal")
       .value = "";
 
-
     carregarAdminPartidas();
 
     carregarPartidas();
-
 
   } catch (erro) {
 
@@ -3243,7 +2692,6 @@ async function excluirPartida(id) {
 
   }
 
-
   try {
 
     const resposta =
@@ -3254,18 +2702,15 @@ async function excluirPartida(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Partida excluída.",
       "success"
     );
 
-
     carregarAdminPartidas();
 
     carregarPartidas();
-
 
   } catch (erro) {
 
@@ -3295,18 +2740,15 @@ async function abrirVotacao(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Votação aberta.",
       "success"
     );
 
-
     carregarAdminPartidas();
 
     carregarPartidas();
-
 
   } catch (erro) {
 
@@ -3332,18 +2774,15 @@ async function encerrarVotacao(id) {
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Votação encerrada.",
       "success"
     );
 
-
     carregarAdminPartidas();
 
     carregarPartidas();
-
 
   } catch (erro) {
 
@@ -3368,6 +2807,11 @@ async function abrirVotacaoJogador(id) {
     "success"
   );
 
+  /*
+    A estrutura de votação será ligada
+    à escalação da partida através do backend.
+  */
+
 }
 
 
@@ -3382,29 +2826,20 @@ async function prepararEscalacoes() {
       "escalaPartida"
     );
 
-
   if (!select) return;
-
 
   try {
 
     const resposta =
-      await api(
-        "listar_partidas"
-      );
-
+      await api("listar_partidas");
 
     partidas =
       resposta.partidas || [];
 
-
     select.innerHTML =
-      `
-      <option value="">
+      `<option value="">
         Selecione uma partida
-      </option>
-      `;
-
+      </option>`;
 
     partidas.forEach(partida => {
 
@@ -3413,42 +2848,32 @@ async function prepararEscalacoes() {
         partida.ID ||
         "";
 
-
       const adversario =
         partida.adversario ||
         partida.oponente ||
         "-";
-
 
       const data =
         partida.data ||
         partida.DATA ||
         "";
 
-
       const option =
         document.createElement(
           "option"
         );
 
-
-      option.value =
-        id;
-
+      option.value = id;
 
       option.textContent =
         `Futebol ID × ${adversario} - ${data}`;
 
-
-      select.appendChild(
-        option
-      );
+      select.appendChild(option);
 
     });
 
-
     select.onchange =
-      function() {
+      () => {
 
         if (select.value) {
 
@@ -3469,7 +2894,6 @@ async function prepararEscalacoes() {
 
       };
 
-
   } catch (erro) {
 
     mostrarToast(
@@ -3482,18 +2906,14 @@ async function prepararEscalacoes() {
 }
 
 
-async function carregarEscalacao(
-  partidaId
-) {
+async function carregarEscalacao(partidaId) {
 
   const container =
     document.getElementById(
       "escalacaoPlayers"
     );
 
-
   if (!container) return;
-
 
   try {
 
@@ -3505,24 +2925,19 @@ async function carregarEscalacao(
         }
       );
 
-
     const lista =
       resposta.escalacao || [];
-
 
     if (!lista.length) {
 
       container.innerHTML =
-        `
-        <div style="color:#8da4bf;">
+        `<div style="color:#8da4bf;">
           Nenhum jogador escalado.
-        </div>
-        `;
+        </div>`;
 
       return;
 
     }
-
 
     container.innerHTML =
       lista
@@ -3533,32 +2948,26 @@ async function carregarEscalacao(
             jogador.NOME ||
             "-";
 
-
           const id =
             jogador.id ||
             jogador.ID ||
             "";
 
-
           return `
             <div class="match-card">
 
-              <div
-                style="
-                  display:flex;
-                  justify-content:space-between;
-                  align-items:center;
-                  gap:15px;
-                "
-              >
+              <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:15px;
+              ">
 
                 <strong>
                   ${esc(nome)}
                 </strong>
 
-
                 <button
-                  type="button"
                   class="btn btn-danger small-btn"
                   onclick="desescalar('${escAttr(partidaId)}','${escAttr(id)}')"
                 >
@@ -3573,15 +2982,10 @@ async function carregarEscalacao(
         })
         .join("");
 
-
   } catch (erro) {
 
     container.innerHTML =
-      `
-      <div>
-        ${esc(erro.message)}
-      </div>
-      `;
+      `<div>${esc(erro.message)}</div>`;
 
   }
 
@@ -3604,18 +3008,15 @@ async function desescalar(
         }
       );
 
-
     mostrarToast(
       resposta.mensagem ||
       "Jogador removido.",
       "success"
     );
 
-
     carregarEscalacao(
       partidaId
     );
-
 
   } catch (erro) {
 
@@ -3641,27 +3042,19 @@ function abrirModal(
 
   document
     .getElementById("modalTitle")
-    .textContent =
-    titulo;
-
+    .textContent = titulo;
 
   document
     .getElementById("modalContent")
-    .innerHTML =
-    conteudo;
-
+    .innerHTML = conteudo;
 
   document
     .getElementById("modalBg")
-    .classList.remove(
-      "hidden"
-    );
-
+    .classList.remove("hidden");
 
   document
     .getElementById("modalConfirm")
-    .onclick =
-    callback;
+    .onclick = callback;
 
 }
 
@@ -3670,9 +3063,7 @@ function fecharModal() {
 
   document
     .getElementById("modalBg")
-    .classList.add(
-      "hidden"
-    );
+    .classList.add("hidden");
 
 }
 
@@ -3691,25 +3082,18 @@ function mostrarToast(
       "toast"
     );
 
-
   const div =
     document.createElement(
       "div"
     );
 
-
   div.className =
     "toast " + tipo;
-
 
   div.textContent =
     mensagem;
 
-
-  container.appendChild(
-    div
-  );
-
+  container.appendChild(div);
 
   setTimeout(() => {
 
@@ -3726,46 +3110,21 @@ function mostrarToast(
 
 function esc(valor) {
 
-  return String(
-    valor ?? ""
-  )
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  return String(valor ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
 
 function escAttr(valor) {
 
-  return String(
-    valor ?? ""
-  )
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-    .replace(
-      /'/g,
-      "\\'"
-    );
+  return String(valor ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'");
 
 }
 
@@ -3779,51 +3138,26 @@ document.addEventListener(
   function(event) {
 
     if (
-      event.key !== "Enter"
-    ) {
-
-      return;
-
-    }
-
-
-    const loginScreen =
-      document.getElementById(
-        "loginScreen"
-      );
-
-
-    if (
-      loginScreen.classList.contains(
-        "hidden"
-      )
-    ) {
-
-      return;
-
-    }
-
-
-    event.preventDefault();
-
-
-    const cadastroAberto =
+      event.key === "Enter" &&
       !document
-        .getElementById(
-          "cadastroForm"
-        )
-        .classList.contains(
-          "hidden"
-        );
+        .getElementById("loginScreen")
+        .classList.contains("hidden")
+    ) {
 
+      const cadastro =
+        !document
+          .getElementById("cadastroForm")
+          .classList.contains("hidden");
 
-    if (cadastroAberto) {
+      if (!cadastro) {
 
-      cadastrar();
+        fazerLogin();
 
-    } else {
+      } else {
 
-      fazerLogin();
+        cadastrar();
+
+      }
 
     }
 
