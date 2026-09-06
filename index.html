@@ -2080,7 +2080,6 @@ let partidas = [];
 
 /* =========================================================
 API
-CORRIGIDA
 ========================================================= */
 
 async function api(
@@ -2097,93 +2096,48 @@ async function api(
     dados.token = token;
   }
 
+  const query =
+    new URLSearchParams();
+
+  Object.keys(dados)
+    .forEach(
+      function(chave){
+
+        const valor =
+          dados[chave];
+
+        if(
+          valor !== undefined &&
+          valor !== null
+        ){
+
+          query.append(
+            chave,
+            String(valor)
+          );
+
+        }
+
+      }
+    );
+
+
+  const url =
+    API_URL +
+    "?" +
+    query.toString();
+
 
   try {
 
-    let resposta;
-
-
-    /*
-     * FOTO:
-     * Usa POST para não colocar a imagem Base64
-     * dentro da URL.
-     */
-
-    if(
-      acao === "salvar_foto" ||
-      acao === "salvarfoto"
-    ){
-
-      resposta =
-        await fetch(
-          API_URL,
-          {
-            method:"POST",
-
-            headers:{
-              "Content-Type":
-                "text/plain;charset=utf-8"
-            },
-
-            body:
-              JSON.stringify(
-                dados
-              ),
-
-            cache:"no-store"
-          }
-        );
-
-    } else {
-
-
-      /*
-       * Demais chamadas continuam usando GET.
-       */
-
-      const query =
-        new URLSearchParams();
-
-
-      Object.keys(dados)
-        .forEach(
-          function(chave){
-
-            const valor =
-              dados[chave];
-
-            if(
-              valor !== undefined &&
-              valor !== null
-            ){
-
-              query.append(
-                chave,
-                String(valor)
-              );
-
-            }
-
-          }
-        );
-
-
-      const url =
-        API_URL +
-        "?" +
-        query.toString();
-
-
-      resposta =
-        await fetch(
-          url,
-          {
-            method:"GET",
-            cache:"no-store"
-          }
-        );
-
-    }
+    const resposta =
+      await fetch(
+        url,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
 
 
     const texto =
@@ -2199,11 +2153,6 @@ async function api(
         JSON.parse(texto);
 
     } catch(e) {
-
-      console.error(
-        "Resposta recebida:",
-        texto
-      );
 
       throw new Error(
         "O servidor retornou uma resposta inválida."
@@ -2236,23 +2185,6 @@ async function api(
       "API:",
       erro
     );
-
-
-    /*
-     * TypeError normalmente aparece quando
-     * o navegador não conseguiu completar o fetch.
-     */
-
-    if(
-      erro instanceof TypeError
-    ){
-
-      throw new Error(
-        "Não foi possível conectar ao servidor. Verifique a publicação do Apps Script."
-      );
-
-    }
-
 
     throw erro;
 
@@ -3789,6 +3721,34 @@ async function resetarSenha(
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =========================================================
 PERFIL
 ========================================================= */
@@ -3874,205 +3834,6 @@ function atualizarFotoPerfil(
 }
 
 
-/* =========================================================
-PREPARAR FOTO
-NOVA FUNÇÃO
-========================================================= */
-
-function prepararFotoParaEnvio(
-  arquivo
-){
-
-  return new Promise(
-    function(resolve,reject){
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(){
-
-          const imagem =
-            new Image();
-
-
-          imagem.onload =
-            function(){
-
-              try {
-
-                const MAX =
-                  1200;
-
-
-                let largura =
-                  imagem.naturalWidth;
-
-                let altura =
-                  imagem.naturalHeight;
-
-
-                if(
-                  !largura ||
-                  !altura
-                ){
-
-                  reject(
-                    new Error(
-                      "Não foi possível identificar o tamanho da foto."
-                    )
-                  );
-
-                  return;
-
-                }
-
-
-                /*
-                 * Reduz a imagem para no máximo
-                 * 1200 x 1200.
-                 */
-
-                if(
-                  largura > MAX ||
-                  altura > MAX
-                ){
-
-                  if(
-                    largura > altura
-                  ){
-
-                    altura =
-                      Math.round(
-                        altura *
-                        MAX /
-                        largura
-                      );
-
-                    largura =
-                      MAX;
-
-                  } else {
-
-                    largura =
-                      Math.round(
-                        largura *
-                        MAX /
-                        altura
-                      );
-
-                    altura =
-                      MAX;
-
-                  }
-
-                }
-
-
-                const canvas =
-                  document.createElement(
-                    "canvas"
-                  );
-
-
-                canvas.width =
-                  largura;
-
-                canvas.height =
-                  altura;
-
-
-                const contexto =
-                  canvas.getContext(
-                    "2d"
-                  );
-
-
-                contexto.drawImage(
-                  imagem,
-                  0,
-                  0,
-                  largura,
-                  altura
-                );
-
-
-                /*
-                 * Converte para JPEG comprimido.
-                 * Isso reduz bastante o tamanho do Base64.
-                 */
-
-                const base64 =
-                  canvas.toDataURL(
-                    "image/jpeg",
-                    0.82
-                  );
-
-
-                resolve(
-                  base64
-                );
-
-
-              } catch(erro) {
-
-                reject(
-                  new Error(
-                    "Não foi possível preparar a foto."
-                  )
-                );
-
-              }
-
-            };
-
-
-          imagem.onerror =
-            function(){
-
-              reject(
-                new Error(
-                  "Não foi possível processar a imagem selecionada."
-                )
-              );
-
-            };
-
-
-          imagem.src =
-            reader.result;
-
-        };
-
-
-      reader.onerror =
-        function(){
-
-          reject(
-            new Error(
-              "Não foi possível ler a foto."
-            )
-          );
-
-        };
-
-
-      reader.readAsDataURL(
-        arquivo
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-ENVIAR FOTO
-CORRIGIDA
-========================================================= */
-
 async function enviarFoto(){
 
   const input =
@@ -4094,11 +3855,6 @@ async function enviarFoto(){
   const arquivo =
     input.files[0];
 
-
-  /*
-   * Mantemos o limite original de 5 MB
-   * para o arquivo selecionado.
-   */
 
   if(
     arquivo.size >
@@ -4124,64 +3880,29 @@ async function enviarFoto(){
 
 
   status.innerHTML =
-    '<div class="success">Preparando foto...</div>';
+    '<div class="success">Enviando foto...</div>';
 
 
   try {
 
-
-    /*
-     * IMPORTANTE:
-     * Agora a imagem é redimensionada e
-     * convertida para JPEG antes do envio.
-     */
-
     const base64 =
-      await prepararFotoParaEnvio(
+      await arquivoParaBase64(
         arquivo
       );
 
 
-    status.innerHTML =
-      '<div class="success">Enviando foto...</div>';
-
-
-    /*
-     * IMPORTANTE:
-     * Usa salvar_foto e POST.
-     */
-
     const resultado =
       await api(
-        "salvar_foto",
+        "salvarfoto",
         {
           base64:
             base64,
 
           mimeType:
-            "image/jpeg"
+            arquivo.type
         }
       );
 
-
-    if(
-      !resultado ||
-      !resultado.fotoUrl
-    ){
-
-      throw new Error(
-        resultado &&
-        resultado.mensagem
-          ? resultado.mensagem
-          : "O servidor não retornou a foto."
-      );
-
-    }
-
-
-    /*
-     * Atualiza o usuário atual.
-     */
 
     usuario.fotoUrl =
       resultado.fotoUrl;
@@ -4195,18 +3916,10 @@ async function enviarFoto(){
     );
 
 
-    /*
-     * Atualiza foto do perfil.
-     */
-
     atualizarFotoPerfil(
       usuario.fotoUrl
     );
 
-
-    /*
-     * Atualiza status.
-     */
 
     status.innerHTML =
       '<div class="success">Foto atualizada com sucesso!</div>';
@@ -4217,35 +3930,17 @@ async function enviarFoto(){
     );
 
 
-    /*
-     * Atualiza as cartas dos jogadores.
-     */
-
     await carregarJogadoresPublicos();
 
 
   } catch(erro) {
 
-    console.error(
-      "Erro ao enviar foto:",
-      erro
-    );
-
-
     status.innerHTML =
       '<div class="error">' +
       escapar(
-        erro.message ||
-        "Erro ao enviar a foto."
+        erro.message
       ) +
       '</div>';
-
-
-    toast(
-      erro.message ||
-      "Erro ao enviar a foto.",
-      true
-    );
 
   }
 
@@ -4254,11 +3949,6 @@ async function enviarFoto(){
 
 }
 
-
-/*
- * Mantida para compatibilidade com
- * qualquer outra parte do sistema.
- */
 
 function arquivoParaBase64(
   arquivo
@@ -4290,6 +3980,14 @@ function arquivoParaBase64(
   );
 
 }
+
+
+
+
+
+
+
+
 
 
 /* =========================================================
