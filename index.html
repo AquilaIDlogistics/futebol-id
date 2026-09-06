@@ -503,6 +503,44 @@
     .avatar { width:38px; height:38px; border-radius:50%; object-fit:cover; background:#172b43; display:flex; align-items:center; justify-content:center; overflow:hidden; }
     .avatar img { width:100%; height:100%; object-fit:cover; }
     .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
+
+    .player-cards-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:18px;
+    }
+
+    .player-card {
+      background:linear-gradient(145deg,#10233b,#0b1727);
+      border:1px solid #294563;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,.22);
+    }
+
+    .player-card-photo {
+      height:230px;
+      background:#172b43;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      font-size:70px;
+    }
+
+    .player-card-photo img { width:100%; height:100%; object-fit:cover; }
+
+    .player-card-body { padding:16px; }
+    .player-card-name { font-size:18px; font-weight:bold; margin-bottom:8px; }
+    .player-card-rating { font-size:28px; font-weight:bold; }
+    .player-card-votes { color:#8da4bf; font-size:12px; margin-top:4px; }
+
+    .profile-photo-box { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    .profile-photo { width:120px; height:120px; border-radius:16px; background:#172b43; border:1px solid #294563; display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:42px; flex-shrink:0; }
+    .profile-photo img { width:100%; height:100%; object-fit:cover; }
+    .profile-photo-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .photo-btn { width:auto; display:inline-flex; align-items:center; justify-content:center; }
+    .photo-help { width:100%; color:#8da4bf; font-size:12px; margin-top:2px; }
     .team-card { background:#101f32; border:1px solid #254463; border-radius:12px; padding:16px; }
     .team-card h3 { margin-bottom:12px; }
     .team-card ul { list-style:none; }
@@ -757,6 +795,14 @@
 
       <button
         class="menu-btn"
+        data-page="cartinhas"
+        onclick="abrirPagina('cartinhas')"
+      >
+        🪪 Cartinhas dos jogadores
+      </button>
+
+      <button
+        class="menu-btn"
         data-page="conta"
         onclick="abrirPagina('conta')"
       >
@@ -952,7 +998,19 @@
 
         <div class="panel">
 
-          <div class="form-grid">
+          <h3>Minha foto</h3>
+          <div class="profile-photo-box">
+            <div id="contaFotoPreview" class="profile-photo">⚽</div>
+            <div class="profile-photo-actions">
+              <label class="btn btn-primary photo-btn" for="contaFotoInput">📷 Escolher foto</label>
+              <input id="contaFotoInput" type="file" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="selecionarFoto(event)">
+              <button id="contaFotoSalvar" class="btn btn-success photo-btn hidden" onclick="salvarMinhaFoto()">Salvar foto</button>
+              <button id="contaFotoRemover" class="btn btn-danger photo-btn" onclick="removerMinhaFoto()">Remover foto</button>
+            </div>
+            <div class="photo-help">JPG, PNG ou WEBP — máximo de 1,5 MB. A foto aparecerá na sua cartinha com a nota geral.</div>
+          </div>
+
+          <div class="form-grid" style="margin-top:20px">
 
             <div class="field">
               <label>Nome</label>
@@ -973,6 +1031,15 @@
 
         </div>
 
+      </section>
+
+      <!-- CARTINHAS DOS JOGADORES -->
+      <section id="page-cartinhas" class="hidden">
+        <h1 class="page-title">🪪 Cartinhas dos jogadores</h1>
+        <p class="page-subtitle">Veja a foto e a nota geral de cada jogador.</p>
+        <div id="cartinhasGrid" class="player-cards-grid">
+          Carregando jogadores...
+        </div>
       </section>
 
 
@@ -1497,6 +1564,8 @@ function entrarNoSistema() {
     .value =
     usuarioAtual.status || "";
 
+  atualizarFotoConta(usuarioAtual.foto_url || usuarioAtual.fotoUrl || "");
+
   const ehAdmin =
     String(usuarioAtual.perfil || "")
       .toUpperCase() === "ADMIN";
@@ -1745,6 +1814,12 @@ function abrirPagina(pagina) {
   if (pagina === "ranking") {
 
     carregarRanking();
+
+  }
+
+  if (pagina === "cartinhas") {
+
+    carregarCartinhas();
 
   }
 
@@ -3302,6 +3377,82 @@ document.addEventListener(
 
 
 /* =========================================================
+   FOTO DO PERFIL + CARTINHAS
+========================================================= */
+function atualizarFotoConta(url){
+  const box=document.getElementById('contaFotoPreview');
+  const remover=document.getElementById('contaFotoRemover');
+  if(!box) return;
+  box.innerHTML=url?`<img src="${escAttr(url)}" alt="Minha foto">`:'⚽';
+  if(remover) remover.classList.toggle('hidden',!url);
+}
+
+function selecionarFoto(event){
+  const file=event.target.files && event.target.files[0];
+  if(!file) return;
+  if(file.size>1500000){ mostrarToast('A foto deve ter no máximo 1,5 MB.','error'); event.target.value=''; return; }
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){ mostrarToast('Use JPG, PNG ou WEBP.','error'); event.target.value=''; return; }
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const box=document.getElementById('contaFotoPreview');
+    if(box) box.innerHTML=`<img src="${escAttr(reader.result)}" alt="Prévia">`;
+    document.getElementById('contaFotoSalvar')?.classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+}
+
+async function salvarMinhaFoto(){
+  const input=document.getElementById('contaFotoInput');
+  const file=input?.files?.[0];
+  if(!file) return mostrarToast('Escolha uma foto primeiro.','error');
+  try{
+    const base64=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});
+    const resposta=await api('salvar_foto',{fotoBase64:base64,mimeType:file.type});
+    usuarioAtual=resposta.jogador||usuarioAtual;
+    atualizarFotoConta(resposta.foto_url||usuarioAtual.foto_url||'');
+    input.value='';
+    document.getElementById('contaFotoSalvar')?.classList.add('hidden');
+    mostrarToast(resposta.mensagem||'Foto atualizada com sucesso.','success');
+    carregarCartinhas();
+  }catch(e){mostrarToast(e.message,'error');}
+}
+
+async function removerMinhaFoto(){
+  if(!confirm('Remover sua foto?')) return;
+  try{
+    const resposta=await api('remover_foto');
+    usuarioAtual.foto_url='';
+    atualizarFotoConta('');
+    document.getElementById('contaFotoInput').value='';
+    document.getElementById('contaFotoSalvar')?.classList.add('hidden');
+    mostrarToast(resposta.mensagem||'Foto removida.','success');
+    carregarCartinhas();
+  }catch(e){mostrarToast(e.message,'error');}
+}
+
+async function carregarCartinhas(){
+  const grid=document.getElementById('cartinhasGrid');
+  if(!grid) return;
+  grid.innerHTML='Carregando jogadores...';
+  try{
+    const r=await api('listar_jogadores_publicos');
+    const vistos=new Set();
+    const jogadores=(r.jogadores||[]).filter(j=>{
+      const chave=String(j.id||j.nome||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();
+      if(!chave||vistos.has(chave)) return false;
+      vistos.add(chave); return true;
+    });
+    if(!jogadores.length){grid.innerHTML='<div class="panel">Nenhum jogador aprovado encontrado.</div>';return;}
+    grid.innerHTML=jogadores.map(j=>{
+      const foto=j.foto_url||j.fotoUrl||'';
+      const nota=j.nota_geral===null||j.nota_geral===undefined?'—':Number(j.nota_geral).toFixed(2);
+      const votos=j.total_votos??j.votos??0;
+      return `<div class="player-card"><div class="player-card-photo">${foto?`<img src="${escAttr(foto)}" alt="${escAttr(j.nome)}">`:'⚽'}</div><div class="player-card-body"><div class="player-card-name">${esc(j.nome)}</div><div class="player-card-rating">⭐ ${esc(nota)}</div><div class="player-card-votes">${esc(votos)} voto(s)</div></div></div>`;
+    }).join('');
+  }catch(e){grid.innerHTML=`<div class="panel">${esc(e.message)}</div>`;}
+}
+
+/* =========================================================
    LISTA DO FUTEBOL / TIMES - FRONTEND RESTAURADO
 ========================================================= */
 function preencherSelectPartidas(id, incluirVazia=true){
@@ -3320,8 +3471,17 @@ async function carregarListaUI(partidaId){
   if(!partidaId){ if(box) box.innerHTML='Selecione uma partida.'; return; }
   try{
     const r=await api('listar_lista_futebol',{partida_id:partidaId});
-    const jogadores=r.jogadores||[];
-    if(resumo) resumo.innerHTML=`<div class="card"><div class="card-title">Linha</div><div class="card-value">${r.total_jogadores||0}/20</div></div><div class="card"><div class="card-title">Goleiros</div><div class="card-value">${r.total_goleiros||0}/4</div></div><div class="card"><div class="card-title">Total</div><div class="card-value">${r.total||0}/24</div></div>`;
+    const jogadoresBrutos=r.jogadores||[];
+    const vistos=new Set();
+    const jogadores=jogadoresBrutos.filter(j=>{
+      const chave=String(j.id||j.nome||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();
+      if(!chave || vistos.has(chave)) return false;
+      vistos.add(chave);
+      return true;
+    });
+    const totalUnicoJogadores=jogadores.filter(j=>String(j.tipo||'').toUpperCase()==='GOLEIRO' ? false : true).length;
+    const totalUnicoGoleiros=jogadores.filter(j=>String(j.tipo||'').toUpperCase()==='GOLEIRO').length;
+    if(resumo) resumo.innerHTML=`<div class="card"><div class="card-title">Linha</div><div class="card-value">${totalUnicoJogadores}/20</div></div><div class="card"><div class="card-title">Goleiros</div><div class="card-value">${totalUnicoGoleiros}/4</div></div><div class="card"><div class="card-title">Total</div><div class="card-value">${jogadores.length}/24</div></div>`;
     if(acoes) acoes.innerHTML=r.lista.status==='FECHADA'?'<span class="badge badge-yellow">📋 LISTA FECHADA</span>':(r.eu_estou_na_lista?`<span class="badge badge-green">Você está na lista como ${esc(r.meu_tipo)}</span><button class="btn btn-danger small-btn" onclick="sairListaUI('${escAttr(partidaId)}')">Sair da lista</button>`:`<select id="meuTipoLista" class="select-control" style="width:auto"><option value="JOGADOR">Jogador de linha</option><option value="GOLEIRO">Goleiro</option></select><button class="btn btn-primary small-btn" onclick="entrarListaUI('${escAttr(partidaId)}')">Entrar na lista</button>`);
     if(box) box.innerHTML=jogadores.map((j,i)=>`<div class="person-row"><div class="person-left"><div class="avatar">${j.convidado?'👤':'⚽'}</div><div><strong>${i+1}. ${esc(j.nome)}</strong><div class="match-info">${esc(j.tipo)}${j.convidado?' • convidado':''}</div></div></div></div>`).join('')||'<div>Ninguém entrou na lista ainda.</div>';
   }catch(e){ if(box) box.innerHTML=esc(e.message); }
@@ -3334,7 +3494,7 @@ async function carregarTimesUI(partidaId){ const box=document.getElementById('ti
 function renderTimes(r,box){ if(!r.times||!r.times.length){box.innerHTML='<div>Nenhum sorteio encontrado para esta partida.</div>';return;} box.innerHTML=`${r.meu_time?`<div class="panel"><strong>⭐ Seu time: ${esc(r.meu_time)}</strong></div>`:''}<div class="team-grid">${r.times.map(t=>`<div class="team-card"><h3>${esc(t.nome)}</h3><ul>${(t.jogadores||[]).map(j=>`<li>${esc(j.nome)} ${j.tipo==='GOLEIRO'?'🧤':''}${j.convidado?' 👤':''}</li>`).join('')}</ul></div>`).join('')}</div>`;}
 
 function prepararAdminLista(){ preencherSelectPartidas('adminListaPartida'); const el=document.getElementById('adminListaPartida'); if(el&&!el.dataset.bound){el.dataset.bound='1';el.onchange=()=>carregarAdminListaUI(el.value);}}
-async function carregarAdminListaUI(partidaId){ if(!partidaId){document.getElementById('adminListaJogadores').innerHTML='Selecione uma partida.';return;} try{const r=await api('listar_lista_futebol',{partida_id:partidaId}); document.getElementById('adminListaStatus').innerHTML=`<span class="badge ${r.lista.status==='FECHADA'?'badge-yellow':'badge-green'}">${esc(r.lista.status)}</span> — ${r.total||0}/24`; const box=document.getElementById('adminListaJogadores'); box.innerHTML=(r.jogadores||[]).map(j=>`<div class="person-row"><div><strong>${esc(j.nome)}</strong><div class="match-info">${esc(j.tipo)}${j.convidado?' • convidado':''}</div></div><button class="btn btn-danger small-btn" onclick="adminRemoverLista('${escAttr(partidaId)}','${escAttr(j.nome)}')">Remover</button></div>`).join('')||'Lista vazia.';}catch(e){mostrarToast(e.message,'error');}}
+async function carregarAdminListaUI(partidaId){ if(!partidaId){document.getElementById('adminListaJogadores').innerHTML='Selecione uma partida.';return;} try{const r=await api('listar_lista_futebol',{partida_id:partidaId}); const vistos=new Set(); const listaUnica=(r.jogadores||[]).filter(j=>{const chave=String(j.id||j.nome||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase(); if(!chave||vistos.has(chave)) return false; vistos.add(chave); return true;}); document.getElementById('adminListaStatus').innerHTML=`<span class="badge ${r.lista.status==='FECHADA'?'badge-yellow':'badge-green'}">${esc(r.lista.status)}</span> — ${listaUnica.length}/24`; const box=document.getElementById('adminListaJogadores'); box.innerHTML=listaUnica.map(j=>`<div class="person-row"><div><strong>${esc(j.nome)}</strong><div class="match-info">${esc(j.tipo)}${j.convidado?' • convidado':''}</div></div><button class="btn btn-danger small-btn" onclick="adminRemoverLista('${escAttr(partidaId)}','${escAttr(j.nome)}')">Remover</button></div>`).join('')||'Lista vazia.';}catch(e){mostrarToast(e.message,'error');}}
 async function adminAbrirLista(){const id=document.getElementById('adminListaPartida')?.value;if(!id)return mostrarToast('Selecione uma partida.','error');try{const r=await api('abrir_lista_futebol',{partida_id:id});mostrarToast(r.mensagem,'success');carregarAdminListaUI(id);}catch(e){mostrarToast(e.message,'error');}}
 async function adminFecharLista(){const id=document.getElementById('adminListaPartida')?.value;if(!id)return mostrarToast('Selecione uma partida.','error');try{const r=await api('fechar_lista_futebol',{partida_id:id});mostrarToast(r.mensagem,'success');carregarAdminListaUI(id);}catch(e){mostrarToast(e.message,'error');}}
 async function adminAdicionarLista(){const id=document.getElementById('adminListaPartida')?.value,nome=document.getElementById('listaNome')?.value.trim(),tipo=document.getElementById('listaTipo')?.value;if(!id||!nome)return mostrarToast('Informe a partida e o nome.','error');try{const r=await api('adicionar_nome_lista_futebol',{partida_id:id,nome,tipo});mostrarToast(r.mensagem,'success');document.getElementById('listaNome').value='';carregarAdminListaUI(id);}catch(e){mostrarToast(e.message,'error');}}
