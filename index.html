@@ -615,6 +615,29 @@
         padding: 25px 20px;
       }
     }
+
+    /* =========================
+       POLIMENTO VISUAL 1.6
+    ========================= */
+    body { background: radial-gradient(circle at 15% 0%, #12345a 0, #07111f 38%, #040a12 100%); }
+    .app-shell, .main-content { max-width: 1500px; }
+    .panel, .card, .login-box { backdrop-filter: blur(10px); box-shadow: 0 14px 40px rgba(0,0,0,.22); }
+    .menu-btn { transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+    .menu-btn:hover { transform: translateX(3px); }
+    .page-title { letter-spacing: -.02em; }
+    .player-cards-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 22px; }
+    .player-card { overflow:hidden; border-radius:20px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(160deg,#102944,#081522); box-shadow:0 14px 32px rgba(0,0,0,.28); transition:transform .2s ease, box-shadow .2s ease; }
+    .player-card:hover { transform:translateY(-6px); box-shadow:0 20px 42px rgba(0,0,0,.38); }
+    .player-card-photo { aspect-ratio: 3 / 4; min-height:260px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:radial-gradient(circle at 50% 20%,#284b70,#08121e 72%); font-size:64px; }
+    .player-card-photo img { width:100%; height:100%; object-fit:cover; }
+    .player-card-body { padding:16px; text-align:center; }
+    .player-card-name { font-size:18px; font-weight:800; margin-bottom:8px; }
+    .player-card-rating { font-size:24px; font-weight:900; }
+    .player-card-votes { opacity:.65; margin-top:5px; font-size:12px; }
+    .photo-preview img { width:150px; height:190px; object-fit:cover; border-radius:16px; border:2px solid rgba(255,255,255,.18); }
+    .account-photo-box { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+    @media(max-width:700px){ .player-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.player-card-photo{min-height:210px}.player-card-name{font-size:15px}.player-card-rating{font-size:20px} }
+
   </style>
 </head>
 
@@ -798,7 +821,7 @@
         data-page="cartinhas"
         onclick="abrirPagina('cartinhas')"
       >
-        🪪 Cartinhas dos jogadores
+        👥 Jogadores
       </button>
 
       <button
@@ -823,7 +846,7 @@
           data-page="jogadores"
           onclick="abrirPagina('jogadores')"
         >
-          👥 Jogadores
+          ⚙️ Administração de jogadores
         </button>
 
         <button
@@ -1567,8 +1590,9 @@ function entrarNoSistema() {
   atualizarFotoConta(usuarioAtual.foto_url || usuarioAtual.fotoUrl || "");
 
   const ehAdmin =
-    String(usuarioAtual.perfil || "")
-      .toUpperCase() === "ADMIN";
+    usuarioAtual.admin === true ||
+    String(usuarioAtual.nome || "").trim().toUpperCase() === "ADMIN" ||
+    String(usuarioAtual.perfil || "").trim().toUpperCase() === "ADMIN";
 
   if (ehAdmin) {
 
