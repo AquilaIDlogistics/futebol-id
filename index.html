@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
 <title>Futebol ID</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -31,7 +39,10 @@ button{
   display:none!important;
 }
 
-/* LOGIN */
+
+/* =========================================================
+LOGIN
+========================================================= */
 
 #loginPage{
   min-height:100vh;
@@ -40,7 +51,12 @@ button{
   justify-content:center;
   padding:20px;
   background:
-    radial-gradient(circle at top,#12345a 0,#07111f 50%,#030812 100%);
+    radial-gradient(
+      circle at top,
+      #12345a 0,
+      #07111f 50%,
+      #030812 100%
+    );
 }
 
 .login-box{
@@ -72,7 +88,6 @@ button{
 
 .logo h1{
   font-size:30px;
-  color:#fff;
 }
 
 .logo span{
@@ -125,27 +140,27 @@ button{
 
 .btn-primary{
   background:#1976d2;
-  color:white;
+  color:#fff;
 }
 
 .btn-success{
   background:#18864b;
-  color:white;
+  color:#fff;
 }
 
 .btn-danger{
   background:#c0392b;
-  color:white;
+  color:#fff;
 }
 
 .btn-warning{
   background:#d89000;
-  color:white;
+  color:#fff;
 }
 
 .btn-secondary{
   background:#263b52;
-  color:white;
+  color:#fff;
 }
 
 .btn-full{
@@ -177,9 +192,13 @@ button{
   padding:12px;
   border-radius:9px;
   margin-bottom:15px;
+  font-size:14px;
 }
 
-/* APP */
+
+/* =========================================================
+APP
+========================================================= */
 
 #app{
   min-height:100vh;
@@ -282,7 +301,10 @@ button{
   margin-top:6px;
 }
 
-/* CARDS */
+
+/* =========================================================
+CARDS
+========================================================= */
 
 .cards{
   display:grid;
@@ -329,11 +351,170 @@ button{
   font-size:18px;
 }
 
-/* MATCH */
+
+/* =========================================================
+JOGADORES
+========================================================= */
+
+.players-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(220px,1fr)
+    );
+  gap:20px;
+}
+
+.player-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:
+    linear-gradient(
+      145deg,
+      #12365b,
+      #081525 55%,
+      #06101d
+    );
+  border:2px solid #28547b;
+  min-height:340px;
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+  transition:.25s;
+}
+
+.player-card:hover{
+  transform:translateY(-5px);
+  border-color:#4fa3eb;
+}
+
+.player-card::before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(79,163,235,.08);
+  top:-70px;
+  right:-60px;
+}
+
+.player-photo{
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  margin:25px auto 12px;
+  overflow:hidden;
+  border:4px solid #4fa3eb;
+  background:#10243a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+
+.player-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.player-photo-placeholder{
+  font-size:65px;
+}
+
+.player-name{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  padding:0 12px;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.player-overall{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  border:3px solid #f1c75b;
+  background:#0b1725;
+  margin:14px auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.player-overall small{
+  color:#aabed1;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.player-overall strong{
+  color:#f5d36b;
+  font-size:31px;
+  line-height:1;
+}
+
+.player-votes{
+  text-align:center;
+  color:#829bb3;
+  font-size:12px;
+  padding-bottom:15px;
+}
+
+.player-card-actions{
+  padding:0 15px 15px;
+  display:flex;
+  gap:7px;
+}
+
+.player-card-actions button{
+  flex:1;
+}
+
+.vote-panel{
+  margin-top:10px;
+  padding:12px;
+  background:#07111f;
+  border-radius:12px;
+  border:1px solid #24415d;
+}
+
+.vote-panel label{
+  display:block;
+  color:#91a8be;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.vote-panel select{
+  width:100%;
+  background:#0d1b2d;
+  color:#fff;
+  border:1px solid #31516f;
+  padding:9px;
+  border-radius:8px;
+  margin-bottom:8px;
+}
+
+
+/* =========================================================
+MATCH
+========================================================= */
 
 .match-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(290px,1fr)
+    );
   gap:16px;
 }
 
@@ -356,7 +537,7 @@ button{
 }
 
 .match-date{
-  color:#ffffff;
+  color:#fff;
   font-size:18px;
   font-weight:bold;
   margin-bottom:8px;
@@ -404,7 +585,10 @@ button{
   color:#83c3f5;
 }
 
-/* TABLE */
+
+/* =========================================================
+TABLE
+========================================================= */
 
 .table-wrap{
   overflow:auto;
@@ -443,7 +627,58 @@ td{
   font-size:12px;
 }
 
-/* FORM */
+
+/* =========================================================
+PROFILE
+========================================================= */
+
+.profile-box{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:25px;
+  align-items:start;
+}
+
+.profile-photo{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  border:4px solid #4fa3eb;
+  background:#081525;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.profile-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-photo-placeholder{
+  font-size:75px;
+}
+
+.profile-info h3{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.profile-info p{
+  color:#829bb3;
+  margin-bottom:15px;
+}
+
+#fotoInput{
+  display:none;
+}
+
+
+/* =========================================================
+FORM
+========================================================= */
 
 .form-grid{
   display:grid;
@@ -455,7 +690,10 @@ td{
   grid-column:1/-1;
 }
 
-/* LISTA */
+
+/* =========================================================
+LISTA
+========================================================= */
 
 .capacity{
   display:grid;
@@ -497,11 +735,18 @@ td{
   width:0%;
 }
 
-/* TEAM */
+
+/* =========================================================
+TEAM
+========================================================= */
 
 .teams-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px,1fr)
+    );
   gap:18px;
 }
 
@@ -555,7 +800,10 @@ td{
   color:#68b8f5;
 }
 
-/* TOAST */
+
+/* =========================================================
+TOAST
+========================================================= */
 
 #toast{
   position:fixed;
@@ -582,9 +830,13 @@ td{
   border-color:#29875a;
 }
 
-/* MOBILE */
+
+/* =========================================================
+MOBILE
+========================================================= */
 
 @media(max-width:900px){
+
   .cards{
     grid-template-columns:repeat(2,1fr);
   }
@@ -592,9 +844,11 @@ td{
   .sidebar{
     width:210px;
   }
+
 }
 
 @media(max-width:700px){
+
   .topbar{
     padding:0 14px;
   }
@@ -641,9 +895,20 @@ td{
   .user-name{
     display:none;
   }
+
+  .profile-box{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .profile-photo{
+    margin:auto;
+  }
+
 }
 
 @media(max-width:450px){
+
   .cards{
     grid-template-columns:1fr;
   }
@@ -651,22 +916,42 @@ td{
   .login-box{
     padding:25px 20px;
   }
+
+  .players-grid{
+    grid-template-columns:1fr;
+  }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- =======================================================
+LOGIN
+======================================================= -->
 
 <div id="loginPage">
 
   <div class="login-box">
 
     <div class="logo">
-      <div class="logo-ball">⚽</div>
-      <h1>Futebol <span>ID</span></h1>
-      <p>Gerenciamento de futebol</p>
+
+      <div class="logo-ball">
+        ⚽
+      </div>
+
+      <h1>
+        Futebol <span>ID</span>
+      </h1>
+
+      <p>
+        Gerenciamento de futebol
+      </p>
+
     </div>
 
     <div id="loginMessage"></div>
@@ -674,7 +959,10 @@ td{
     <form id="loginForm">
 
       <div class="form-group">
-        <label>Nome</label>
+
+        <label>
+          Nome
+        </label>
 
         <input
           id="loginNome"
@@ -683,10 +971,14 @@ td{
           autocomplete="username"
           required
         >
+
       </div>
 
       <div class="form-group">
-        <label>Senha</label>
+
+        <label>
+          Senha
+        </label>
 
         <input
           id="loginSenha"
@@ -695,6 +987,7 @@ td{
           autocomplete="current-password"
           required
         >
+
       </div>
 
       <div class="login-actions">
@@ -718,10 +1011,17 @@ td{
 
     </form>
 
-    <form id="cadastroForm" class="hidden">
+
+    <form
+      id="cadastroForm"
+      class="hidden"
+    >
 
       <div class="form-group">
-        <label>Nome</label>
+
+        <label>
+          Nome
+        </label>
 
         <input
           id="cadastroNome"
@@ -729,10 +1029,14 @@ td{
           placeholder="Seu nome completo"
           required
         >
+
       </div>
 
       <div class="form-group">
-        <label>Senha</label>
+
+        <label>
+          Senha
+        </label>
 
         <input
           id="cadastroSenha"
@@ -740,17 +1044,22 @@ td{
           placeholder="Crie uma senha"
           required
         >
+
       </div>
 
       <div class="form-group">
-        <label>Confirmar senha</label>
+
+        <label>
+          Confirmar senha
+        </label>
 
         <input
           id="cadastroConfirmar"
           type="password"
-          placeholder="Digite a senha novamente"
+          placeholder="Digite novamente"
           required
         >
+
       </div>
 
       <button
@@ -772,627 +1081,970 @@ td{
     </form>
 
   </div>
+
 </div>
 
 
-<!-- APP -->
-
-<div id="app" class="hidden">
-
-  <header class="topbar">
-
-    <div class="topbar-logo">
-      ⚽ Futebol <span>ID</span>
-    </div>
-
-    <div class="user-info">
-
-      <span id="topUserName" class="user-name"></span>
-
-      <button
-        class="menu-btn"
-        onclick="logout()"
-      >
-        Sair
-      </button>
-
-    </div>
-
-  </header>
-
-  <div class="layout">
-
-    <aside class="sidebar">
-
-      <div class="nav-title">
-        Principal
-      </div>
-
-      <button
-        class="nav-btn active"
-        data-page="dashboard"
-        onclick="abrirPagina('dashboard',this)"
-      >
-        🏠 Dashboard
-      </button>
-
-      <button
-        class="nav-btn"
-        data-page="partidas"
-        onclick="abrirPagina('partidas',this)"
-      >
-        ⚽ Partidas
-      </button>
-
-      <button
-        class="nav-btn"
-        data-page="lista"
-        onclick="abrirPagina('lista',this)"
-      >
-        📋 Lista do Futebol
-      </button>
-
-      <button
-        class="nav-btn"
-        data-page="times"
-        onclick="abrirPagina('times',this)"
-      >
-        🏆 Times Formados
-      </button>
-
-      <button
-        class="nav-btn"
-        data-page="ranking"
-        onclick="abrirPagina('ranking',this)"
-      >
-        ⭐ Ranking
-      </button>
-
-      <div id="adminMenu" class="hidden">
-
-        <div class="nav-title">
-          Administração
-        </div>
-
-        <button
-          class="nav-btn"
-          data-page="jogadores"
-          onclick="abrirPagina('jogadores',this)"
-        >
-          👥 Jogadores
-        </button>
-
-        <button
-          class="nav-btn"
-          data-page="adminLista"
-          onclick="abrirPagina('adminLista',this)"
-        >
-          📋 Controle da Lista
-        </button>
-
-        <button
-          class="nav-btn"
-          data-page="adminTimes"
-          onclick="abrirPagina('adminTimes',this)"
-        >
-          🎲 Sortear Times
-        </button>
-
-      </div>
-
-    </aside>
-
-    <main class="content">
-
-      <!-- DASHBOARD -->
-
-      <section id="page-dashboard" class="page">
-
-        <div class="page-title">
-          <h2>Dashboard</h2>
-          <p>Visão geral do Futebol ID</p>
-        </div>
-
-        <div id="dashboardCards" class="cards"></div>
-
-        <div class="section">
-
-          <div class="section-header">
-            <h3>Próximas partidas</h3>
-
-            <button
-              class="btn btn-secondary"
-              onclick="carregarPartidas()"
-            >
-              Atualizar
-            </button>
-          </div>
-
-          <div
-            id="dashboardPartidas"
-            class="match-grid"
-          ></div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PARTIDAS -->
-
-      <section id="page-partidas" class="page hidden">
-
-        <div class="page-title">
-          <h2>Partidas</h2>
-          <p>Partidas cadastradas no sistema</p>
-        </div>
-
-        <div
-          id="adminCriarPartida"
-          class="section hidden"
-        >
-
-          <div class="section-header">
-            <h3>Nova partida</h3>
-          </div>
-
-          <form
-            id="partidaForm"
-            class="form-grid"
-          >
-
-            <div class="form-group">
-              <label>Data</label>
-
-              <input
-                id="partidaData"
-                type="date"
-                required
-              >
-            </div>
-
-            <div class="form-group">
-              <label>Hora</label>
-
-              <input
-                id="partidaHora"
-                type="time"
-                required
-              >
-            </div>
-
-            <div class="form-group">
-              <label>Adversário</label>
-
-              <input
-                id="partidaAdversario"
-                type="text"
-                placeholder="Nome do adversário"
-                required
-              >
-            </div>
-
-            <div class="form-group">
-              <label>Local</label>
-
-              <input
-                id="partidaLocal"
-                type="text"
-                placeholder="Local do jogo"
-                required
-              >
-            </div>
-
-            <div class="full">
-
-              <button
-                class="btn btn-success"
-                type="submit"
-              >
-                CRIAR PARTIDA
-              </button>
-
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="section">
-
-          <div class="section-header">
-
-            <h3>Partidas</h3>
-
-            <button
-              class="btn btn-secondary"
-              onclick="carregarPartidas()"
-            >
-              Atualizar
-            </button>
-
-          </div>
-
-          <div
-            id="partidasLista"
-            class="match-grid"
-          ></div>
-
-        </div>
-
-      </section>
-
-
-      <!-- LISTA -->
-
-      <section id="page-lista" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Lista do Futebol</h2>
-
-          <p>
-            Confirme sua presença para participar do sorteio.
-          </p>
-
-        </div>
-
-        <div class="section">
-
-          <div class="form-group">
-
-            <label>Escolha a partida</label>
-
-            <select
-              id="listaPartidaSelect"
-              onchange="carregarListaSelecionada()"
-            >
-
-              <option value="">
-                Selecione uma partida
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-        <div
-          id="listaConteudo"
-          class="hidden"
-        >
-
-          <div
-            id="listaCapacidade"
-            class="capacity"
-          ></div>
-
-          <div
-            id="minhaParticipacao"
-            class="section"
-          ></div>
-
-          <div class="section">
-
-            <div class="section-header">
-
-              <h3>Participantes</h3>
-
-              <button
-                class="btn btn-secondary"
-                onclick="carregarListaSelecionada()"
-              >
-                Atualizar
-              </button>
-
-            </div>
-
-            <div id="participantesLista"></div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- TIMES -->
-
-      <section id="page-times" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Times Formados</h2>
-
-          <p>
-            Veja o resultado do sorteio da partida.
-          </p>
-
-        </div>
-
-        <div class="section">
-
-          <div class="form-group">
-
-            <label>Escolha a partida</label>
-
-            <select
-              id="timesPartidaSelect"
-              onchange="carregarTimesSelecionados()"
-            >
-
-              <option value="">
-                Selecione uma partida
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-        <div
-          id="timesConteudo"
-          class="hidden"
-        >
-
-          <div id="meuTime"></div>
-
-          <div
-            id="timesGrid"
-            class="teams-grid"
-          ></div>
-
-        </div>
-
-      </section>
-
-
-      <!-- RANKING -->
-
-      <section id="page-ranking" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Ranking</h2>
-
-          <p>
-            Ranking dos jogadores pelas avaliações.
-          </p>
-
-        </div>
-
-        <div class="section">
-
-          <div class="table-wrap">
-
-            <table>
-
-              <thead>
-
-                <tr>
-                  <th>#</th>
-                  <th>Jogador</th>
-                  <th>Média</th>
-                  <th>Votos</th>
-                </tr>
-
-              </thead>
-
-              <tbody id="rankingBody"></tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- JOGADORES ADMIN -->
-
-      <section id="page-jogadores" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Jogadores</h2>
-
-          <p>
-            Administração dos jogadores.
-          </p>
-
-        </div>
-
-        <div class="section">
-
-          <div class="section-header">
-
-            <h3>Lista de jogadores</h3>
-
-            <button
-              class="btn btn-secondary"
-              onclick="carregarJogadores()"
-            >
-              Atualizar
-            </button>
-
-          </div>
-
-          <div class="table-wrap">
-
-            <table>
-
-              <thead>
-
-                <tr>
-                  <th>Nome</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-
-              </thead>
-
-              <tbody id="jogadoresBody"></tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ADMIN LISTA -->
-
-      <section id="page-adminLista" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Controle da Lista</h2>
-
-          <p>
-            Abra, feche e acompanhe as listas das partidas.
-          </p>
-
-        </div>
-
-        <div
-          id="adminListas"
-          class="match-grid"
-        ></div>
-
-      </section>
-
-
-      <!-- ADMIN TIMES -->
-
-      <section id="page-adminTimes" class="page hidden">
-
-        <div class="page-title">
-
-          <h2>Sortear Times</h2>
-
-          <p>
-            Feche a lista e faça o sorteio dos jogadores.
-          </p>
-
-        </div>
-
-        <div class="section">
-
-          <div class="form-group">
-
-            <label>Partida</label>
-
-            <select
-              id="adminTimesPartida"
-              onchange="carregarPainelSorteio()"
-            >
-
-              <option value="">
-                Selecione uma partida
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-        <div
-          id="painelSorteio"
-          class="hidden"
-        >
-
-          <div
-            id="sorteioResumo"
-            class="section"
-          ></div>
-
-          <div class="section">
-
-            <div class="form-group">
-
-              <label>
-                Quantidade de times
-              </label>
-
-              <select id="numeroTimes">
-
-                <option value="2">
-                  2 TIMES
-                </option>
-
-                <option value="3">
-                  3 TIMES
-                </option>
-
-                <option value="4">
-                  4 TIMES
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="match-actions">
-
-              <button
-                id="btnFecharLista"
-                class="btn btn-warning"
-                onclick="fecharListaAdmin()"
-              >
-                FECHAR LISTA
-              </button>
-
-              <button
-                id="btnAbrirLista"
-                class="btn btn-success"
-                onclick="abrirListaAdmin()"
-              >
-                ABRIR LISTA
-              </button>
-
-              <button
-                class="btn btn-primary"
-                onclick="sortearTimesAdmin()"
-              >
-                🎲 SORTEAR TIMES
-              </button>
-
-              <button
-                class="btn btn-danger"
-                onclick="limparSorteioAdmin()"
-              >
-                LIMPAR SORTEIO
-              </button>
-
-            </div>
-
-          </div>
-
-          <div id="adminTimesResultado"></div>
-
-        </div>
-
-      </section>
-
-    </main>
+<!-- =======================================================
+APP
+======================================================= -->
+
+<div
+  id="app"
+  class="hidden"
+>
+
+<header class="topbar">
+
+  <div class="topbar-logo">
+    ⚽ Futebol <span>ID</span>
+  </div>
+
+  <div class="user-info">
+
+    <span
+      id="topUserName"
+      class="user-name"
+    ></span>
+
+    <button
+      class="menu-btn"
+      onclick="abrirPagina('perfil')"
+    >
+      👤 Perfil
+    </button>
+
+    <button
+      class="menu-btn"
+      onclick="logout()"
+    >
+      Sair
+    </button>
 
   </div>
 
+</header>
+
+
+<div class="layout">
+
+
+<aside class="sidebar">
+
+  <div class="nav-title">
+    Principal
+  </div>
+
+  <button
+    class="nav-btn active"
+    data-page="dashboard"
+    onclick="abrirPagina('dashboard',this)"
+  >
+    🏠 Dashboard
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="jogadores"
+    onclick="abrirPagina('jogadores',this)"
+  >
+    👥 Jogadores
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="partidas"
+    onclick="abrirPagina('partidas',this)"
+  >
+    ⚽ Partidas
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="lista"
+    onclick="abrirPagina('lista',this)"
+  >
+    📋 Lista do Futebol
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="times"
+    onclick="abrirPagina('times',this)"
+  >
+    🏆 Times Formados
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="ranking"
+    onclick="abrirPagina('ranking',this)"
+  >
+    ⭐ Ranking
+  </button>
+
+
+  <div id="adminMenu" class="hidden">
+
+    <div class="nav-title">
+      Administração
+    </div>
+
+    <button
+      class="nav-btn"
+      data-page="adminLista"
+      onclick="abrirPagina('adminLista',this)"
+    >
+      📋 Controle da Lista
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="adminTimes"
+      onclick="abrirPagina('adminTimes',this)"
+    >
+      🎲 Sortear Times
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="adminVotacao"
+      onclick="abrirPagina('adminVotacao',this)"
+    >
+      🗳️ Controle das Notas
+    </button>
+
+  </div>
+
+</aside>
+
+
+<main class="content">
+
+
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
+
+<section
+  id="page-dashboard"
+  class="page"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Dashboard
+    </h2>
+
+    <p>
+      Visão geral do Futebol ID
+    </p>
+
+  </div>
+
+  <div
+    id="dashboardCards"
+    class="cards"
+  ></div>
+
+  <div class="section">
+
+    <div class="section-header">
+
+      <h3>
+        Próximas partidas
+      </h3>
+
+      <button
+        class="btn btn-secondary"
+        onclick="carregarPartidas()"
+      >
+        Atualizar
+      </button>
+
+    </div>
+
+    <div
+      id="dashboardPartidas"
+      class="match-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+JOGADORES
+===================================================== -->
+
+<section
+  id="page-jogadores"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      👥 Jogadores
+    </h2>
+
+    <p>
+      Conheça os jogadores do Futebol ID e veja a Nota Geral.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="section-header">
+
+      <h3>
+        Cartas dos jogadores
+      </h3>
+
+      <button
+        class="btn btn-secondary"
+        onclick="carregarJogadoresPublicos()"
+      >
+        Atualizar
+      </button>
+
+    </div>
+
+    <div
+      id="jogadoresCards"
+      class="players-grid"
+    ></div>
+
+  </div>
+
+
+  <div
+    id="adminJogadoresArea"
+    class="section hidden"
+  >
+
+    <div class="section-header">
+
+      <h3>
+        Administração dos jogadores
+      </h3>
+
+      <button
+        class="btn btn-secondary"
+        onclick="carregarJogadoresAdmin()"
+      >
+        Atualizar
+      </button>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Nota</th>
+            <th>Ações</th>
+          </tr>
+
+        </thead>
+
+        <tbody
+          id="jogadoresBody"
+        ></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+PERFIL
+===================================================== -->
+
+<section
+  id="page-perfil"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      👤 Meu Perfil
+    </h2>
+
+    <p>
+      Atualize sua foto. Ela será usada automaticamente na sua carta.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="profile-box">
+
+      <div
+        id="perfilFoto"
+        class="profile-photo"
+      >
+        <div class="profile-photo-placeholder">
+          ⚽
+        </div>
+      </div>
+
+
+      <div class="profile-info">
+
+        <h3 id="perfilNome">
+          -
+        </h3>
+
+        <p id="perfilNota">
+          Nota Geral: -
+        </p>
+
+        <input
+          id="fotoInput"
+          type="file"
+          accept="image/*"
+          onchange="enviarFoto()"
+        >
+
+        <button
+          class="btn btn-primary"
+          onclick="document.getElementById('fotoInput').click()"
+        >
+          📸 ALTERAR FOTO
+        </button>
+
+        <div
+          id="fotoStatus"
+          style="margin-top:15px"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+PARTIDAS
+===================================================== -->
+
+<section
+  id="page-partidas"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Partidas
+    </h2>
+
+    <p>
+      Partidas cadastradas no sistema.
+    </p>
+
+  </div>
+
+
+  <div
+    id="adminCriarPartida"
+    class="section hidden"
+  >
+
+    <div class="section-header">
+
+      <h3>
+        Nova partida
+      </h3>
+
+    </div>
+
+    <form
+      id="partidaForm"
+      class="form-grid"
+    >
+
+      <div class="form-group">
+
+        <label>
+          Data
+        </label>
+
+        <input
+          id="partidaData"
+          type="date"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Hora
+        </label>
+
+        <input
+          id="partidaHora"
+          type="time"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Adversário
+        </label>
+
+        <input
+          id="partidaAdversario"
+          type="text"
+          placeholder="Nome do adversário"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Local
+        </label>
+
+        <input
+          id="partidaLocal"
+          type="text"
+          placeholder="Local do jogo"
+          required
+        >
+
+      </div>
+
+
+      <div class="full">
+
+        <button
+          class="btn btn-success"
+          type="submit"
+        >
+          CRIAR PARTIDA
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="section-header">
+
+      <h3>
+        Partidas
+      </h3>
+
+      <button
+        class="btn btn-secondary"
+        onclick="carregarPartidas()"
+      >
+        Atualizar
+      </button>
+
+    </div>
+
+    <div
+      id="partidasLista"
+      class="match-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+LISTA
+===================================================== -->
+
+<section
+  id="page-lista"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Lista do Futebol
+    </h2>
+
+    <p>
+      Confirme sua presença para participar.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="form-group">
+
+      <label>
+        Escolha a partida
+      </label>
+
+      <select
+        id="listaPartidaSelect"
+        onchange="carregarListaSelecionada()"
+      >
+
+        <option value="">
+          Selecione uma partida
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="listaConteudo"
+    class="hidden"
+  >
+
+    <div
+      id="listaCapacidade"
+      class="capacity"
+    ></div>
+
+
+    <div
+      id="minhaParticipacao"
+      class="section"
+    ></div>
+
+
+    <div class="section">
+
+      <div class="section-header">
+
+        <h3>
+          Participantes
+        </h3>
+
+        <button
+          class="btn btn-secondary"
+          onclick="carregarListaSelecionada()"
+        >
+          Atualizar
+        </button>
+
+      </div>
+
+      <div id="participantesLista"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+TIMES
+===================================================== -->
+
+<section
+  id="page-times"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Times Formados
+    </h2>
+
+    <p>
+      Veja o resultado do sorteio.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="form-group">
+
+      <label>
+        Escolha a partida
+      </label>
+
+      <select
+        id="timesPartidaSelect"
+        onchange="carregarTimesSelecionados()"
+      >
+
+        <option value="">
+          Selecione uma partida
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="timesConteudo"
+    class="hidden"
+  >
+
+    <div id="meuTime"></div>
+
+    <div
+      id="timesGrid"
+      class="teams-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+RANKING
+===================================================== -->
+
+<section
+  id="page-ranking"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      ⭐ Ranking
+    </h2>
+
+    <p>
+      Ranking baseado nas notas aprovadas.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>Jogador</th>
+            <th>Nota Geral</th>
+            <th>Votos</th>
+          </tr>
+
+        </thead>
+
+        <tbody
+          id="rankingBody"
+        ></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+ADMIN LISTA
+===================================================== -->
+
+<section
+  id="page-adminLista"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Controle da Lista
+    </h2>
+
+    <p>
+      Abra, feche e acompanhe as listas.
+    </p>
+
+  </div>
+
+  <div
+    id="adminListas"
+    class="match-grid"
+  ></div>
+
+</section>
+
+
+<!-- =====================================================
+ADMIN TIMES
+===================================================== -->
+
+<section
+  id="page-adminTimes"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Sortear Times
+    </h2>
+
+    <p>
+      Feche a lista e faça o sorteio.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="form-group">
+
+      <label>
+        Partida
+      </label>
+
+      <select
+        id="adminTimesPartida"
+        onchange="carregarPainelSorteio()"
+      >
+
+        <option value="">
+          Selecione uma partida
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="painelSorteio"
+    class="hidden"
+  >
+
+    <div
+      id="sorteioResumo"
+      class="section"
+    ></div>
+
+
+    <div class="section">
+
+      <div class="form-group">
+
+        <label>
+          Quantidade de times
+        </label>
+
+        <select
+          id="numeroTimes"
+        >
+
+          <option value="2">
+            2 TIMES
+          </option>
+
+          <option value="3">
+            3 TIMES
+          </option>
+
+          <option value="4">
+            4 TIMES
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="match-actions">
+
+        <button
+          id="btnFecharLista"
+          class="btn btn-warning"
+          onclick="fecharListaAdmin()"
+        >
+          FECHAR LISTA
+        </button>
+
+        <button
+          id="btnAbrirLista"
+          class="btn btn-success"
+          onclick="abrirListaAdmin()"
+        >
+          ABRIR LISTA
+        </button>
+
+        <button
+          class="btn btn-primary"
+          onclick="sortearTimesAdmin()"
+        >
+          🎲 SORTEAR TIMES
+        </button>
+
+        <button
+          class="btn btn-danger"
+          onclick="limparSorteioAdmin()"
+        >
+          LIMPAR SORTEIO
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="adminTimesResultado"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+ADMIN VOTAÇÃO
+===================================================== -->
+
+<section
+  id="page-adminVotacao"
+  class="page hidden"
+>
+
+  <div class="page-title">
+
+    <h2>
+      🗳️ Controle das Notas
+    </h2>
+
+    <p>
+      O administrador controla a votação e aprova as Notas Gerais.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="section-header">
+
+      <h3>
+        Votação
+      </h3>
+
+      <button
+        class="btn btn-secondary"
+        onclick="carregarControleVotacao()"
+      >
+        Atualizar
+      </button>
+
+    </div>
+
+    <div id="statusVotacaoAdmin"></div>
+
+    <div
+      id="controlePartidasVotacao"
+      class="match-grid"
+    ></div>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="section-header">
+
+      <h3>
+        Notas aguardando aprovação
+      </h3>
+
+      <button
+        class="btn btn-success"
+        onclick="aprovarTodasNotas()"
+      >
+        ✅ APROVAR TODAS
+      </button>
+
+    </div>
+
+    <div
+      id="notasPendentes"
+      class="players-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+</main>
+
 </div>
+
+</div>
+
 
 <div id="toast"></div>
 
 
 <script>
 
+
 /* =========================================================
-   CONFIGURAÇÃO
+CONFIGURAÇÃO
 ========================================================= */
 
 const API_URL =
@@ -1400,302 +2052,573 @@ const API_URL =
 
 
 let token =
-  localStorage.getItem("futebol_id_token") || "";
+  localStorage.getItem(
+    "futebol_id_token"
+  ) || "";
 
-let usuario =
-  JSON.parse(
-    localStorage.getItem("futebol_id_usuario") || "null"
-  );
+
+let usuario = null;
+
+try {
+
+  usuario =
+    JSON.parse(
+      localStorage.getItem(
+        "futebol_id_usuario"
+      ) || "null"
+    );
+
+} catch(e) {
+
+  usuario = null;
+
+}
+
 
 let partidas = [];
 
 
 /* =========================================================
-   API
+API
 ========================================================= */
 
-async function api(acao,parametros={}){
+async function api(
+  acao,
+  parametros={}
+){
 
-  const dados={
+  const dados = {
     acao,
     ...parametros
   };
 
   if(token){
-    dados.token=token;
+    dados.token = token;
   }
 
-  const query=new URLSearchParams();
+  const query =
+    new URLSearchParams();
 
-  Object.keys(dados).forEach(function(chave){
+  Object.keys(dados)
+    .forEach(
+      function(chave){
 
-    const valor=dados[chave];
+        const valor =
+          dados[chave];
 
-    if(valor!==undefined && valor!==null){
-      query.append(chave,String(valor));
-    }
+        if(
+          valor !== undefined &&
+          valor !== null
+        ){
 
-  });
+          query.append(
+            chave,
+            String(valor)
+          );
 
-  const url=API_URL+"?"+query.toString();
+        }
 
-  try{
+      }
+    );
 
-    const resposta=await fetch(url,{
-      method:"GET",
-      cache:"no-store"
-    });
 
-    const texto=await resposta.text();
+  const url =
+    API_URL +
+    "?" +
+    query.toString();
+
+
+  try {
+
+    const resposta =
+      await fetch(
+        url,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+
+    const texto =
+      await resposta.text();
+
 
     let resultado;
 
-    try{
-      resultado=JSON.parse(texto);
-    }catch(e){
+
+    try {
+
+      resultado =
+        JSON.parse(texto);
+
+    } catch(e) {
+
       throw new Error(
         "O servidor retornou uma resposta inválida."
       );
+
     }
 
-    if(!resultado.ok){
+
+    if(
+      resultado.ok === false ||
+      resultado.sucesso === false
+    ){
+
       throw new Error(
         resultado.mensagem ||
+        resultado.erro ||
         resultado.error ||
         "Erro no servidor."
       );
+
     }
+
 
     return resultado;
 
-  }catch(erro){
 
-    console.error(erro);
+  } catch(erro) {
+
+    console.error(
+      "API:",
+      erro
+    );
 
     throw erro;
+
   }
+
 }
 
 
 /* =========================================================
-   TOAST
+TOAST
 ========================================================= */
 
-function toast(mensagem,erro=false){
+function toast(
+  mensagem,
+  erro=false
+){
 
-  const area=document.getElementById("toast");
+  const area =
+    document.getElementById(
+      "toast"
+    );
 
-  const div=document.createElement("div");
+  const div =
+    document.createElement(
+      "div"
+    );
 
-  div.className=
-    "toast "+
-    (erro?"error-toast":"success-toast");
+  div.className =
+    "toast " +
+    (
+      erro
+        ? "error-toast"
+        : "success-toast"
+    );
 
-  div.textContent=mensagem;
+  div.textContent =
+    mensagem;
 
-  area.appendChild(div);
+  area.appendChild(
+    div
+  );
 
-  setTimeout(function(){
-    div.remove();
-  },4000);
+  setTimeout(
+    function(){
+
+      div.remove();
+
+    },
+    4000
+  );
+
 }
 
 
 /* =========================================================
-   LOGIN / CADASTRO
+ESCAPAR
+========================================================= */
+
+function escapar(valor){
+
+  return String(
+    valor == null
+      ? ""
+      : valor
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+function escaparAttr(valor){
+
+  return String(
+    valor == null
+      ? ""
+      : valor
+  )
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  );
+
+}
+
+
+/* =========================================================
+LOGIN
 ========================================================= */
 
 function mostrarCadastro(){
 
   document
-    .getElementById("loginForm")
-    .classList.add("hidden");
+    .getElementById(
+      "loginForm"
+    )
+    .classList.add(
+      "hidden"
+    );
 
   document
-    .getElementById("cadastroForm")
-    .classList.remove("hidden");
+    .getElementById(
+      "cadastroForm"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
-  document
-    .getElementById("loginMessage")
-    .innerHTML="";
 }
 
 
 function mostrarLogin(){
 
   document
-    .getElementById("cadastroForm")
-    .classList.add("hidden");
+    .getElementById(
+      "cadastroForm"
+    )
+    .classList.add(
+      "hidden"
+    );
 
   document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+    .getElementById(
+      "loginForm"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
-  document
-    .getElementById("loginMessage")
-    .innerHTML="";
 }
 
 
 document
-  .getElementById("loginForm")
-  .addEventListener("submit",async function(e){
+  .getElementById(
+    "loginForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(e){
 
-    e.preventDefault();
+      e.preventDefault();
 
-    const nome=
-      document
-        .getElementById("loginNome")
-        .value
-        .trim();
+      const nome =
+        document
+          .getElementById(
+            "loginNome"
+          )
+          .value
+          .trim();
 
-    const senha=
-      document
-        .getElementById("loginSenha")
-        .value;
+      const senha =
+        document
+          .getElementById(
+            "loginSenha"
+          )
+          .value;
 
-    const msg=
-      document.getElementById("loginMessage");
+      const msg =
+        document.getElementById(
+          "loginMessage"
+        );
 
-    msg.innerHTML=
-      '<div class="success">Entrando...</div>';
+      msg.innerHTML =
+        '<div class="success">Entrando...</div>';
 
-    try{
 
-      const resultado=
-        await api("login",{
-          nome,
-          senha
-        });
+      try {
 
-      token=resultado.token;
-      usuario=resultado.jogador;
+        const resultado =
+          await api(
+            "login",
+            {
+              nome,
+              senha
+            }
+          );
 
-      localStorage.setItem(
-        "futebol_id_token",
-        token
-      );
 
-      localStorage.setItem(
-        "futebol_id_usuario",
-        JSON.stringify(usuario)
-      );
+        token =
+          resultado.token;
 
-      iniciarSistema();
+        usuario =
+          resultado.usuario ||
+          resultado.jogador;
 
-    }catch(erro){
 
-      msg.innerHTML=
-        '<div class="error">'+
-        escapar(erro.message)+
-        '</div>';
+        localStorage.setItem(
+          "futebol_id_token",
+          token
+        );
+
+        localStorage.setItem(
+          "futebol_id_usuario",
+          JSON.stringify(
+            usuario
+          )
+        );
+
+
+        iniciarSistema();
+
+
+      } catch(erro) {
+
+        msg.innerHTML =
+          '<div class="error">' +
+          escapar(
+            erro.message
+          ) +
+          '</div>';
+
+      }
 
     }
-
-  });
+  );
 
 
 document
-  .getElementById("cadastroForm")
-  .addEventListener("submit",async function(e){
+  .getElementById(
+    "cadastroForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(e){
 
-    e.preventDefault();
+      e.preventDefault();
 
-    const nome=
-      document
-        .getElementById("cadastroNome")
-        .value
-        .trim();
 
-    const senha=
-      document
-        .getElementById("cadastroSenha")
-        .value;
+      const nome =
+        document
+          .getElementById(
+            "cadastroNome"
+          )
+          .value
+          .trim();
 
-    const confirmar=
-      document
-        .getElementById("cadastroConfirmar")
-        .value;
 
-    if(senha!==confirmar){
+      const senha =
+        document
+          .getElementById(
+            "cadastroSenha"
+          )
+          .value;
 
-      toast(
-        "As senhas não são iguais.",
-        true
-      );
 
-      return;
+      const confirmar =
+        document
+          .getElementById(
+            "cadastroConfirmar"
+          )
+          .value;
+
+
+      if(
+        senha !== confirmar
+      ){
+
+        toast(
+          "As senhas não são iguais.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        await api(
+          "cadastrar",
+          {
+            nome,
+            senha
+          }
+        );
+
+
+        toast(
+          "Cadastro enviado! Aguarde a aprovação do administrador."
+        );
+
+
+        document
+          .getElementById(
+            "cadastroForm"
+          )
+          .reset();
+
+
+        mostrarLogin();
+
+
+      } catch(erro) {
+
+        toast(
+          erro.message,
+          true
+        );
+
+      }
+
     }
-
-    try{
-
-      await api("cadastrar",{
-        nome,
-        senha
-      });
-
-      toast(
-        "Cadastro enviado! Aguarde a aprovação do administrador."
-      );
-
-      document
-        .getElementById("cadastroForm")
-        .reset();
-
-      mostrarLogin();
-
-    }catch(erro){
-
-      toast(
-        erro.message,
-        true
-      );
-
-    }
-
-  });
+  );
 
 
 /* =========================================================
-   INICIAR SISTEMA
+INICIAR
 ========================================================= */
+
+function isAdmin(){
+
+  return !!(
+    usuario &&
+    (
+      usuario.admin === true ||
+      String(
+        usuario.tipo || ""
+      ).toUpperCase() === "ADMIN"
+    )
+  );
+
+}
+
 
 function iniciarSistema(){
 
   document
-    .getElementById("loginPage")
-    .classList.add("hidden");
+    .getElementById(
+      "loginPage"
+    )
+    .classList.add(
+      "hidden"
+    );
+
 
   document
-    .getElementById("app")
-    .classList.remove("hidden");
+    .getElementById(
+      "app"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
 
   document
-    .getElementById("topUserName")
-    .textContent=
-    usuario ? usuario.nome : "";
+    .getElementById(
+      "topUserName"
+    )
+    .textContent =
+      usuario
+        ? usuario.nome
+        : "";
 
-  if(usuario && usuario.admin){
+
+  if(
+    isAdmin()
+  ){
 
     document
-      .getElementById("adminMenu")
-      .classList.remove("hidden");
+      .getElementById(
+        "adminMenu"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
 
     document
-      .getElementById("adminCriarPartida")
-      .classList.remove("hidden");
+      .getElementById(
+        "adminCriarPartida"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+
+    document
+      .getElementById(
+        "adminJogadoresArea"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
   }
 
-  abrirPagina("dashboard");
+
+  abrirPagina(
+    "dashboard"
+  );
+
 }
 
+
+/* =========================================================
+LOGOUT
+========================================================= */
 
 function logout(){
 
   if(token){
-    api("logout").catch(function(){});
+
+    api(
+      "logout"
+    )
+    .catch(
+      function(){}
+    );
+
   }
+
 
   localStorage.removeItem(
     "futebol_id_token"
@@ -1705,288 +2628,331 @@ function logout(){
     "futebol_id_usuario"
   );
 
-  token="";
-  usuario=null;
+
+  token = "";
+  usuario = null;
+
 
   location.reload();
+
 }
 
 
 /* =========================================================
-   NAVEGAÇÃO
+NAVEGAÇÃO
 ========================================================= */
 
-function abrirPagina(pagina,botao){
+function abrirPagina(
+  pagina,
+  botao
+){
 
   document
-    .querySelectorAll(".page")
-    .forEach(function(p){
-      p.classList.add("hidden");
-    });
+    .querySelectorAll(
+      ".page"
+    )
+    .forEach(
+      function(p){
 
-  const paginaElemento=
-    document.getElementById(
-      "page-"+pagina
+        p.classList.add(
+          "hidden"
+        );
+
+      }
     );
 
-  if(paginaElemento){
-    paginaElemento.classList.remove("hidden");
+
+  const elemento =
+    document.getElementById(
+      "page-" +
+      pagina
+    );
+
+
+  if(elemento){
+
+    elemento.classList.remove(
+      "hidden"
+    );
+
   }
 
+
   document
-    .querySelectorAll(".nav-btn")
-    .forEach(function(btn){
-      btn.classList.remove("active");
-    });
+    .querySelectorAll(
+      ".nav-btn"
+    )
+    .forEach(
+      function(btn){
+
+        btn.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
 
   if(botao){
 
-    botao.classList.add("active");
+    botao.classList.add(
+      "active"
+    );
 
-  }else{
+  } else {
 
-    const btn=
+    const btn =
       document.querySelector(
-        '.nav-btn[data-page="'+pagina+'"]'
+        '.nav-btn[data-page="' +
+        pagina +
+        '"]'
       );
 
     if(btn){
-      btn.classList.add("active");
+
+      btn.classList.add(
+        "active"
+      );
+
     }
 
   }
 
-  if(pagina==="dashboard"){
+
+  if(
+    pagina === "dashboard"
+  ){
+
     carregarDashboard();
-  }
-
-  if(pagina==="partidas"){
-    carregarPartidas();
-  }
-
-  if(pagina==="lista"){
-
-    if(!partidas.length){
-      carregarPartidas();
-    }else{
-      prepararSelectPartidas("listaPartidaSelect");
-    }
 
   }
 
-  if(pagina==="times"){
 
-    if(!partidas.length){
-      carregarPartidas();
-    }else{
-      prepararSelectPartidas("timesPartidaSelect");
-    }
+  if(
+    pagina === "jogadores"
+  ){
 
-  }
-
-  if(pagina==="ranking"){
-    carregarRanking();
-  }
-
-  if(pagina==="jogadores"){
-    carregarJogadores();
-  }
-
-  if(pagina==="adminLista"){
-    carregarAdminListas();
-  }
-
-  if(pagina==="adminTimes"){
-
-    if(!partidas.length){
-      carregarPartidas();
-    }else{
-      prepararSelectPartidas("adminTimesPartida");
-    }
-
-  }
-}
-
-
-/* =========================================================
-   ID DA PARTIDA
-========================================================= */
-
-function extrairPartidaId(p){
-
-  if(!p){
-    return "";
-  }
-
-  const possiveis=[
-    p.id,
-    p.ID,
-    p.Id,
-    p.partida_id,
-    p.PARTIDA_ID,
-    p.partidaId,
-    p.PartidaId,
-    p.id_partida,
-    p.ID_PARTIDA
-  ];
-
-  for(let i=0;i<possiveis.length;i++){
-
-    const valor=possiveis[i];
+    carregarJogadoresPublicos();
 
     if(
-      valor!==undefined &&
-      valor!==null &&
-      String(valor).trim()!=="" &&
-      String(valor).trim().toLowerCase()!=="undefined" &&
-      String(valor).trim().toLowerCase()!=="null"
+      isAdmin()
     ){
 
-      return String(valor).trim();
+      carregarJogadoresAdmin();
 
     }
 
   }
 
-  return "";
-}
 
+  if(
+    pagina === "perfil"
+  ){
 
-/* =========================================================
-   NORMALIZAR PARTIDA
-========================================================= */
+    carregarPerfil();
 
-function normalizarPartida(p){
-
-  p=p || {};
-
-  return {
-
-    id:extrairPartidaId(p),
-
-    data:
-      p.data ??
-      p.DATA ??
-      p.Data ??
-      p.data_partida ??
-      p.DATA_PARTIDA ??
-      "",
-
-    hora:
-      p.hora ??
-      p.HORA ??
-      p.Hora ??
-      p.horario ??
-      p.HORARIO ??
-      "",
-
-    adversario:
-      p.adversario ??
-      p.ADVERSARIO ??
-      p.Adversario ??
-      p.oponente ??
-      p.OPONENTE ??
-      "",
-
-    local:
-      p.local ??
-      p.LOCAL ??
-      p.Local ??
-      "",
-
-    status:
-      p.status ??
-      p.STATUS ??
-      p.Status ??
-      "AGENDADA",
-
-    votacao:
-      p.votacao ??
-      p.VOTACAO ??
-      p.Votacao ??
-      "FECHADA"
-
-  };
-
-}
-
-
-function normalizarTodasPartidas(lista){
-
-  if(!Array.isArray(lista)){
-    return [];
   }
 
-  return lista.map(function(p){
-    return normalizarPartida(p);
-  });
+
+  if(
+    pagina === "partidas"
+  ){
+
+    carregarPartidas();
+
+  }
+
+
+  if(
+    pagina === "lista"
+  ){
+
+    if(
+      !partidas.length
+    ){
+
+      carregarPartidas();
+
+    } else {
+
+      prepararSelectPartidas(
+        "listaPartidaSelect"
+      );
+
+    }
+
+  }
+
+
+  if(
+    pagina === "times"
+  ){
+
+    if(
+      !partidas.length
+    ){
+
+      carregarPartidas();
+
+    } else {
+
+      prepararSelectPartidas(
+        "timesPartidaSelect"
+      );
+
+    }
+
+  }
+
+
+  if(
+    pagina === "ranking"
+  ){
+
+    carregarRanking();
+
+  }
+
+
+  if(
+    pagina === "adminLista"
+  ){
+
+    carregarAdminListas();
+
+  }
+
+
+  if(
+    pagina === "adminTimes"
+  ){
+
+    if(
+      !partidas.length
+    ){
+
+      carregarPartidas();
+
+    } else {
+
+      prepararSelectPartidas(
+        "adminTimesPartida"
+      );
+
+    }
+
+  }
+
+
+  if(
+    pagina === "adminVotacao"
+  ){
+
+    carregarControleVotacao();
+
+  }
 
 }
 
 
 /* =========================================================
-   DASHBOARD
+DASHBOARD
 ========================================================= */
 
 async function carregarDashboard(){
 
-  try{
+  try {
 
-    const resultado=
-      await api("dashboard");
+    const resultado =
+      await api(
+        "dashboard"
+      );
 
-    const d=
-      resultado.dashboard;
+
+    const d =
+      resultado.dashboard ||
+      resultado;
+
 
     document
-      .getElementById("dashboardCards")
-      .innerHTML=`
+      .getElementById(
+        "dashboardCards"
+      )
+      .innerHTML = `
 
         <div class="card">
+
           <div class="stat-label">
             Jogadores
           </div>
 
           <div class="stat-number">
-            ${d.total_jogadores}
+            ${
+              d.total_jogadores ??
+              d.jogadores ??
+              0
+            }
           </div>
+
         </div>
 
+
         <div class="card">
+
           <div class="stat-label">
             Aprovados
           </div>
 
           <div class="stat-number">
-            ${d.aprovados}
+            ${
+              d.aprovados ??
+              d.jogadoresAtivos ??
+              0
+            }
           </div>
+
         </div>
 
+
         <div class="card">
+
           <div class="stat-label">
             Pendentes
           </div>
 
           <div class="stat-number">
-            ${d.pendentes}
+            ${
+              d.pendentes ??
+              0
+            }
           </div>
+
         </div>
 
+
         <div class="card">
+
           <div class="stat-label">
             Partidas
           </div>
 
           <div class="stat-number">
-            ${d.total_partidas}
+            ${
+              d.total_partidas ??
+              d.partidas ??
+              0
+            }
           </div>
+
         </div>
 
       `;
 
+
     await carregarPartidas();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -1999,32 +2965,1122 @@ async function carregarDashboard(){
 
 
 /* =========================================================
-   PARTIDAS
+JOGADORES PÚBLICOS
 ========================================================= */
+
+async function carregarJogadoresPublicos(){
+
+  const area =
+    document.getElementById(
+      "jogadoresCards"
+    );
+
+  if(!area){
+
+    return;
+
+  }
+
+
+  area.innerHTML =
+    '<div class="card">Carregando jogadores...</div>';
+
+
+  try {
+
+    const resultado =
+      await api(
+        "listar_jogadores"
+      );
+
+
+    const jogadores =
+      Array.isArray(
+        resultado.jogadores
+      )
+        ? resultado.jogadores
+        : [];
+
+
+    if(
+      !jogadores.length
+    ){
+
+      area.innerHTML =
+        '<div class="card">Nenhum jogador aprovado ainda.</div>';
+
+      return;
+
+    }
+
+
+    area.innerHTML =
+      jogadores
+        .map(
+          function(j){
+
+            return criarCartaJogador(
+              j
+            );
+
+          }
+        )
+        .join("");
+
+
+  } catch(erro) {
+
+    area.innerHTML =
+      '<div class="error">' +
+      escapar(
+        erro.message
+      ) +
+      '</div>';
+
+  }
+
+}
+
+
+/* =========================================================
+CARTA DO JOGADOR
+========================================================= */
+
+function criarCartaJogador(
+  j
+){
+
+  const nota =
+    j.notaGeral === null ||
+    j.notaGeral === undefined ||
+    j.notaGeral === ""
+      ? "-"
+      : Number(
+          j.notaGeral
+        ).toFixed(1);
+
+
+  const foto =
+    j.fotoUrl
+      ? `
+
+        <img
+          src="${escaparAttr(j.fotoUrl)}"
+          alt="${escaparAttr(j.nome)}"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;player-photo-placeholder&quot;>⚽</div>'"
+        >
+
+      `
+      : `
+
+        <div class="player-photo-placeholder">
+          ⚽
+        </div>
+
+      `;
+
+
+  let botaoVotar = "";
+
+
+  if(
+    usuario &&
+    String(
+      usuario.id
+    ) !== String(j.id)
+  ){
+
+    botaoVotar = `
+
+      <div class="player-card-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="abrirVotacaoJogador('${escaparAttr(j.id)}')"
+        >
+          ⭐ AVALIAR
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div
+      class="player-card"
+      id="player-card-${escaparAttr(j.id)}"
+    >
+
+      <div class="player-photo">
+
+        ${foto}
+
+      </div>
+
+
+      <div class="player-name">
+
+        ${escapar(j.nome)}
+
+      </div>
+
+
+      <div class="player-overall">
+
+        <small>
+          NOTA GERAL
+        </small>
+
+        <strong>
+          ${nota}
+        </strong>
+
+      </div>
+
+
+      <div class="player-votes">
+
+        ${
+          Number(
+            j.totalVotos || 0
+          )
+        }
+        avaliações aprovadas
+
+      </div>
+
+
+      ${botaoVotar}
+
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+VOTAR
+========================================================= */
+
+async function abrirVotacaoJogador(
+  jogadorId
+){
+
+  try {
+
+    const status =
+      await api(
+        "status_votacao"
+      );
+
+
+    if(
+      !status.aberta
+    ){
+
+      toast(
+        "A votação está fechada no momento.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const jogador =
+      await encontrarJogadorPublico(
+        jogadorId
+      );
+
+
+    if(!jogador){
+
+      toast(
+        "Jogador não encontrado.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const nota =
+      prompt(
+        "Digite a nota para " +
+        jogador.nome +
+        " de 0 a 10:"
+      );
+
+
+    if(
+      nota === null
+    ){
+
+      return;
+
+    }
+
+
+    const numero =
+      Number(
+        nota
+      );
+
+
+    if(
+      !Number.isInteger(
+        numero
+      ) ||
+      numero < 0 ||
+      numero > 10
+    ){
+
+      toast(
+        "Digite uma nota inteira entre 0 e 10.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    await api(
+      "votar",
+      {
+        partidaId:
+          status.partida.id,
+
+        partida_id:
+          status.partida.id,
+
+        avaliadoId:
+          jogadorId,
+
+        avaliado_id:
+          jogadorId,
+
+        nota:
+          numero
+      }
+    );
+
+
+    toast(
+      "⭐ Voto registrado! Aguarde a aprovação do administrador."
+    );
+
+
+    await carregarJogadoresPublicos();
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function encontrarJogadorPublico(
+  id
+){
+
+  const resultado =
+    await api(
+      "listar_jogadores"
+    );
+
+
+  const jogadores =
+    resultado.jogadores || [];
+
+
+  return jogadores.find(
+    function(j){
+
+      return String(
+        j.id
+      ) === String(id);
+
+    }
+  ) || null;
+
+}
+
+
+/* =========================================================
+ADMIN JOGADORES
+========================================================= */
+
+async function carregarJogadoresAdmin(){
+
+  if(
+    !isAdmin()
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    const resultado =
+      await api(
+        "jogadores_admin"
+      );
+
+
+    const jogadores =
+      resultado.jogadores || [];
+
+
+    const body =
+      document.getElementById(
+        "jogadoresBody"
+      );
+
+
+    body.innerHTML =
+      jogadores
+        .map(
+          function(j){
+
+            let badge =
+              "badge-yellow";
+
+            const status =
+              String(
+                j.status || ""
+              ).toUpperCase();
+
+
+            if(
+              status === "ATIVO"
+            ){
+
+              badge =
+                "badge-green";
+
+            }
+
+
+            if(
+              status === "INATIVO" ||
+              status === "RECUSADO"
+            ){
+
+              badge =
+                "badge-red";
+
+            }
+
+
+            const nota =
+              j.notaGeral === null ||
+              j.notaGeral === undefined
+                ? "-"
+                : Number(
+                    j.notaGeral
+                  ).toFixed(1);
+
+
+            return `
+
+              <tr>
+
+                <td>
+                  ${escapar(j.nome)}
+                </td>
+
+
+                <td>
+
+                  <span
+                    class="badge ${badge}"
+                  >
+                    ${escapar(j.status)}
+                  </span>
+
+                </td>
+
+
+                <td>
+                  ⭐ ${nota}
+                </td>
+
+
+                <td>
+
+                  <div class="actions">
+
+                    ${
+                      status === "PENDENTE"
+                        ? `
+
+                          <button
+                            class="btn btn-success"
+                            onclick="aprovarJogador('${escaparAttr(j.id)}')"
+                          >
+                            APROVAR
+                          </button>
+
+                          <button
+                            class="btn btn-danger"
+                            onclick="recusarJogador('${escaparAttr(j.id)}')"
+                          >
+                            RECUSAR
+                          </button>
+
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                      status === "ATIVO"
+                        ? `
+
+                          <button
+                            class="btn btn-warning"
+                            onclick="desativarJogador('${escaparAttr(j.id)}')"
+                          >
+                            DESATIVAR
+                          </button>
+
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                      status === "INATIVO"
+                        ? `
+
+                          <button
+                            class="btn btn-success"
+                            onclick="ativarJogador('${escaparAttr(j.id)}')"
+                          >
+                            ATIVAR
+                          </button>
+
+                        `
+                        : ""
+                    }
+
+
+                    <button
+                      class="btn btn-secondary"
+                      onclick="resetarSenha('${escaparAttr(j.id)}')"
+                    >
+                      RESET SENHA
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        )
+        .join("");
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function aprovarJogador(
+  id
+){
+
+  try {
+
+    await api(
+      "aprovar_jogador",
+      {
+        jogador_id:id,
+        jogadorId:id,
+        id:id
+      }
+    );
+
+    toast(
+      "Jogador aprovado!"
+    );
+
+    await carregarJogadoresAdmin();
+    await carregarJogadoresPublicos();
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function recusarJogador(
+  id
+){
+
+  if(
+    !confirm(
+      "Recusar este jogador?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    await api(
+      "recusar_jogador",
+      {
+        jogador_id:id,
+        jogadorId:id,
+        id:id
+      }
+    );
+
+    toast(
+      "Jogador recusado."
+    );
+
+    await carregarJogadoresAdmin();
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function ativarJogador(
+  id
+){
+
+  try {
+
+    await api(
+      "ativar_jogador",
+      {
+        jogador_id:id,
+        jogadorId:id,
+        id:id
+      }
+    );
+
+    toast(
+      "Jogador ativado!"
+    );
+
+    await carregarJogadoresAdmin();
+    await carregarJogadoresPublicos();
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function desativarJogador(
+  id
+){
+
+  if(
+    !confirm(
+      "Desativar este jogador?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    await api(
+      "desativar_jogador",
+      {
+        jogador_id:id,
+        jogadorId:id,
+        id:id
+      }
+    );
+
+    toast(
+      "Jogador desativado."
+    );
+
+    await carregarJogadoresAdmin();
+    await carregarJogadoresPublicos();
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function resetarSenha(
+  id
+){
+
+  const senha =
+    prompt(
+      "Digite a nova senha:"
+    );
+
+
+  if(
+    !senha
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    await api(
+      "resetar_senha",
+      {
+        jogador_id:id,
+        jogadorId:id,
+        id:id,
+        nova_senha:senha,
+        novaSenha:senha
+      }
+    );
+
+
+    toast(
+      "Senha alterada!"
+    );
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+PERFIL
+========================================================= */
+
+function carregarPerfil(){
+
+  if(!usuario){
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(
+      "perfilNome"
+    )
+    .textContent =
+      usuario.nome || "-";
+
+
+  atualizarFotoPerfil(
+    usuario.fotoUrl
+  );
+
+
+  const nota =
+    usuario.notaGeral === null ||
+    usuario.notaGeral === undefined
+      ? "-"
+      : Number(
+          usuario.notaGeral
+        ).toFixed(1);
+
+
+  document
+    .getElementById(
+      "perfilNota"
+    )
+    .textContent =
+      "Nota Geral: " +
+      nota;
+
+}
+
+
+function atualizarFotoPerfil(
+  url
+){
+
+  const area =
+    document.getElementById(
+      "perfilFoto"
+    );
+
+
+  if(
+    url
+  ){
+
+    area.innerHTML = `
+
+      <img
+        src="${escaparAttr(url)}"
+        alt="Minha foto"
+        onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;profile-photo-placeholder&quot;>⚽</div>'"
+      >
+
+    `;
+
+  } else {
+
+    area.innerHTML = `
+
+      <div class="profile-photo-placeholder">
+        ⚽
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+async function enviarFoto(){
+
+  const input =
+    document.getElementById(
+      "fotoInput"
+    );
+
+
+  if(
+    !input.files ||
+    !input.files[0]
+  ){
+
+    return;
+
+  }
+
+
+  const arquivo =
+    input.files[0];
+
+
+  if(
+    arquivo.size >
+    5 * 1024 * 1024
+  ){
+
+    toast(
+      "A foto não pode ter mais de 5 MB.",
+      true
+    );
+
+    input.value = "";
+
+    return;
+
+  }
+
+
+  const status =
+    document.getElementById(
+      "fotoStatus"
+    );
+
+
+  status.innerHTML =
+    '<div class="success">Enviando foto...</div>';
+
+
+  try {
+
+    const base64 =
+      await arquivoParaBase64(
+        arquivo
+      );
+
+
+    const resultado =
+      await api(
+        "salvarfoto",
+        {
+          base64:
+            base64,
+
+          mimeType:
+            arquivo.type
+        }
+      );
+
+
+    usuario.fotoUrl =
+      resultado.fotoUrl;
+
+
+    localStorage.setItem(
+      "futebol_id_usuario",
+      JSON.stringify(
+        usuario
+      )
+    );
+
+
+    atualizarFotoPerfil(
+      usuario.fotoUrl
+    );
+
+
+    status.innerHTML =
+      '<div class="success">Foto atualizada com sucesso!</div>';
+
+
+    toast(
+      "📸 Foto atualizada!"
+    );
+
+
+    await carregarJogadoresPublicos();
+
+
+  } catch(erro) {
+
+    status.innerHTML =
+      '<div class="error">' +
+      escapar(
+        erro.message
+      ) +
+      '</div>';
+
+  }
+
+
+  input.value = "";
+
+}
+
+
+function arquivoParaBase64(
+  arquivo
+){
+
+  return new Promise(
+    function(resolve,reject){
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function(){
+
+          resolve(
+            reader.result
+          );
+
+        };
+
+      reader.onerror =
+        reject;
+
+      reader.readAsDataURL(
+        arquivo
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+PARTIDAS
+========================================================= */
+
+function extrairPartidaId(
+  p
+){
+
+  if(!p){
+
+    return "";
+
+  }
+
+
+  const possiveis = [
+
+    p.id,
+    p.ID,
+    p.partida_id,
+    p.PARTIDA_ID,
+    p.partidaId
+
+  ];
+
+
+  for(
+    let i=0;
+    i<possiveis.length;
+    i++
+  ){
+
+    if(
+      possiveis[i] !==
+        undefined &&
+      possiveis[i] !==
+        null &&
+      String(
+        possiveis[i]
+      ).trim() !== ""
+    ){
+
+      return String(
+        possiveis[i]
+      ).trim();
+
+    }
+
+  }
+
+
+  return "";
+
+}
+
+
+function normalizarPartida(
+  p
+){
+
+  p = p || {};
+
+
+  return {
+
+    id:
+      extrairPartidaId(p),
+
+    data:
+      p.data ??
+      p.DATA ??
+      "",
+
+    hora:
+      p.hora ??
+      p.HORA ??
+      "",
+
+    adversario:
+      p.adversario ??
+      p.ADVERSARIO ??
+      p.descricao ??
+      p.DESCRICAO ??
+      "Futebol ID",
+
+    local:
+      p.local ??
+      p.LOCAL ??
+      "",
+
+    status:
+      p.status ??
+      p.STATUS ??
+      "ABERTA",
+
+    votacao:
+      p.votacao ??
+      (
+        p.votacaoAberta
+          ? "ABERTA"
+          : "FECHADA"
+      )
+
+  };
+
+}
+
 
 async function carregarPartidas(){
 
-  try{
+  try {
 
-    const resultado=
-      await api("listar_partidas");
-
-    console.log(
-      "PARTIDAS RECEBIDAS DO SERVIDOR:",
-      resultado.partidas
-    );
-
-    partidas=
-      normalizarTodasPartidas(
-        resultado.partidas || []
+    const resultado =
+      await api(
+        "listar_partidas"
       );
 
-    console.log(
-      "PARTIDAS NORMALIZADAS:",
-      partidas
-    );
+
+    partidas =
+      (resultado.partidas || [])
+        .map(
+          normalizarPartida
+        );
+
 
     renderizarPartidas();
+
 
     prepararSelectPartidas(
       "listaPartidaSelect"
@@ -2038,7 +4094,8 @@ async function carregarPartidas(){
       "adminTimesPartida"
     );
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2050,253 +4107,292 @@ async function carregarPartidas(){
 }
 
 
-/* =========================================================
-   RENDERIZAR PARTIDAS
-========================================================= */
-
 function renderizarPartidas(){
 
-  const areas=[
+  [
     "partidasLista",
     "dashboardPartidas"
-  ];
+  ]
+  .forEach(
+    function(id){
 
-  areas.forEach(function(id){
+      const area =
+        document.getElementById(
+          id
+        );
 
-    const area=
-      document.getElementById(id);
+      if(!area){
 
-    if(!area) return;
+        return;
 
-    if(!partidas.length){
+      }
 
-      area.innerHTML=
-        '<div class="card">Nenhuma partida cadastrada.</div>';
 
-      return;
-    }
+      if(
+        !partidas.length
+      ){
 
-    area.innerHTML=
-      partidas
-        .map(function(p){
+        area.innerHTML =
+          '<div class="card">Nenhuma partida cadastrada.</div>';
 
-          const idPartida=
-            extrairPartidaId(p);
+        return;
 
-          const dataFormatada=
-            formatarData(p.data);
+      }
 
-          const horaFormatada=
-            formatarHora(p.hora);
 
-          return `
+      area.innerHTML =
+        partidas
+          .map(
+            function(p){
 
-            <div class="match-card">
+              const id =
+                extrairPartidaId(
+                  p
+                );
 
-              <div class="match-name">
-                ⚽ FUTEBOL ID
-              </div>
 
-              <h4>
-                ${escapar(p.adversario || "Partida")}
-              </h4>
+              return `
 
-              <div class="match-date">
-                📅 ${escapar(dataFormatada)}
-                •
-                ${escapar(horaFormatada)}
-              </div>
+                <div class="match-card">
 
-              <div class="match-info">
+                  <div class="match-name">
+                    ⚽ FUTEBOL ID
+                  </div>
 
-                📍 ${escapar(p.local)}
+                  <h4>
+                    ${escapar(
+                      p.adversario
+                    )}
+                  </h4>
 
-              </div>
+                  <div class="match-date">
+                    📅 ${
+                      escapar(
+                        formatarData(
+                          p.data
+                        )
+                      )
+                    }
+                    •
+                    ${
+                      escapar(
+                        formatarHora(
+                          p.hora
+                        )
+                      )
+                    }
+                  </div>
 
-              <div style="margin-top:10px">
+                  <div class="match-info">
+                    📍 ${
+                      escapar(
+                        p.local
+                      )
+                    }
+                  </div>
 
-                <span class="badge badge-blue">
-                  ${escapar(p.status || "AGENDADA")}
-                </span>
+                  <div style="margin-top:10px">
 
-                <span class="${
-                  String(p.votacao).toUpperCase()==="ABERTA"
-                  ? "badge badge-green"
-                  : "badge badge-red"
-                }">
-
-                  Votação:
-                  ${escapar(p.votacao || "FECHADA")}
-
-                </span>
-
-              </div>
-
-              <div class="match-actions">
-
-                ${
-                  idPartida
-                  ? `
-
-                    <button
-                      class="btn btn-primary"
-                      onclick="irParaLista('${escaparAttr(idPartida)}')"
-                    >
-                      📋 LISTA
-                    </button>
-
-                    <button
-                      class="btn btn-secondary"
-                      onclick="irParaTimes('${escaparAttr(idPartida)}')"
-                    >
-                      🏆 TIMES
-                    </button>
-
-                  `
-                  : `
-
-                    <span class="badge badge-red">
-                      PARTIDA INDISPONÍVEL
+                    <span class="badge badge-blue">
+                      ${
+                        escapar(
+                          p.status
+                        )
+                      }
                     </span>
 
-                  `
-                }
+                    <span class="${
+                      String(
+                        p.votacao
+                      ).toUpperCase()
+                      === "ABERTA"
+                        ? "badge badge-green"
+                        : "badge badge-red"
+                    }">
 
-                ${
-                  usuario && usuario.admin && idPartida
-                  ? `
+                      Votação:
+                      ${
+                        escapar(
+                          p.votacao
+                        )
+                      }
 
-                    <button
-                      class="btn btn-danger"
-                      onclick="excluirPartida('${escaparAttr(idPartida)}')"
-                    >
-                      EXCLUIR
-                    </button>
+                    </span>
 
-                  `
-                  : ""
-                }
+                  </div>
 
-              </div>
 
-            </div>
+                  <div class="match-actions">
 
-          `;
+                    ${
+                      id
+                        ? `
 
-        })
-        .join("");
+                          <button
+                            class="btn btn-primary"
+                            onclick="irParaLista('${escaparAttr(id)}')"
+                          >
+                            📋 LISTA
+                          </button>
 
-  });
+                          <button
+                            class="btn btn-secondary"
+                            onclick="irParaTimes('${escaparAttr(id)}')"
+                          >
+                            🏆 TIMES
+                          </button>
+
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                      isAdmin() && id
+                        ? `
+
+                          <button
+                            class="btn btn-danger"
+                            onclick="excluirPartida('${escaparAttr(id)}')"
+                          >
+                            EXCLUIR
+                          </button>
+
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+  );
 
 }
 
 
 /* =========================================================
-   CRIAR PARTIDA
+CRIAR PARTIDA
 ========================================================= */
 
 document
-  .getElementById("partidaForm")
-  .addEventListener("submit",async function(e){
+  .getElementById(
+    "partidaForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(e){
 
-    e.preventDefault();
+      e.preventDefault();
 
-    try{
 
-      const resultado=
+      try {
+
         await api(
           "criar_partida",
           {
 
             data:
               document
-                .getElementById("partidaData")
+                .getElementById(
+                  "partidaData"
+                )
                 .value,
 
             hora:
               document
-                .getElementById("partidaHora")
+                .getElementById(
+                  "partidaHora"
+                )
                 .value,
 
             adversario:
               document
-                .getElementById("partidaAdversario")
+                .getElementById(
+                  "partidaAdversario"
+                )
                 .value
                 .trim(),
 
             local:
               document
-                .getElementById("partidaLocal")
+                .getElementById(
+                  "partidaLocal"
+                )
                 .value
                 .trim()
 
           }
         );
 
-      console.log(
-        "PARTIDA CRIADA:",
-        resultado
-      );
 
-      this.reset();
+        this.reset();
 
-      toast(
-        "Partida criada com sucesso!"
-      );
 
-      await carregarPartidas();
+        toast(
+          "Partida criada com sucesso!"
+        );
 
-    }catch(erro){
 
-      toast(
-        erro.message,
-        true
-      );
+        await carregarPartidas();
+
+
+      } catch(erro) {
+
+        toast(
+          erro.message,
+          true
+        );
+
+      }
 
     }
+  );
 
-  });
 
-
-async function excluirPartida(id){
-
-  id=String(id || "").trim();
-
-  if(!id){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
+async function excluirPartida(
+  id
+){
 
   if(
     !confirm(
       "Tem certeza que deseja excluir esta partida?"
     )
   ){
+
     return;
+
   }
 
-  try{
+
+  try {
 
     await api(
       "excluir_partida",
       {
         partida_id:id,
-        partidaId:id
+        partidaId:id,
+        id:id
       }
     );
+
 
     toast(
       "Partida excluída."
     );
 
+
     await carregarPartidas();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2309,77 +4405,102 @@ async function excluirPartida(id){
 
 
 /* =========================================================
-   SELECT PARTIDAS
+SELECT PARTIDAS
 ========================================================= */
 
-function prepararSelectPartidas(id){
+function prepararSelectPartidas(
+  id
+){
 
-  const select=
-    document.getElementById(id);
+  const select =
+    document.getElementById(
+      id
+    );
 
-  if(!select) return;
 
-  const valorAtual=
+  if(!select){
+
+    return;
+
+  }
+
+
+  const atual =
     select.value;
 
-  select.innerHTML=`
+
+  select.innerHTML = `
+
     <option value="">
       Selecione uma partida
     </option>
+
   `;
 
-  partidas.forEach(function(p){
 
-    const idPartida=
-      extrairPartidaId(p);
+  partidas.forEach(
+    function(p){
 
-    if(!idPartida){
+      const idPartida =
+        extrairPartidaId(
+          p
+        );
 
-      console.warn(
-        "Partida sem ID:",
-        p
+
+      if(!idPartida){
+
+        return;
+
+      }
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        idPartida;
+
+
+      option.textContent =
+        formatarData(
+          p.data
+        ) +
+        " • " +
+        formatarHora(
+          p.hora
+        ) +
+        " — " +
+        p.adversario;
+
+
+      select.appendChild(
+        option
       );
 
-      return;
     }
+  );
 
-    const option=
-      document.createElement("option");
-
-    /*
-      O ID continua sendo o valor interno.
-      Ele não aparece para o usuário.
-    */
-
-    option.value=
-      idPartida;
-
-    /*
-      FORMATO EXIBIDO:
-      05/09/2026 • 17:00 — Futebol ID
-    */
-
-    option.textContent=
-      formatarData(p.data)+
-      " • "+
-      formatarHora(p.hora)+
-      " — Futebol ID";
-
-    select.appendChild(option);
-
-  });
 
   if(
-    valorAtual &&
-    Array.from(select.options).some(
+    atual &&
+    Array.from(
+      select.options
+    ).some(
       function(o){
-        return o.value===valorAtual;
+
+        return (
+          o.value === atual
+        );
+
       }
     )
   ){
 
-    select.value=
-      valorAtual;
+    select.value =
+      atual;
 
   }
 
@@ -2387,159 +4508,124 @@ function prepararSelectPartidas(id){
 
 
 /* =========================================================
-   IR PARA LISTA
+LISTA
 ========================================================= */
 
-function irParaLista(id){
+function irParaLista(
+  id
+){
 
-  id=String(id || "").trim();
+  abrirPagina(
+    "lista"
+  );
 
-  if(!id){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
-
-  abrirPagina("lista");
-
-  const select=
-    document.getElementById(
-      "listaPartidaSelect"
-    );
 
   prepararSelectPartidas(
     "listaPartidaSelect"
   );
 
-  select.value=id;
 
-  if(select.value!==id){
-
-    toast(
-      "A partida não foi encontrada na lista.",
-      true
+  const select =
+    document.getElementById(
+      "listaPartidaSelect"
     );
 
-    return;
-  }
+
+  select.value =
+    id;
+
 
   carregarListaSelecionada();
 
 }
 
 
-/* =========================================================
-   IR PARA TIMES
-========================================================= */
+function irParaTimes(
+  id
+){
 
-function irParaTimes(id){
+  abrirPagina(
+    "times"
+  );
 
-  id=String(id || "").trim();
-
-  if(!id){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
-
-  abrirPagina("times");
-
-  const select=
-    document.getElementById(
-      "timesPartidaSelect"
-    );
 
   prepararSelectPartidas(
     "timesPartidaSelect"
   );
 
-  select.value=id;
 
-  if(select.value!==id){
-
-    toast(
-      "A partida não foi encontrada na lista.",
-      true
+  const select =
+    document.getElementById(
+      "timesPartidaSelect"
     );
 
-    return;
-  }
+
+  select.value =
+    id;
+
 
   carregarTimesSelecionados();
 
 }
 
 
-/* =========================================================
-   LISTA DO FUTEBOL
-========================================================= */
-
 async function carregarListaSelecionada(){
 
-  const select=
+  const select =
     document.getElementById(
       "listaPartidaSelect"
     );
 
-  const conteudo=
+
+  const conteudo =
     document.getElementById(
       "listaConteudo"
     );
 
-  if(!select){
+
+  const partidaId =
+    String(
+      select.value || ""
+    ).trim();
+
+
+  if(!partidaId){
+
+    conteudo.classList.add(
+      "hidden"
+    );
+
     return;
+
   }
 
-  const partidaId=
-    String(select.value || "").trim();
 
-  console.log(
-    "ID SELECIONADO PARA LISTA:",
-    partidaId
+  conteudo.classList.remove(
+    "hidden"
   );
 
-  if(
-    !partidaId ||
-    partidaId==="undefined" ||
-    partidaId==="null"
-  ){
 
-    conteudo.classList.add("hidden");
+  try {
 
-    return;
-  }
-
-  conteudo.classList.remove("hidden");
-
-  try{
-
-    const resultado=
+    const resultado =
       await api(
         "listar_lista_futebol",
         {
-          partida_id:partidaId,
-          partidaId:partidaId
+          partida_id:
+            partidaId,
+
+          partidaId:
+            partidaId
         }
       );
 
-    console.log(
-      "LISTA DA PARTIDA:",
-      resultado
-    );
 
     renderizarLista(
       resultado
     );
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2551,20 +4637,31 @@ async function carregarListaSelecionada(){
 }
 
 
-function renderizarLista(resultado){
+function renderizarLista(
+  resultado
+){
 
-  const total=
-    Number(resultado.total || 0);
+  const total =
+    Number(
+      resultado.total || 0
+    );
 
-  const jogadores=
-    Number(resultado.total_jogadores || 0);
+  const jogadores =
+    Number(
+      resultado.total_jogadores || 0
+    );
 
-  const goleiros=
-    Number(resultado.total_goleiros || 0);
+  const goleiros =
+    Number(
+      resultado.total_goleiros || 0
+    );
+
 
   document
-    .getElementById("listaCapacidade")
-    .innerHTML=`
+    .getElementById(
+      "listaCapacidade"
+    )
+    .innerHTML = `
 
       <div class="capacity-box">
 
@@ -2577,13 +4674,19 @@ function renderizarLista(resultado){
         </div>
 
         <div class="progress">
+
           <div
             class="progress-bar"
-            style="width:${Math.min(jogadores/20*100,100)}%"
+            style="width:${Math.min(
+              jogadores/20*100,
+              100
+            )}%"
           ></div>
+
         </div>
 
       </div>
+
 
       <div class="capacity-box">
 
@@ -2596,13 +4699,19 @@ function renderizarLista(resultado){
         </div>
 
         <div class="progress">
+
           <div
             class="progress-bar"
-            style="width:${Math.min(goleiros/4*100,100)}%"
+            style="width:${Math.min(
+              goleiros/4*100,
+              100
+            )}%"
           ></div>
+
         </div>
 
       </div>
+
 
       <div class="capacity-box">
 
@@ -2615,10 +4724,15 @@ function renderizarLista(resultado){
         </div>
 
         <div class="progress">
+
           <div
             class="progress-bar"
-            style="width:${Math.min(total/24*100,100)}%"
+            style="width:${Math.min(
+              total/24*100,
+              100
+            )}%"
           ></div>
+
         </div>
 
       </div>
@@ -2626,32 +4740,48 @@ function renderizarLista(resultado){
     `;
 
 
-  const minhaArea=
+  const minhaArea =
     document.getElementById(
       "minhaParticipacao"
     );
 
-  const listaStatus=
-    resultado.lista &&
-    resultado.lista.status
-      ? String(resultado.lista.status).toUpperCase()
-      : "ABERTA";
 
-
-  const partidaId=
+  const status =
     String(
-      resultado.partida_id ||
-      resultado.partidaId ||
-      document.getElementById(
-        "listaPartidaSelect"
-      ).value ||
-      ""
-    ).trim();
+      resultado.status ||
+      (
+        resultado.lista &&
+        resultado.lista.status
+      ) ||
+      "ABERTA"
+    ).toUpperCase();
 
 
-  if(resultado.eu_estou_na_lista){
+  const jogadoresLista =
+    resultado.jogadores || [];
 
-    minhaArea.innerHTML=`
+
+  const eu =
+    jogadoresLista.find(
+      function(j){
+
+        return (
+          usuario &&
+          String(
+            j.jogadorId
+          ) ===
+          String(
+            usuario.id
+          )
+        );
+
+      }
+    );
+
+
+  if(eu){
+
+    minhaArea.innerHTML = `
 
       <div class="success">
 
@@ -2662,106 +4792,104 @@ function renderizarLista(resultado){
         Tipo:
 
         <strong>
-
           ${
-            String(resultado.meu_tipo).toUpperCase()==="GOLEIRO"
-            ? "🥅 GOLEIRO"
-            : "⚽ JOGADOR"
+            String(
+              eu.tipo
+            ).toUpperCase()
+            === "GOLEIRO"
+              ? "🥅 GOLEIRO"
+              : "⚽ JOGADOR"
           }
-
         </strong>
 
       </div>
 
+
       ${
-        listaStatus==="ABERTA"
-        ? `
+        status === "ABERTA"
+          ? `
 
-          <button
-            class="btn btn-danger"
-            onclick="sairDaLista('${escaparAttr(partidaId)}')"
-          >
-            SAIR DA LISTA
-          </button>
+            <button
+              class="btn btn-danger"
+              onclick="sairDaLista('${escaparAttr(resultado.partida_id)}')"
+            >
+              SAIR DA LISTA
+            </button>
 
-        `
-        : `
+          `
+          : `
 
-          <div class="error">
-            A lista está fechada.
-          </div>
+            <div class="error">
+              A lista está fechada.
+            </div>
 
-        `
+          `
       }
 
     `;
 
-  }else{
+  } else if(
+    status === "FECHADA"
+  ){
 
-    if(listaStatus==="FECHADA"){
+    minhaArea.innerHTML = `
 
-      minhaArea.innerHTML=`
+      <div class="error">
+        🔒 A lista está fechada.
+      </div>
 
-        <div class="error">
-          🔒 A lista está fechada.
-        </div>
+    `;
 
-      `;
+  } else {
 
-    }else{
+    minhaArea.innerHTML = `
 
-      minhaArea.innerHTML=`
+      <h3 style="margin-bottom:15px">
+        Você vai jogar?
+      </h3>
 
-        <h3 style="margin-bottom:15px">
-          Você vai jogar?
-        </h3>
+      <div class="match-actions">
 
-        <div class="match-actions">
+        <button
+          class="btn btn-primary"
+          onclick="entrarNaLista('${escaparAttr(resultado.partida_id)}','JOGADOR')"
+        >
+          ⚽ EU VOU — JOGADOR
+        </button>
 
-          <button
-            class="btn btn-primary"
-            onclick="entrarNaLista('${escaparAttr(partidaId)}','JOGADOR')"
-          >
-            ⚽ EU VOU — JOGADOR
-          </button>
+        <button
+          class="btn btn-warning"
+          onclick="entrarNaLista('${escaparAttr(resultado.partida_id)}','GOLEIRO')"
+        >
+          🥅 EU VOU — GOLEIRO
+        </button>
 
-          <button
-            class="btn btn-warning"
-            onclick="entrarNaLista('${escaparAttr(partidaId)}','GOLEIRO')"
-          >
-            🥅 EU VOU — GOLEIRO
-          </button>
+      </div>
 
-        </div>
-
-      `;
-
-    }
+    `;
 
   }
 
 
-  const participantes=
+  const participantes =
     document.getElementById(
       "participantesLista"
     );
 
-  const listaJogadores=
-    Array.isArray(resultado.jogadores)
-    ? resultado.jogadores
-    : [];
 
+  if(
+    !jogadoresLista.length
+  ){
 
-  if(!listaJogadores.length){
-
-    participantes.innerHTML=
+    participantes.innerHTML =
       '<div class="card">Ninguém entrou na lista ainda.</div>';
 
     return;
+
   }
 
 
-  participantes.innerHTML=`
+  participantes.innerHTML = `
 
     <div class="table-wrap">
 
@@ -2779,32 +4907,37 @@ function renderizarLista(resultado){
         <tbody>
 
           ${
-            listaJogadores
-              .map(function(j){
+            jogadoresLista
+              .map(
+                function(j){
 
-                return `
+                  return `
 
-                  <tr>
+                    <tr>
 
-                    <td>
-                      ${escapar(j.nome)}
-                    </td>
+                      <td>
+                        ${escapar(j.nome)}
+                      </td>
 
-                    <td>
+                      <td>
 
-                      ${
-                        String(j.tipo).toUpperCase()==="GOLEIRO"
-                        ? '<span class="badge badge-yellow">🥅 GOLEIRO</span>'
-                        : '<span class="badge badge-blue">⚽ JOGADOR</span>'
-                      }
+                        ${
+                          String(
+                            j.tipo
+                          ).toUpperCase()
+                          === "GOLEIRO"
+                            ? '<span class="badge badge-yellow">🥅 GOLEIRO</span>'
+                            : '<span class="badge badge-blue">⚽ JOGADOR</span>'
+                        }
 
-                    </td>
+                      </td>
 
-                  </tr>
+                    </tr>
 
-                `;
+                  `;
 
-              })
+                }
+              )
               .join("")
           }
 
@@ -2819,43 +4952,37 @@ function renderizarLista(resultado){
 }
 
 
-async function entrarNaLista(partidaId,tipo){
+async function entrarNaLista(
+  partidaId,
+  tipo
+){
 
-  partidaId=
-    String(partidaId || "").trim();
-
-  if(
-    !partidaId ||
-    partidaId==="undefined" ||
-    partidaId==="null"
-  ){
-
-    toast(
-      "ID da partida não informado.",
-      true
-    );
-
-    return;
-  }
-
-  try{
+  try {
 
     await api(
       "entrar_lista_futebol",
       {
-        partida_id:partidaId,
-        partidaId:partidaId,
-        tipo:tipo
+        partida_id:
+          partidaId,
+
+        partidaId:
+          partidaId,
+
+        tipo:
+          tipo
       }
     );
+
 
     toast(
       "Você entrou na lista!"
     );
 
+
     await carregarListaSelecionada();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2867,46 +4994,44 @@ async function entrarNaLista(partidaId,tipo){
 }
 
 
-async function sairDaLista(partidaId){
-
-  partidaId=
-    String(partidaId || "").trim();
-
-  if(!partidaId){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
+async function sairDaLista(
+  partidaId
+){
 
   if(
     !confirm(
       "Deseja realmente sair da lista?"
     )
   ){
+
     return;
+
   }
 
-  try{
+
+  try {
 
     await api(
       "sair_lista_futebol",
       {
-        partida_id:partidaId,
-        partidaId:partidaId
+        partida_id:
+          partidaId,
+
+        partidaId:
+          partidaId
       }
     );
+
 
     toast(
       "Você saiu da lista."
     );
 
+
     await carregarListaSelecionada();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2919,43 +5044,59 @@ async function sairDaLista(partidaId){
 
 
 /* =========================================================
-   TIMES FORMADOS
+TIMES
 ========================================================= */
 
 async function carregarTimesSelecionados(){
 
-  const select=
+  const select =
     document.getElementById(
       "timesPartidaSelect"
     );
 
-  const conteudo=
+
+  const partidaId =
+    String(
+      select.value || ""
+    ).trim();
+
+
+  const conteudo =
     document.getElementById(
       "timesConteudo"
     );
 
-  const partidaId=
-    String(select.value || "").trim();
 
   if(!partidaId){
 
-    conteudo.classList.add("hidden");
+    conteudo.classList.add(
+      "hidden"
+    );
 
     return;
+
   }
 
-  conteudo.classList.remove("hidden");
 
-  try{
+  conteudo.classList.remove(
+    "hidden"
+  );
 
-    const resultado=
+
+  try {
+
+    const resultado =
       await api(
         "listar_times_formados",
         {
-          partida_id:partidaId,
-          partidaId:partidaId
+          partida_id:
+            partidaId,
+
+          partidaId:
+            partidaId
         }
       );
+
 
     renderizarTimes(
       resultado,
@@ -2963,7 +5104,8 @@ async function carregarTimesSelecionados(){
       "timesGrid"
     );
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -2981,25 +5123,31 @@ function renderizarTimes(
   gridId
 ){
 
-  const meu=
+  const meu =
     document.getElementById(
       meuTimeId
     );
 
-  const grid=
+  const grid =
     document.getElementById(
       gridId
     );
 
+
   if(!meu || !grid){
+
     return;
+
   }
 
-  if(!resultado.existe_sorteio){
 
-    meu.innerHTML="";
+  if(
+    !resultado.existe_sorteio
+  ){
 
-    grid.innerHTML=`
+    meu.innerHTML = "";
+
+    grid.innerHTML = `
 
       <div class="section">
 
@@ -3008,7 +5156,7 @@ function renderizarTimes(
         </h3>
 
         <p style="color:#7890a8;margin-top:8px">
-          Aguarde o administrador fechar a lista e sortear os times.
+          Aguarde o administrador sortear os times.
         </p>
 
       </div>
@@ -3016,176 +5164,213 @@ function renderizarTimes(
     `;
 
     return;
+
   }
 
-  if(resultado.meu_time){
 
-    meu.innerHTML=`
+  if(
+    resultado.meu_time
+  ){
+
+    meu.innerHTML = `
 
       <div class="my-team">
 
-        <div>
-          ⚽ VOCÊ ESTÁ NO
-        </div>
+        ⚽ VOCÊ ESTÁ NO
 
         <strong>
-          ${escapar(resultado.meu_time)}
+          ${escapar(
+            resultado.meu_time
+          )}
         </strong>
 
       </div>
 
     `;
 
-  }else{
+  } else {
 
-    meu.innerHTML="";
+    meu.innerHTML = "";
 
   }
 
-  const times=
-    Array.isArray(resultado.times)
-    ? resultado.times
-    : [];
 
-  grid.innerHTML=
+  const times =
+    resultado.times || [];
+
+
+  grid.innerHTML =
     times
-      .map(function(time){
+      .map(
+        function(time){
 
-        const jogadores=
-          Array.isArray(time.jogadores)
-          ? time.jogadores
-          : [];
+          const jogadores =
+            time.jogadores || [];
 
-        return `
 
-          <div class="team-card">
+          return `
 
-            <div class="team-header">
+            <div class="team-card">
 
-              ${escapar(time.nome)}
+              <div class="team-header">
 
-              <span
-                style="
-                  float:right;
-                  color:#8faac2;
-                  font-size:13px;
-                "
-              >
-                ${jogadores.length}
-              </span>
+                ${escapar(
+                  time.nome ||
+                  time.time
+                )}
+
+                <span
+                  style="
+                    float:right;
+                    color:#8faac2;
+                    font-size:13px;
+                  "
+                >
+                  ${jogadores.length}
+                </span>
+
+              </div>
+
+
+              <div class="team-body">
+
+                ${
+                  jogadores
+                    .map(
+                      function(j){
+
+                        return `
+
+                          <div class="team-player">
+
+                            <span>
+                              ${escapar(
+                                j.nome
+                              )}
+                            </span>
+
+                            ${
+                              String(
+                                j.tipo
+                              ).toUpperCase()
+                              === "GOLEIRO"
+                                ? '<span class="gk">🥅</span>'
+                                : '<span>⚽</span>'
+                            }
+
+                          </div>
+
+                        `;
+
+                      }
+                    )
+                    .join("")
+                }
+
+              </div>
 
             </div>
 
-            <div class="team-body">
+          `;
 
-              ${
-                jogadores
-                  .map(function(j){
-
-                    return `
-
-                      <div class="team-player">
-
-                        <span>
-                          ${escapar(j.nome)}
-                        </span>
-
-                        ${
-                          String(j.tipo).toUpperCase()==="GOLEIRO"
-                          ? '<span class="gk">🥅</span>'
-                          : '<span>⚽</span>'
-                        }
-
-                      </div>
-
-                    `;
-
-                  })
-                  .join("")
-              }
-
-            </div>
-
-          </div>
-
-        `;
-
-      })
+        }
+      )
       .join("");
 
 }
 
 
 /* =========================================================
-   RANKING
+RANKING
 ========================================================= */
 
 async function carregarRanking(){
 
-  try{
+  try {
 
-    const resultado=
-      await api("ranking");
+    const resultado =
+      await api(
+        "ranking"
+      );
 
-    const body=
+
+    const body =
       document.getElementById(
         "rankingBody"
       );
 
-    const ranking=
-      Array.isArray(resultado.ranking)
-      ? resultado.ranking
-      : [];
 
-    if(!ranking.length){
+    const ranking =
+      resultado.ranking || [];
 
-      body.innerHTML=`
+
+    if(
+      !ranking.length
+    ){
+
+      body.innerHTML = `
 
         <tr>
+
           <td colspan="4">
-            Ainda não existem avaliações.
+            Ainda não existem avaliações aprovadas.
           </td>
+
         </tr>
 
       `;
 
       return;
+
     }
 
-    body.innerHTML=
+
+    body.innerHTML =
       ranking
-        .map(function(j,index){
+        .map(
+          function(j,index){
 
-          return `
+            const nota =
+              j.notaGeral === null ||
+              j.notaGeral === undefined
+                ? "-"
+                : Number(
+                    j.notaGeral
+                  ).toFixed(1);
 
-            <tr>
 
-              <td>
-                <strong>
-                  ${index+1}
-                </strong>
-              </td>
+            return `
 
-              <td>
-                ${escapar(j.nome)}
-              </td>
+              <tr>
 
-              <td>
-                ⭐ ${Number(j.media).toFixed(2)}
-              </td>
+                <td>
+                  <strong>
+                    ${index + 1}
+                  </strong>
+                </td>
 
-              <td>
-                ${j.votos}
-              </td>
+                <td>
+                  ${escapar(j.nome)}
+                </td>
 
-            </tr>
+                <td>
+                  ⭐ ${nota}
+                </td>
 
-          `;
+                <td>
+                  ${j.votos || 0}
+                </td>
 
-        })
+              </tr>
+
+            `;
+
+          }
+        )
         .join("");
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -3198,391 +5383,93 @@ async function carregarRanking(){
 
 
 /* =========================================================
-   JOGADORES ADMIN
+ADMIN CONTROLE VOTAÇÃO
 ========================================================= */
 
-async function carregarJogadores(){
+async function carregarControleVotacao(){
 
-  try{
+  if(
+    !isAdmin()
+  ){
 
-    const resultado=
-      await api("listar_jogadores");
-
-    const body=
-      document.getElementById(
-        "jogadoresBody"
-      );
-
-    const jogadores=
-      Array.isArray(resultado.jogadores)
-      ? resultado.jogadores
-      : [];
-
-    body.innerHTML=
-      jogadores
-        .map(function(j){
-
-          let badge="badge-yellow";
-
-          if(j.status==="APROVADO"){
-            badge="badge-green";
-          }
-
-          if(j.status==="INATIVO"){
-            badge="badge-red";
-          }
-
-          if(j.status==="RECUSADO"){
-            badge="badge-red";
-          }
-
-          return `
-
-            <tr>
-
-              <td>
-                ${escapar(j.nome)}
-              </td>
-
-              <td>
-
-                <span class="badge ${badge}">
-                  ${escapar(j.status)}
-                </span>
-
-              </td>
-
-              <td>
-
-                <div class="actions">
-
-                  ${
-                    j.status==="PENDENTE"
-                    ? `
-
-                      <button
-                        class="btn btn-success"
-                        onclick="aprovarJogador('${escaparAttr(j.id)}')"
-                      >
-                        APROVAR
-                      </button>
-
-                      <button
-                        class="btn btn-danger"
-                        onclick="recusarJogador('${escaparAttr(j.id)}')"
-                      >
-                        RECUSAR
-                      </button>
-
-                    `
-                    : ""
-                  }
-
-                  ${
-                    j.status==="APROVADO" &&
-                    String(j.nome).toLowerCase()!=="admin"
-                    ? `
-
-                      <button
-                        class="btn btn-warning"
-                        onclick="desativarJogador('${escaparAttr(j.id)}')"
-                      >
-                        DESATIVAR
-                      </button>
-
-                    `
-                    : ""
-                  }
-
-                  ${
-                    j.status==="INATIVO"
-                    ? `
-
-                      <button
-                        class="btn btn-success"
-                        onclick="ativarJogador('${escaparAttr(j.id)}')"
-                      >
-                        ATIVAR
-                      </button>
-
-                    `
-                    : ""
-                  }
-
-                  ${
-                    String(j.nome).toLowerCase()!=="admin"
-                    ? `
-
-                      <button
-                        class="btn btn-secondary"
-                        onclick="resetarSenha('${escaparAttr(j.id)}')"
-                      >
-                        RESET SENHA
-                      </button>
-
-                    `
-                    : ""
-                  }
-
-                </div>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        })
-        .join("");
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
-
-  }
-
-}
-
-
-async function aprovarJogador(id){
-
-  try{
-
-    await api(
-      "aprovar_jogador",
-      {
-        jogador_id:id,
-        jogadorId:id
-      }
-    );
-
-    toast(
-      "Jogador aprovado!"
-    );
-
-    carregarJogadores();
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
-
-  }
-
-}
-
-
-async function recusarJogador(id){
-
-  if(!confirm("Recusar este jogador?")){
     return;
-  }
-
-  try{
-
-    await api(
-      "recusar_jogador",
-      {
-        jogador_id:id,
-        jogadorId:id
-      }
-    );
-
-    toast(
-      "Jogador recusado."
-    );
-
-    carregarJogadores();
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
 
   }
 
-}
 
-
-async function ativarJogador(id){
-
-  try{
-
-    await api(
-      "ativar_jogador",
-      {
-        jogador_id:id,
-        jogadorId:id
-      }
-    );
-
-    toast(
-      "Jogador ativado!"
-    );
-
-    carregarJogadores();
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
-
-  }
-
-}
-
-
-async function desativarJogador(id){
-
-  if(!confirm("Desativar este jogador?")){
-    return;
-  }
-
-  try{
-
-    await api(
-      "desativar_jogador",
-      {
-        jogador_id:id,
-        jogadorId:id
-      }
-    );
-
-    toast(
-      "Jogador desativado."
-    );
-
-    carregarJogadores();
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
-
-  }
-
-}
-
-
-async function resetarSenha(id){
-
-  const senha=
-    prompt(
-      "Digite a nova senha:"
-    );
-
-  if(!senha){
-    return;
-  }
-
-  try{
-
-    await api(
-      "resetar_senha",
-      {
-        jogador_id:id,
-        jogadorId:id,
-        nova_senha:senha,
-        novaSenha:senha
-      }
-    );
-
-    toast(
-      "Senha alterada!"
-    );
-
-  }catch(erro){
-
-    toast(
-      erro.message,
-      true
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   ADMIN - CONTROLE DA LISTA
-========================================================= */
-
-async function carregarAdminListas(){
-
-  try{
+  try {
 
     await carregarPartidas();
 
-    const area=
+
+    const status =
+      await api(
+        "status_votacao"
+      );
+
+
+    const statusArea =
       document.getElementById(
-        "adminListas"
+        "statusVotacaoAdmin"
       );
 
-    if(!partidas.length){
 
-      area.innerHTML=
-        '<div class="card">Nenhuma partida cadastrada.</div>';
+    statusArea.innerHTML =
+      status.aberta
+        ? `
 
-      return;
-    }
+          <div class="success">
 
-    const resultados=
-      await Promise.all(
-        partidas.map(function(p){
+            🟢 VOTAÇÃO ABERTA
 
-          const idPartida=
-            extrairPartidaId(p);
+            <br>
 
-          if(!idPartida){
-
-            return {
-              partida:p,
-              lista:null
-            };
-
-          }
-
-          return api(
-            "listar_lista_futebol",
-            {
-              partida_id:idPartida,
-              partidaId:idPartida
+            ${
+              status.partida
+                ? escapar(
+                    status.partida.adversario ||
+                    "Partida"
+                  )
+                : ""
             }
-          )
-          .then(function(r){
 
-            return {
-              partida:p,
-              lista:r
-            };
+          </div>
 
-          });
+        `
+        : `
 
-        })
+          <div class="error">
+
+            🔴 VOTAÇÃO FECHADA
+
+          </div>
+
+        `;
+
+
+    const area =
+      document.getElementById(
+        "controlePartidasVotacao"
       );
 
 
-    area.innerHTML=
-      resultados
-        .map(function(item){
+    area.innerHTML =
+      partidas
+        .map(
+          function(p){
 
-          const p=item.partida;
-          const l=item.lista;
-          const idPartida=
-            extrairPartidaId(p);
+            const id =
+              extrairPartidaId(
+                p
+              );
 
-          if(!l){
+
+            const aberta =
+              String(
+                p.votacao
+              ).toUpperCase()
+              === "ABERTA";
+
 
             return `
 
@@ -3593,17 +5480,55 @@ async function carregarAdminListas(){
                 </div>
 
                 <h4>
-                  ${escapar(p.adversario)}
+                  ${escapar(
+                    p.adversario
+                  )}
                 </h4>
 
                 <div class="match-date">
-                  📅 ${escapar(formatarData(p.data))}
+                  📅 ${
+                    escapar(
+                      formatarData(
+                        p.data
+                      )
+                    )
+                  }
                   •
-                  ${escapar(formatarHora(p.hora))}
+                  ${
+                    escapar(
+                      formatarHora(
+                        p.hora
+                      )
+                    )
+                  }
                 </div>
 
-                <div class="error">
-                  ID da partida não encontrado.
+                <div class="match-actions">
+
+                  ${
+                    aberta
+                      ? `
+
+                        <button
+                          class="btn btn-danger"
+                          onclick="encerrarVotacaoAdmin('${escaparAttr(id)}')"
+                        >
+                          🔴 ENCERRAR VOTAÇÃO
+                        </button>
+
+                      `
+                      : `
+
+                        <button
+                          class="btn btn-success"
+                          onclick="abrirVotacaoAdmin('${escaparAttr(id)}')"
+                        >
+                          🟢 ABRIR VOTAÇÃO
+                        </button>
+
+                      `
+                  }
+
                 </div>
 
               </div>
@@ -3611,109 +5536,14 @@ async function carregarAdminListas(){
             `;
 
           }
-
-          const lista=
-            l.lista || {};
-
-          return `
-
-            <div class="match-card">
-
-              <div class="match-name">
-                ⚽ FUTEBOL ID
-              </div>
-
-              <h4>
-                ${escapar(p.adversario)}
-              </h4>
-
-              <div class="match-date">
-                📅 ${escapar(formatarData(p.data))}
-                •
-                ${escapar(formatarHora(p.hora))}
-              </div>
-
-              <div class="match-info">
-
-                📍 ${escapar(p.local)}
-
-              </div>
-
-              <div style="margin-top:12px">
-
-                <span class="${
-                  lista.status==="ABERTA"
-                  ? "badge badge-green"
-                  : "badge badge-red"
-                }">
-
-                  ${
-                    lista.status==="ABERTA"
-                    ? "LISTA ABERTA"
-                    : "LISTA FECHADA"
-                  }
-
-                </span>
-
-              </div>
-
-              <div style="margin-top:12px">
-
-                ⚽ ${l.total_jogadores}/20 jogadores
-
-                <br>
-
-                🥅 ${l.total_goleiros}/4 goleiros
-
-                <br>
-
-                👥 ${l.total}/24 total
-
-              </div>
-
-              <div class="match-actions">
-
-                ${
-                  lista.status==="ABERTA"
-                  ? `
-
-                    <button
-                      class="btn btn-warning"
-                      onclick="alterarLista('${escaparAttr(idPartida)}','fechar')"
-                    >
-                      FECHAR LISTA
-                    </button>
-
-                  `
-                  : `
-
-                    <button
-                      class="btn btn-success"
-                      onclick="alterarLista('${escaparAttr(idPartida)}','abrir')"
-                    >
-                      ABRIR LISTA
-                    </button>
-
-                  `
-                }
-
-                <button
-                  class="btn btn-primary"
-                  onclick="abrirPainelAdminTimes('${escaparAttr(idPartida)}')"
-                >
-                  🎲 SORTEAR
-                </button>
-
-              </div>
-
-            </div>
-
-          `;
-
-        })
+        )
         .join("");
 
-  }catch(erro){
+
+    await carregarNotasPendentes();
+
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -3725,42 +5555,287 @@ async function carregarAdminListas(){
 }
 
 
-async function alterarLista(partidaId,acao){
+async function abrirVotacaoAdmin(
+  partidaId
+){
 
-  partidaId=
-    String(partidaId || "").trim();
-
-  if(!partidaId){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
-
-  try{
+  try {
 
     await api(
-      acao==="fechar"
-      ? "fechar_lista_futebol"
-      : "abrir_lista_futebol",
+      "abrir_votacao",
       {
-        partida_id:partidaId,
-        partidaId:partidaId
+        partidaId:
+          partidaId,
+
+        partida_id:
+          partidaId
       }
     );
 
+
     toast(
-      acao==="fechar"
-      ? "Lista fechada."
-      : "Lista aberta."
+      "🟢 Votação aberta!"
     );
 
-    await carregarAdminListas();
 
-  }catch(erro){
+    await carregarControleVotacao();
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function encerrarVotacaoAdmin(
+  partidaId
+){
+
+  if(
+    !confirm(
+      "Encerrar a votação desta partida?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    await api(
+      "encerrar_votacao",
+      {
+        partidaId:
+          partidaId,
+
+        partida_id:
+          partidaId
+      }
+    );
+
+
+    toast(
+      "🔴 Votação encerrada."
+    );
+
+
+    await carregarControleVotacao();
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function carregarNotasPendentes(){
+
+  const area =
+    document.getElementById(
+      "notasPendentes"
+    );
+
+
+  try {
+
+    const resultado =
+      await api(
+        "notas_pendentes"
+      );
+
+
+    const jogadores =
+      resultado.jogadores || [];
+
+
+    if(
+      !jogadores.length
+    ){
+
+      area.innerHTML =
+        '<div class="card">Nenhuma nota aguardando aprovação.</div>';
+
+      return;
+
+    }
+
+
+    area.innerHTML =
+      jogadores
+        .map(
+          function(j){
+
+            const nota =
+              j.notaCalculada === null
+                ? "-"
+                : Number(
+                    j.notaCalculada
+                  ).toFixed(1);
+
+
+            return `
+
+              <div class="player-card">
+
+                <div class="player-photo">
+
+                  ${
+                    j.fotoUrl
+                      ? `<img src="${escaparAttr(j.fotoUrl)}">`
+                      : '<div class="player-photo-placeholder">⚽</div>'
+                  }
+
+                </div>
+
+                <div class="player-name">
+
+                  ${escapar(j.nome)}
+
+                </div>
+
+                <div class="player-overall">
+
+                  <small>
+                    NOVA NOTA
+                  </small>
+
+                  <strong>
+                    ${nota}
+                  </strong>
+
+                </div>
+
+                <div class="player-votes">
+
+                  ${j.totalVotos} votos
+
+                </div>
+
+                <div class="player-card-actions">
+
+                  <button
+                    class="btn btn-success"
+                    onclick="aprovarNota('${escaparAttr(j.id)}')"
+                  >
+                    ✅ APROVAR
+                  </button>
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
+
+
+  } catch(erro) {
+
+    area.innerHTML =
+      '<div class="error">' +
+      escapar(
+        erro.message
+      ) +
+      '</div>';
+
+  }
+
+}
+
+
+async function aprovarNota(
+  jogadorId
+){
+
+  try {
+
+    await api(
+      "aprovar_notas",
+      {
+        jogadorId:
+          jogadorId,
+
+        jogador_id:
+          jogadorId
+      }
+    );
+
+
+    toast(
+      "⭐ Nota aprovada!"
+    );
+
+
+    await carregarNotasPendentes();
+
+    await carregarJogadoresPublicos();
+
+    await carregarRanking();
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function aprovarTodasNotas(){
+
+  if(
+    !confirm(
+      "Aprovar todas as notas pendentes?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try {
+
+    const resultado =
+      await api(
+        "aprovar_notas"
+      );
+
+
+    toast(
+      resultado.mensagem ||
+      "Notas aprovadas."
+    );
+
+
+    await carregarNotasPendentes();
+
+    await carregarJogadoresPublicos();
+
+    await carregarRanking();
+
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -3773,49 +5848,259 @@ async function alterarLista(partidaId,acao){
 
 
 /* =========================================================
-   ADMIN - SORTEIO
+ADMIN LISTAS
 ========================================================= */
 
-async function carregarPainelSorteio(){
+async function carregarAdminListas(){
 
-  const select=
+  try {
+
+    await carregarPartidas();
+
+
+    const area =
+      document.getElementById(
+        "adminListas"
+      );
+
+
+    area.innerHTML =
+      partidas
+        .map(
+          function(p){
+
+            const id =
+              extrairPartidaId(
+                p
+              );
+
+
+            return `
+
+              <div class="match-card">
+
+                <div class="match-name">
+                  ⚽ FUTEBOL ID
+                </div>
+
+                <h4>
+                  ${escapar(
+                    p.adversario
+                  )}
+                </h4>
+
+                <div class="match-date">
+
+                  📅 ${
+                    escapar(
+                      formatarData(
+                        p.data
+                      )
+                    )
+                  }
+
+                  •
+
+                  ${
+                    escapar(
+                      formatarHora(
+                        p.hora
+                      )
+                    )
+                  }
+
+                </div>
+
+                <div class="match-info">
+
+                  📍 ${
+                    escapar(
+                      p.local
+                    )
+                  }
+
+                </div>
+
+                <div class="match-actions">
+
+                  <button
+                    class="btn btn-success"
+                    onclick="alterarLista('${escaparAttr(id)}','abrir')"
+                  >
+                    ABRIR LISTA
+                  </button>
+
+                  <button
+                    class="btn btn-warning"
+                    onclick="alterarLista('${escaparAttr(id)}','fechar')"
+                  >
+                    FECHAR LISTA
+                  </button>
+
+                  <button
+                    class="btn btn-primary"
+                    onclick="abrirPainelAdminTimes('${escaparAttr(id)}')"
+                  >
+                    🎲 SORTEAR
+                  </button>
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+async function alterarLista(
+  partidaId,
+  acao
+){
+
+  try {
+
+    await api(
+      acao === "fechar"
+        ? "fechar_lista_futebol"
+        : "abrir_lista_futebol",
+      {
+        partida_id:
+          partidaId,
+
+        partidaId:
+          partidaId
+      }
+    );
+
+
+    toast(
+      acao === "fechar"
+        ? "Lista fechada."
+        : "Lista aberta."
+    );
+
+
+    await carregarAdminListas();
+
+
+  } catch(erro) {
+
+    toast(
+      erro.message,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+SORTEIO ADMIN
+========================================================= */
+
+function abrirPainelAdminTimes(
+  id
+){
+
+  abrirPagina(
+    "adminTimes"
+  );
+
+
+  prepararSelectPartidas(
+    "adminTimesPartida"
+  );
+
+
+  const select =
     document.getElementById(
       "adminTimesPartida"
     );
 
-  const partidaId=
-    String(select.value || "").trim();
 
-  const painel=
+  select.value =
+    id;
+
+
+  carregarPainelSorteio();
+
+}
+
+
+async function carregarPainelSorteio(){
+
+  const select =
+    document.getElementById(
+      "adminTimesPartida"
+    );
+
+
+  const partidaId =
+    String(
+      select.value || ""
+    ).trim();
+
+
+  const painel =
     document.getElementById(
       "painelSorteio"
     );
 
+
   if(!partidaId){
 
-    painel.classList.add("hidden");
+    painel.classList.add(
+      "hidden"
+    );
 
     return;
+
   }
 
-  painel.classList.remove("hidden");
 
-  try{
+  painel.classList.remove(
+    "hidden"
+  );
 
-    const resultado=
+
+  try {
+
+    const resultado =
       await api(
         "listar_lista_futebol",
         {
-          partida_id:partidaId,
-          partidaId:partidaId
+          partida_id:
+            partidaId,
+
+          partidaId:
+            partidaId
         }
       );
 
-    document
-      .getElementById("sorteioResumo")
-      .innerHTML=`
 
-        <h3 style="margin-bottom:15px">
+    document
+      .getElementById(
+        "sorteioResumo"
+      )
+      .innerHTML = `
+
+        <h3>
           Resumo da lista
         </h3>
 
@@ -3862,7 +6147,9 @@ async function carregarPainelSorteio(){
         <p>
           Status:
           <strong>
-            ${escapar(resultado.lista.status)}
+            ${escapar(
+              resultado.status
+            )}
           </strong>
         </p>
 
@@ -3870,38 +6157,49 @@ async function carregarPainelSorteio(){
 
 
     document
-      .getElementById("btnFecharLista")
+      .getElementById(
+        "btnFecharLista"
+      )
       .classList.toggle(
         "hidden",
-        resultado.lista.status==="FECHADA"
+        resultado.status === "FECHADA"
       );
+
 
     document
-      .getElementById("btnAbrirLista")
+      .getElementById(
+        "btnAbrirLista"
+      )
       .classList.toggle(
         "hidden",
-        resultado.lista.status!=="FECHADA"
+        resultado.status !== "FECHADA"
       );
 
 
-    const times=
+    const times =
       await api(
         "listar_times_formados",
         {
-          partida_id:partidaId,
-          partidaId:partidaId
+          partida_id:
+            partidaId,
+
+          partidaId:
+            partidaId
         }
       );
 
 
-    const resultadoArea=
+    const area =
       document.getElementById(
         "adminTimesResultado"
       );
 
-    if(times.existe_sorteio){
 
-      resultadoArea.innerHTML=`
+    if(
+      times.existe_sorteio
+    ){
+
+      area.innerHTML = `
 
         <div class="section">
 
@@ -3916,31 +6214,32 @@ async function carregarPainelSorteio(){
 
       `;
 
+
       renderizarTimes(
         times,
         "adminMeuTime",
         "adminTimesGrid"
       );
 
-    }else{
 
-      resultadoArea.innerHTML=`
+    } else {
+
+      area.innerHTML = `
+
         <div class="section">
 
           <h3>
             ⏳ O sorteio ainda não foi realizado.
           </h3>
 
-          <p style="color:#7890a8;margin-top:8px">
-            Feche a lista e depois clique em SORTEAR TIMES.
-          </p>
-
         </div>
+
       `;
 
     }
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -3952,72 +6251,21 @@ async function carregarPainelSorteio(){
 }
 
 
-function abrirPainelAdminTimes(id){
-
-  id=
-    String(id || "").trim();
-
-  if(!id){
-
-    toast(
-      "ID da partida não encontrado.",
-      true
-    );
-
-    return;
-  }
-
-  abrirPagina("adminTimes");
-
-  prepararSelectPartidas(
-    "adminTimesPartida"
-  );
-
-  const select=
-    document.getElementById(
-      "adminTimesPartida"
-    );
-
-  select.value=id;
-
-  if(select.value!==id){
-
-    toast(
-      "A partida não foi encontrada.",
-      true
-    );
-
-    return;
-  }
-
-  carregarPainelSorteio();
-
-}
-
-
 async function fecharListaAdmin(){
 
-  const partidaId=
-    String(
-      document
-        .getElementById("adminTimesPartida")
-        .value || ""
-    ).trim();
+  const id =
+    document
+      .getElementById(
+        "adminTimesPartida"
+      )
+      .value;
 
-  if(!partidaId){
-
-    toast(
-      "Escolha uma partida.",
-      true
-    );
-
-    return;
-  }
 
   await alterarLista(
-    partidaId,
+    id,
     "fechar"
   );
+
 
   await carregarPainelSorteio();
 
@@ -4026,27 +6274,19 @@ async function fecharListaAdmin(){
 
 async function abrirListaAdmin(){
 
-  const partidaId=
-    String(
-      document
-        .getElementById("adminTimesPartida")
-        .value || ""
-    ).trim();
+  const id =
+    document
+      .getElementById(
+        "adminTimesPartida"
+      )
+      .value;
 
-  if(!partidaId){
-
-    toast(
-      "Escolha uma partida.",
-      true
-    );
-
-    return;
-  }
 
   await alterarLista(
-    partidaId,
+    id,
     "abrir"
   );
+
 
   await carregarPainelSorteio();
 
@@ -4055,59 +6295,66 @@ async function abrirListaAdmin(){
 
 async function sortearTimesAdmin(){
 
-  const partidaId=
-    String(
-      document
-        .getElementById("adminTimesPartida")
-        .value || ""
-    ).trim();
+  const id =
+    document
+      .getElementById(
+        "adminTimesPartida"
+      )
+      .value;
 
-  const numeroTimes=
+
+  const quantidade =
     Number(
       document
-        .getElementById("numeroTimes")
+        .getElementById(
+          "numeroTimes"
+        )
         .value
     );
 
-  if(!partidaId){
-
-    toast(
-      "Escolha uma partida.",
-      true
-    );
-
-    return;
-  }
 
   if(
     !confirm(
-      "Sortear "+
-      numeroTimes+
-      " times para esta partida?"
+      "Sortear " +
+      quantidade +
+      " times?"
     )
   ){
+
     return;
+
   }
 
-  try{
+
+  try {
 
     await api(
       "sortear_times",
       {
-        partida_id:partidaId,
-        partidaId:partidaId,
-        numero_times:numeroTimes,
-        numeroTimes:numeroTimes
+        partida_id:
+          id,
+
+        partidaId:
+          id,
+
+        numero_times:
+          quantidade,
+
+        numeroTimes:
+          quantidade
       }
     );
 
+
     toast(
-      "🎲 Times sorteados com sucesso!"
+      "🎲 Times sorteados!"
     );
+
 
     await carregarPainelSorteio();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -4121,48 +6368,48 @@ async function sortearTimesAdmin(){
 
 async function limparSorteioAdmin(){
 
-  const partidaId=
-    String(
-      document
-        .getElementById("adminTimesPartida")
-        .value || ""
-    ).trim();
+  const id =
+    document
+      .getElementById(
+        "adminTimesPartida"
+      )
+      .value;
 
-  if(!partidaId){
-
-    toast(
-      "Escolha uma partida.",
-      true
-    );
-
-    return;
-  }
 
   if(
     !confirm(
-      "Tem certeza que deseja apagar o sorteio?"
+      "Apagar o sorteio desta partida?"
     )
   ){
+
     return;
+
   }
 
-  try{
+
+  try {
 
     await api(
       "limpar_sorteio_times",
       {
-        partida_id:partidaId,
-        partidaId:partidaId
+        partida_id:
+          id,
+
+        partidaId:
+          id
       }
     );
+
 
     toast(
       "Sorteio apagado."
     );
 
+
     await carregarPainelSorteio();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     toast(
       erro.message,
@@ -4175,209 +6422,166 @@ async function limparSorteioAdmin(){
 
 
 /* =========================================================
-   UTILITÁRIOS
+DATA / HORA
 ========================================================= */
 
-function escapar(valor){
-
-  return String(
-    valor==null ? "" : valor
-  )
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
-
-
-function escaparAttr(valor){
-
-  return String(
-    valor==null ? "" : valor
-  )
-  .replace(/\\/g,"\\\\")
-  .replace(/'/g,"\\'");
-}
-
-
-/* =========================================================
-   FORMATAR DATA
-   IMPORTANTE:
-   NÃO usa new Date().
-   Assim o navegador não altera o fuso horário.
-========================================================= */
-
-function formatarData(data){
+function formatarData(
+  data
+){
 
   if(!data){
+
     return "";
+
   }
 
-  const texto=
-    String(data).trim();
 
-  /*
-     Exemplo:
-     2026-09-05
+  const texto =
+    String(
+      data
+    ).trim();
 
-     Resultado:
-     05/09/2026
-  */
 
   if(
-    /^\d{4}-\d{2}-\d{2}$/.test(texto)
+    /^\d{4}-\d{2}-\d{2}$/
+      .test(texto)
   ){
 
-    const partes=
+    const p =
       texto.split("-");
 
-    return(
-      partes[2]+
-      "/"+
-      partes[1]+
-      "/"+
-      partes[0]
+
+    return (
+      p[2] +
+      "/" +
+      p[1] +
+      "/" +
+      p[0]
     );
 
   }
 
-  /*
-     Exemplo:
-     2026-09-05T00:00:00.000Z
-
-     Pegamos somente:
-     2026-09-05
-
-     Sem converter para Date.
-  */
 
   if(
-    /^\d{4}-\d{2}-\d{2}T/.test(texto)
+    /^\d{4}-\d{2}-\d{2}T/
+      .test(texto)
   ){
 
-    const partes=
-      texto.substring(0,10).split("-");
+    const p =
+      texto
+        .substring(
+          0,
+          10
+        )
+        .split("-");
 
-    if(partes.length===3){
 
-      return(
-        partes[2]+
-        "/"+
-        partes[1]+
-        "/"+
-        partes[0]
-      );
-
-    }
+    return (
+      p[2] +
+      "/" +
+      p[1] +
+      "/" +
+      p[0]
+    );
 
   }
 
+
   return texto;
+
 }
 
 
-/* =========================================================
-   FORMATAR HORA
-   IMPORTANTE:
-   NÃO usa new Date().
-   Portanto não converte UTC para horário local.
-========================================================= */
-
-function formatarHora(hora){
+function formatarHora(
+  hora
+){
 
   if(!hora){
+
     return "";
+
   }
 
-  const texto=
-    String(hora).trim();
 
-  /*
-     Se o Apps Script retornar:
+  const texto =
+    String(
+      hora
+    ).trim();
 
-     1899-12-30T20:06:28.000Z
 
-     pegamos diretamente:
-     20:06
-
-     sem conversão de fuso.
-  */
-
-  const match=
+  const match =
     texto.match(
       /T(\d{2}):(\d{2})/
     );
 
+
   if(match){
 
-    return(
-      match[1]+
-      ":"+
+    return (
+      match[1] +
+      ":" +
       match[2]
     );
 
   }
 
-  /*
-     Se vier:
-
-     20:06:28
-  */
 
   if(
-    /^\d{2}:\d{2}:\d{2}$/.test(texto)
+    /^\d{2}:\d{2}:\d{2}$/
+      .test(texto)
   ){
 
-    return texto.substring(0,5);
+    return texto.substring(
+      0,
+      5
+    );
 
   }
 
-  /*
-     Se vier diretamente:
-
-     20:06
-  */
-
-  if(
-    /^\d{2}:\d{2}$/.test(texto)
-  ){
-
-    return texto;
-
-  }
 
   return texto;
+
 }
 
 
 /* =========================================================
-   VERIFICAR SESSÃO
+VERIFICAR SESSÃO
 ========================================================= */
 
 async function verificarSessao(){
 
   if(!token){
+
     return;
+
   }
 
-  try{
 
-    const resultado=
-      await api("me");
+  try {
 
-    usuario=
+    const resultado =
+      await api(
+        "me"
+      );
+
+
+    usuario =
+      resultado.usuario ||
       resultado.jogador;
+
 
     localStorage.setItem(
       "futebol_id_usuario",
-      JSON.stringify(usuario)
+      JSON.stringify(
+        usuario
+      )
     );
+
 
     iniciarSistema();
 
-  }catch(erro){
+
+  } catch(erro) {
 
     localStorage.removeItem(
       "futebol_id_token"
@@ -4387,7 +6591,9 @@ async function verificarSessao(){
       "futebol_id_usuario"
     );
 
-    token="";
+
+    token = "";
+    usuario = null;
 
   }
 
@@ -4395,7 +6601,7 @@ async function verificarSessao(){
 
 
 /* =========================================================
-   INICIALIZAÇÃO
+INICIALIZAÇÃO
 ========================================================= */
 
 verificarSessao();
